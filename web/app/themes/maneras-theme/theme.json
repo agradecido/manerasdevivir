@@ -2,6 +2,7 @@
   "__generated__": "⚠️ This file is generated. Do not edit.",
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
+  "textdomain": "maneras-theme",
   "settings": {
     "background": {
       "backgroundImage": true

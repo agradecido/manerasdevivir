@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 /**
  * Compiler configuration
  *
@@ -23,20 +25,12 @@ export default async (app) => {
    *
    * @see {@link https://bud.js.org/reference/bud.setPublicPath}
    */
-  app.setPublicPath('/app/themes/sage/public/');
+  app.setPublicPath(process.env.PUBLIC_PATH || '/app/themes/sage/public/');
 
-  /**
-   * Development server settings
-   *
-   * @see {@link https://bud.js.org/reference/bud.setUrl}
-   * @see {@link https://bud.js.org/reference/bud.setProxyUrl}
-   * @see {@link https://bud.js.org/reference/bud.watch}
-   */
   app
-    .setUrl('https://www.maneras.internal')
-    .setProxyUrl('https://www.maneras.internal')
+    .setUrl(process.env.APP_URL || 'http://localhost:3000')
+    .setProxyUrl(process.env.PROXY_URL || 'http://localhost')
     .watch(['resources/views', 'app']);
-
   /**
    * Generate WordPress `theme.json`
    *

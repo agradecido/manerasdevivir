@@ -31,6 +31,7 @@ add_action('enqueue_block_editor_assets', function () {
  *
  * @return void
  */
+
 add_action('after_setup_theme', function () {
     /**
      * Disable full-site editing support.
@@ -122,3 +123,15 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+/**
+ * Register the Custom Post Types.
+ *
+ */
+foreach (glob(get_template_directory() . "/app/Types/*.php") as $filename) {
+    include $filename;
+}
+
+foreach (glob(get_template_directory() . "/app/Taxonomies/*.php") as $filename) {
+    include $filename;
+}
