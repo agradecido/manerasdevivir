@@ -1,10 +1,11 @@
-<h1>Manerasdevivir.com</h1>
+<h2>Manerasdevivir.com</h2>
+<p>Manerasdevivir.com backend migration to WordPress.</p>
 <p align="center">
-  <img src="https://www.manerasdevivir.com/pics/logo_manerasdevivir.png" alt="Manerasdevivir.com Logo">
-</p>p>
-<p align="center">Manerasdevivir.com backend migratiobn to WordPress</p>
+  <img src="https://www.manerasdevivir.com/pics/logo_maneras_naranja-fuerte.png" alt="Manerasdevivir.com Logo" width="600">
+</p>
 
 <h2>We do it using...</h2>
+
 <p align="center">
   <a href="https://roots.io/bedrock/">
     <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" height="100">
