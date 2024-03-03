@@ -2,14 +2,14 @@
 
 add_action('add_meta_boxes', function () {
     add_meta_box(
-        'article_info',
-        'Article Information',
-        'article_custom_box_html',
-        'article',
+        'post_info',
+        'New extra info.',
+        'post_custom_box_html',
+        'post',
     );
 });
 
-function article_custom_box_html($post) : void
+function post_custom_box_html($post) : void
 {
     $sender_name = get_post_meta($post->ID, 'sender_name', true);
     $sender_email = get_post_meta($post->ID, 'sender_email', true);
@@ -42,7 +42,7 @@ add_action('save_post', function ($post_id) {
     // Verificar el nonce aquí si tienes uno como medida de seguridad
 
     // Verifica los permisos del usuario
-    if (isset($_POST['post_type']) && 'article' == $_POST['post_type']) {
+    if (isset($_POST['post_type']) && 'post' == $_POST['post_type']) {
         if (!current_user_can('edit_post', $post_id)) {
             return;
         }

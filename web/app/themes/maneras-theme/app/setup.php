@@ -114,24 +114,14 @@ add_action('widgets_init', function () {
     ];
 
     register_sidebar([
-        'name' => __('Primary', 'sage'),
-        'id' => 'sidebar-primary',
-    ] + $config);
+            'name' => __('Primary', 'sage'),
+            'id' => 'sidebar-primary',
+        ] + $config);
 
     register_sidebar([
-        'name' => __('Footer', 'sage'),
-        'id' => 'sidebar-footer',
-    ] + $config);
+            'name' => __('Footer', 'sage'),
+            'id' => 'sidebar-footer',
+        ] + $config);
 });
 
-/**
- * Register the Custom Post Types.
- *
- */
-foreach (glob(get_template_directory() . "/app/Types/*.php") as $filename) {
-    include $filename;
-}
 
-foreach (glob(get_template_directory() . "/app/Taxonomies/*.php") as $filename) {
-    include $filename;
-}

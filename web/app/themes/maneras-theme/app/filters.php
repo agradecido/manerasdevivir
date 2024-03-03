@@ -14,3 +14,15 @@ namespace App;
 add_filter('excerpt_more', function () {
     return sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'sage'));
 });
+
+add_filter('post_link', function ($post_link, $post) {
+    if ('post' == get_post_type($post)) {
+        $id_noticia = get_post_meta($post->ID, 'id_noticia', true);
+        if ($id_noticia) {
+            return home_url(user_trailingslashit("noticias/$id_noticia/" . $post->post_name));
+        }
+    }
+    return $post_link;
+}, 10, 2);
+
+
