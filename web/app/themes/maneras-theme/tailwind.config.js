@@ -4,18 +4,34 @@ const config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          100: '#aa6600',
-          200: '#bb6600',
-          300: '#cc6600',
-          400: '#dd6600',
-          500: '#ee6600',
-          600: '#ff6600',
-        }
-      }, // Extend Tailwind's default colors
+        'text': '#F2EADF',
+        'bg': '#0D0D0D',
+        'links': '#8AB0BF',
+        'hs': '#F25C05',
+      },
     },
   },
   plugins: [],
+  corePlugins: {
+    // Extender la base de estilos para <p>
+    typography: ({theme}) => ({
+      DEFAULT: {
+        css: {
+          'p': {
+            color: theme('colors.text'), // Usa el color definido en la sección extend
+          },
+          'a': {
+            color: theme('colors.links'),
+            '&:hover': {
+              color: theme('colors.hs'),
+            }
+          },
+          'h1': {
+            color: theme('colors.hs'),
+          },
+        },
+      },
+    }),
+  },
 };
-
 export default config;

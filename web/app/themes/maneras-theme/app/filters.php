@@ -24,5 +24,3 @@ add_filter('post_link', function ($post_link, $post) {
     }
     return $post_link;
 }, 10, 2);
-
-

@@ -1251,34 +1251,24 @@
           "slug": "rose-950"
         },
         {
-          "color": "#aa6600",
-          "name": "Primary 100",
-          "slug": "primary-100"
+          "color": "#f2eadf",
+          "name": "Text",
+          "slug": "text"
         },
         {
-          "color": "#bb6600",
-          "name": "Primary 200",
-          "slug": "primary-200"
+          "color": "#0d0d0d",
+          "name": "Bg",
+          "slug": "bg"
         },
         {
-          "color": "#cc6600",
-          "name": "Primary 300",
-          "slug": "primary-300"
+          "color": "#8ab0bf",
+          "name": "Links",
+          "slug": "links"
         },
         {
-          "color": "#dd6600",
-          "name": "Primary 400",
-          "slug": "primary-400"
-        },
-        {
-          "color": "#ee6600",
-          "name": "Primary 500",
-          "slug": "primary-500"
-        },
-        {
-          "color": "#ff6600",
-          "name": "Primary 600",
-          "slug": "primary-600"
+          "color": "#f25c05",
+          "name": "Hs",
+          "slug": "hs"
         }
       ]
     },
