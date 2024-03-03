@@ -2,7 +2,6 @@
   "__generated__": "⚠️ This file is generated. Do not edit.",
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
-  "textdomain": "maneras-theme",
   "settings": {
     "background": {
       "backgroundImage": true
@@ -1250,6 +1249,36 @@
           "color": "#4c0519",
           "name": "Rose 950",
           "slug": "rose-950"
+        },
+        {
+          "color": "#aa6600",
+          "name": "Primary 100",
+          "slug": "primary-100"
+        },
+        {
+          "color": "#bb6600",
+          "name": "Primary 200",
+          "slug": "primary-200"
+        },
+        {
+          "color": "#cc6600",
+          "name": "Primary 300",
+          "slug": "primary-300"
+        },
+        {
+          "color": "#dd6600",
+          "name": "Primary 400",
+          "slug": "primary-400"
+        },
+        {
+          "color": "#ee6600",
+          "name": "Primary 500",
+          "slug": "primary-500"
+        },
+        {
+          "color": "#ff6600",
+          "name": "Primary 600",
+          "slug": "primary-600"
         }
       ]
     },

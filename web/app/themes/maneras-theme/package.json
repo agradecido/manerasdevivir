@@ -21,6 +21,10 @@
   "devDependencies": {
     "@roots/bud": "6.20.0",
     "@roots/bud-tailwindcss": "6.20.0",
-    "@roots/sage": "6.20.0"
+    "@roots/sage": "6.20.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "tailwindcss": "^3.4.1"
   }
 }

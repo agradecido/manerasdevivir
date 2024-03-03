@@ -20,10 +20,11 @@ class App extends Composer
      *
      * @return array
      */
-    public function with()
+    public function with() : array
     {
         return [
             'siteName' => $this->siteName(),
+            'siteLogo' => $this->siteLogo(),
         ];
     }
 
@@ -32,8 +33,13 @@ class App extends Composer
      *
      * @return string
      */
-    public function siteName()
+    public function siteName() : string
     {
         return get_bloginfo('name', 'display');
+    }
+
+    public function siteLogo() : string
+    {
+        return get_custom_logo();
     }
 }
