@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef7b30cbe4ebeb52afef87ba71f22ca4",
+    "content-hash": "7e641988613f8801023d42fd3c3d06b1",
     "packages": [
         {
             "name": "composer/installers",
@@ -1108,6 +1108,60 @@
                 }
             ],
             "time": "2023-11-12T22:43:29+00:00"
+        },
+        {
+            "name": "wpackagist-theme/ace-news",
+            "version": "1.1.1",
+            "source": {
+                "type": "svn",
+                "url": "https://themes.svn.wordpress.org/ace-news/",
+                "reference": "1.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/theme/ace-news.1.1.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-theme",
+            "homepage": "https://wordpress.org/themes/ace-news/"
+        },
+        {
+            "name": "wpackagist-theme/color-newsmagazine",
+            "version": "1.3.0",
+            "source": {
+                "type": "svn",
+                "url": "https://themes.svn.wordpress.org/color-newsmagazine/",
+                "reference": "1.3.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/theme/color-newsmagazine.1.3.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-theme",
+            "homepage": "https://wordpress.org/themes/color-newsmagazine/"
+        },
+        {
+            "name": "wpackagist-theme/ph-news-paper",
+            "version": "1.0.2.5",
+            "source": {
+                "type": "svn",
+                "url": "https://themes.svn.wordpress.org/ph-news-paper/",
+                "reference": "1.0.2.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/theme/ph-news-paper.1.0.2.5.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-theme",
+            "homepage": "https://wordpress.org/themes/ph-news-paper/"
         },
         {
             "name": "wpackagist-theme/twentytwentyfour",
