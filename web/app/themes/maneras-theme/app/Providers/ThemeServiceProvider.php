@@ -24,5 +24,11 @@ class ThemeServiceProvider extends SageServiceProvider
     public function boot()
     {
         parent::boot();
+        
+        add_action('after_setup_theme', function () {
+            register_nav_menus([
+                'primary_navigation' => __('Primary Navigation', 'sage')
+            ]);
+        });
     }
 }
