@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-bg;
+  @apply text-text;
+  @apply font-sans;
+  @apply p-4;
+}
+
+a {
+  @apply text-links;
+  &:hover {
+    @apply text-hs;
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
+  @apply text-hs;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+.custom-logo-link>img {
+  max-width: 480px;
+}
+
+article {
+  @apply mb-8;
+}

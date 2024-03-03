@@ -1249,26 +1249,6 @@
           "color": "#4c0519",
           "name": "Rose 950",
           "slug": "rose-950"
-        },
-        {
-          "color": "#f2eadf",
-          "name": "Text",
-          "slug": "text"
-        },
-        {
-          "color": "#0d0d0d",
-          "name": "Bg",
-          "slug": "bg"
-        },
-        {
-          "color": "#8ab0bf",
-          "name": "Links",
-          "slug": "links"
-        },
-        {
-          "color": "#f25c05",
-          "name": "Hs",
-          "slug": "hs"
         }
       ]
     },

@@ -25,12 +25,13 @@ export default async (app) => {
    *
    * @see {@link https://bud.js.org/reference/bud.setPublicPath}
    */
-  app.setPublicPath(process.env.PUBLIC_PATH || '/app/themes/sage/public/');
+  app.setPublicPath(process.env.PUBLIC_PATH || '/app/themes/maneras-theme/public/');
 
   app
     .setUrl(process.env.APP_URL || 'http://localhost:3000')
     .setProxyUrl(process.env.PROXY_URL || 'http://localhost')
-    .watch(['resources/views', 'app']);
+    .watch(['resources/views', 'app'])
+
   /**
    * Generate WordPress `theme.json`
    *
