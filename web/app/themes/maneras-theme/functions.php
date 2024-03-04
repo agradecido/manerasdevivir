@@ -62,3 +62,9 @@ collect(['setup', 'filters', 'rewrites'])
             );
         }
     });
+
+foreach (glob(get_template_directory() . "/app/Taxonomies/*.php") as $filename) {
+    include $filename;
+}
+
+require_once get_template_directory() . '/app/Taxonomies/taxonomies.php';

@@ -1,5 +1,5 @@
 <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
-  {{ get_the_date() }} | {{ get_the_author_meta() }}
+  {{ get_the_date() }} | <span class="fas fa-user text-text"></span>{{ get_post_meta( get_the_ID(), 'sender_name', true ) }}
 </time>
 
 <!--<p>

@@ -6,6 +6,8 @@ add_action('add_meta_boxes', function () {
         'New extra info.',
         'post_custom_box_html',
         'post',
+        'normal',
+        'high',
     );
 });
 
@@ -72,8 +74,8 @@ add_action('save_post', function ($post_id) {
     if (array_key_exists('sender_ip', $_POST)) {
         update_post_meta(
             $post_id,
-            'sender_name',
-            $_POST['sender_name']
+            'sender_ip',
+            sanitize_text_field($_POST['sender_ip'])
         );
     }
 

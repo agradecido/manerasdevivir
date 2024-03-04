@@ -24,3 +24,10 @@ add_filter('post_link', function ($post_link, $post) {
     }
     return $post_link;
 }, 10, 2);
+
+add_filter('use_block_editor_for_post_type', function($enabled, $post_type) {
+    if ($post_type === 'post') {
+        return false;
+    }
+    return $enabled;
+}, 10, 2);
