@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import forms from '@tailwindcss/forms';
+
 const config = {
-  content: ['./app/**/*.php', './resources/**/*.{php,vue,js}'],
+  content: [
+    './app/**/*.php',
+    './resources/**/*.{php,vue,js}',
+    './vendor/brandymedia/turbine-ui-core/**/*.php',
+  ],
   theme: {
     extend: {
       colors: {
@@ -12,6 +18,7 @@ const config = {
     },
   },
   plugins: [
+    forms,
     require('@tailwindcss/typography'),
     // Añadir FontAwesome como un plugin
     function({ addComponents }) {
