@@ -1,3 +1,3 @@
 <div class="page-header">
-  <h1>{!! $title !!}</h1>
+  <h2>Últimas noticias</h2>
 </div>

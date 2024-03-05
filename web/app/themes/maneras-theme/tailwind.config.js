@@ -12,6 +12,7 @@ const config = {
       colors: {
         'text': '#cccccc',
         'bg': '#0D0D0D',
+        'bg-secondary': '#1E2428',
         'links': '#8AB0BF',
         'hs': '#ff6600',
       },
@@ -26,6 +27,8 @@ const config = {
         '.fa-user': {
           content: '"\\f007"',
           fontFamily: 'FontAwesome',
+          marginRight: '0.5rem',
+          fontSize: '.75rem',
         },
         // Aquí puedes seguir añadiendo más íconos según sea necesario
       });

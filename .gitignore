@@ -28,3 +28,4 @@ wp-cli.local.yml
 
 *.nogit.*
 importer.php
+events-importer.php

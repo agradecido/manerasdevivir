@@ -33,7 +33,7 @@ class FeaturedContentComponent extends Component
         return $query->posts;
     }
 
-    public function render() : string
+    public function render()
     {
         return $this->view('components.featured-content', ['posts' => $this->posts]);
     }

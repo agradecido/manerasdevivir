@@ -21,9 +21,7 @@
     </div>
 
     <div class="w-full md:w-1/3 px-2">
-      <h2>Soy la col derecha</h2>
       <x-featured-content-component />
-
     </div>
   </div>
 @endsection

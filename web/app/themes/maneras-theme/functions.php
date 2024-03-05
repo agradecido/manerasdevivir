@@ -67,4 +67,6 @@ foreach (glob(get_template_directory() . "/app/Taxonomies/*.php") as $filename) 
     include $filename;
 }
 
-require_once get_template_directory() . '/app/Taxonomies/taxonomies.php';
+foreach (glob(get_template_directory() . "/app/Types/*.php") as $filename) {
+    include $filename;
+}
