@@ -1,6 +1,6 @@
 @if (!empty($posts))
   <h2 class="text-hs text-2xl font-bold mb-4">Destacados</h2>
-  <div class="featured-content bg-bg">
+  <div class="featured-module featured-content bg-bg">
     <ul>
       @foreach ($posts as $post)
         <li class="mb-6 last:mb-0 bg-bg-secondary rounded-lg">

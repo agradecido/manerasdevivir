@@ -1,24 +1,29 @@
+@import '_vars';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  @apply bg-bg;
-  @apply text-text;
+  @apply bg-background-900;
+  @apply text-text-300;
   @apply font-sans;
   @apply p-5;
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 a {
-  @apply text-links;
+  @apply text-links-500;
   &:hover {
-    @apply text-hs;
+    @apply text-headings-600;
   }
 }
 
 h1, h2, h3, h4, h5, h6,
 h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
-  @apply text-hs;
+  @apply text-headings-600;
   font-weight: 700;
 }
 
