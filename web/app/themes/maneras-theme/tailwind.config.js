@@ -5,13 +5,12 @@ const config = {
     content: [
       './app/**/*.php',
       './resources/**/*.{php,vue,js}',
-      './vendor/brandymedia/turbine-ui-core/**/*.php',
     ],
     theme: {
       extend: {
         colors: {
-          'text': {
-            '50':  '#f7f7f7',
+          'gray': {
+            '50': '#f7f7f7',
             '100': '#ededed',
             '200': '#dfdfdf',
             '300': '#cccccc',
@@ -23,7 +22,7 @@ const config = {
             '900': '#545454',
             '950': '#363636',
           },
-          'background': {
+          'black': {
             '50': '#f6f6f6',
             '100': '#e7e7e7',
             '200': '#d1d1d1',
@@ -36,7 +35,7 @@ const config = {
             '900': '#0d0d0d',
             '950': '#000000',
           },
-          'links': {
+          'blue': {
             '50': '#edf0ff',
             '100': '#dfe2ff',
             '200': '#c5caff',
@@ -49,8 +48,8 @@ const config = {
             '900': '#392b84',
             '950': '#23194d',
           },
-          'headings': {
-            '50':  '#fff8ec',
+          'orange': {
+            '50': '#fff8ec',
             '100': '#fff0d3',
             '200': '#ffdca5',
             '300': '#ffc26d',
@@ -62,26 +61,109 @@ const config = {
             '900': '#82310c',
             '950': '#461604',
           },
+        },
       },
     },
-  },
-  plugins: [
-    forms,
-    require
-('@tailwindcss/typography'),
-  // FontAwesome as plugin.
-  function ({addComponents}) {
-    addComponents({
-      '.fa-user': {
-        content: '"\\f007"',
-        fontFamily: 'FontAwesome',
-        marginRight: '0.5rem',
-        fontSize: '.75rem',
-      },
-    });
+    plugins: [
+      forms,
+      require
+      ('@tailwindcss/typography'),
+      function ({addComponents}) {
+        addComponents({
+          // User
+          '.fa-user': {
+            content: '"\\f007"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          // RRSS
+          '.fa-facebook': {
+            content: '"\\f39e"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          '.fa-twitter': {
+            content: '"\\f099"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          '.fa-instagram': {
+            content: '"\\f16d"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          '.fa-linkedin': {
+            content: '"\\f08c"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          // Date Time
+          '.fa-calendar': {
+            content: '"\\f133"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          '.fa-calendar-alt': {
+            content: '"\\f073"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          '.fa-clock': {
+            content: '"\\f017"',
+            fontFamily: 'FontAwesome',
+            marginRight: '0.5rem',
+            fontSize: '.75rem',
+          },
+          // More icons
+          '.fa-users': { content: '"\\f0c0"' },
+          '.fa-skull': { content: '"\\f54c"' },
+          '.fa-house': { content: '"\\f015"' },
+          '.fa-magnifying-glass': { content: '"\\f002"' },
+          '.fa-image': { content: '"\\f03e"' },
+          '.fa-download': { content: '"\\f019"' },
+          '.fa-phone': { content: '"\\f095"' },
+          '.fa-music': { content: '"\\f001"' },
+          '.fa-envelope': { content: '"\\f0e0"' },
+          '.fa-location-dot': { content: '"\\f3c5"' },
+          '.fa-star': { content: '"\\f005"' },
+          '.fa-heart': { content: '"\\f004"' },
+          '.fa-arrow-right': { content: '"\\f061"' },
+          '.fa-arrow-left': { content: '"\\f060"' },
+          '.fa-arrow-up': { content: '"\\f062"' },
+          '.fa-arrow-down': { content: '"\\f063"' },
+          '.fa-camera-retro': { content: '"\\f083"' },
+          '.fa-calendar-days': { content: '"\\f073"' },
+          '.fa-clipboard': { content: '"\\f328"' },
+          '.fa-bolt': { content: '"\\f0e7"' },
+          '.fa-circle-up': { content: '"\\f35b"' },
+          '.fa-circle-down': { content: '"\\f358"' },
+          '.fa-circle-right': { content: '"\\f35a"' },
+          '.fa-circle-left': { content: '"\\f359"' },
+          '.fa-rotate-right': { content: '"\\f2f9"' }, // o fa-redo
+          '.fa-rotate-left': { content: '"\\f2ea"' }, // o fa-undo
+          '.fa-video': { content: '"\\f03d"' },
+          '.fa-camera': { content: '"\\f030"' },
+          '.fa-pen-to-square': { content: '"\\f044"' },
+          '.fa-share': { content: '"\\f064"' },
+          '.fa-plane': { content: '"\\f072"' },
+          '.fa-hand': { content: '"\\f256"' }, // Verifica este, podría ser diferente
+          '.fa-folder': { content: '"\\f07b"' },
+          '.fa-thumbs-up': { content: '"\\f164"' },
+          '.fa-wifi': { content: '"\\f1eb"' },
+          '.fa-sliders': { content: '"\\f1de"' },
+          '.fa-address-book': { content: '"\\f2b9"' },
+          '.fa-layer-group': { content: '"\\f5fd"' },
+        });
+      }
+    ],
   }
-],
-}
 ;
 
 export default config;

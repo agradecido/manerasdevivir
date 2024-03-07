@@ -15,8 +15,12 @@
             <div class="w-full mt-2 px-2 pb-2">
               <a href="{{ get_permalink($post->ID) }}" class="text-links font-semibold hover:text-hs"><h3>{{ $post->post_title }}</h3></a>
               <ul class="text-sm mt-1 flex flex-row justify-between">
-                <li><span class="fas fa-user text-text"></span>{{ get_post_meta( get_the_ID(), 'sender_name', true ) }}</li>
                 <li>
+                  <span class="fa fa-user"></span>
+                  {{ get_post_meta( get_the_ID(), 'sender_name', true ) }}
+                </li>
+                <li>
+                  <span class="fa fa-calendar-days"></span>
                   <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
                     {{ get_the_date('d \d\e F \d\e Y', $post->ID) }}
                   </time>

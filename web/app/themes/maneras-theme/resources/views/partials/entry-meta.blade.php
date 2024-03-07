@@ -1,8 +1,9 @@
+<span class="fa fa-clock"></span>
 <time class="dt-published" datetime="{{ get_post_time('c', true) }}">
   {{ get_the_date() }}
 </time>
 
-| <span class="fas fa-user text-text"></span>{{ get_post_meta( get_the_ID(), 'sender_name', true ) }}
+<span class="fa fa-user"></span>{{ get_post_meta( get_the_ID(), 'sender_name', true ) }}
 
 <!--<p>
   <span>{{ __('By', 'sage') }}</span>

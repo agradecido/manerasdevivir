@@ -1,40 +1,57 @@
-@import '_vars';
+@import './_vars.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-background-900;
-  @apply text-text-300;
-  @apply font-sans;
-  @apply p-5;
-  max-width: var(--content-max-width);
-  margin-left: auto;
-  margin-right: auto;
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  body {
+    @apply bg-black-900;
+    @apply text-gray-300;
+    @apply p-5;
+    @apply font-sans;
+    max-width: var(--content-max-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    border: 1px solid lime;
+    @apply bg-orange-500 text-white font-bold py-2 px-4 m-2 rounded;
+    display: inline-block;
+  }
 }
 
 a {
-  @apply text-links-500;
+  @apply text-blue-500;
+
   &:hover {
-    @apply text-headings-600;
+    @apply text-orange-400;
   }
 }
 
 h1, h2, h3, h4, h5, h6,
-h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
-  @apply text-headings-600;
-  font-weight: 700;
+h1 > a, h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+  @apply text-orange-600 font-bold;
 }
 
 h2 {
   font-size: 1.4rem;
 }
 
-.custom-logo-link>img {
+.custom-logo-link > img {
   max-width: 480px;
 }
 
 article {
   @apply mb-8;
+}
+
+.utility {
+  @apply text-gray-400;
 }
