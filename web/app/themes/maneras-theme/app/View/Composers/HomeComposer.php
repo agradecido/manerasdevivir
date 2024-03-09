@@ -17,14 +17,31 @@ class HomeComposer extends Composer
         'home',
     ];
 
-    public function with()
-    {
-        $eventController = new EventController();
-        $postController = new PostController();
+    /**
+     * The EventController instance.
+     *
+     * @var EventController
+     */
+    protected $eventController;
 
+    /**
+     * The PostController instance.
+     *
+     * @var PostController
+     */
+    protected $postController;
+
+    public function __construct()
+    {
+        $this->eventController = new EventController();
+        $this->postController = new PostController();
+    }
+
+    public function with() : array
+    {
         return [
-            'events' => $eventController->index(),
-            'featuredPosts' => $postController->getFeaturedPosts(),
+            'events'        => $this->eventController->index(),
+            'featuredPosts' => $this->postController->getFeaturedPosts(),
         ];
     }
 }

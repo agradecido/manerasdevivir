@@ -15,7 +15,7 @@
 
       @while(have_posts())
         @php the_post() @endphp
-        @includeFirst(['partials.content-home-post', 'partials.content'])
+        @includeFirst(['partials.content', 'partials.home.content-post'])
       @endwhile
 
       {!! get_the_posts_navigation() !!}
@@ -23,8 +23,8 @@
     </div>
 
     <div class="w-full md:w-1/4 px-2">
-      @include('sections.sidebar.events', ['events' => $events])
       @include('partials.sidebar.featured-posts', ['featuredPosts' => $featuredPosts])
+      @include('sections.sidebar.events', ['events' => $events])
     </div>
   </div>
 @endsection

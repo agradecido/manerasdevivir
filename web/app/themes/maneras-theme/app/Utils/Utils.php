@@ -25,7 +25,7 @@ class Utils
             return Constants::TEXT_UNKNOWN_DATA;
         }
 
-        $dateTimeFormatted = strftime('%e de %B %H:%Mh', $dateTimeObject->getTimestamp());
+        $dateTimeFormatted = strftime(Constants::DATE_TIME_FORMAT, $dateTimeObject->getTimestamp());
 
         return $dateTimeFormatted;
     }
