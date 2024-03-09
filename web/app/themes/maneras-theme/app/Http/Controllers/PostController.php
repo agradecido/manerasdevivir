@@ -29,10 +29,11 @@ class PostController extends Composer
             while ($query->have_posts()) {
                 $query->the_post();
                 $featuredPosts[] = [
-                    'title' => get_the_title(),
+                    'ID'        => get_the_ID(),
+                    'title'     => get_the_title(),
                     'permalink' => get_permalink(),
                     'thumbnail' => get_the_post_thumbnail_url(),
-                    'excerpt' => get_the_excerpt(),
+                    'excerpt'   => get_the_excerpt(),
                 ];
             }
             wp_reset_postdata();
