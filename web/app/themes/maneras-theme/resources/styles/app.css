@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn-medium {
+    @apply inline-block bg-amber-600 text-white text-xs rounded-full px-3 py-1 font-semibold hover:bg-amber-700 hover:text-white;
+  }
+
+  .meta-data {
+    @apply flex flex-col lg:flex-row justify-start text-gray-400 text-sm mt-1
+  }
+
+  .card {
+    @apply w-full bg-gray-800 rounded-lg shadow-md overflow-hidden mb-4 p-4
+  }
+}
+
 body {
   @apply bg-bg;
   @apply text-text;

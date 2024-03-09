@@ -21,18 +21,6 @@ const config = {
   plugins: [
     forms,
     require('@tailwindcss/typography'),
-    // Añadir FontAwesome como un plugin
-    function({ addComponents }) {
-      addComponents({
-        '.fa-user': {
-          content: '"\\f007"',
-          fontFamily: 'FontAwesome',
-          marginRight: '0.5rem',
-          fontSize: '.75rem',
-        },
-        // Aquí puedes seguir añadiendo más íconos según sea necesario
-      });
-    }
   ],
 };
 

@@ -102,6 +102,48 @@ class Event
             echo '<br><br>';
         }
     }
+
+    public function getFeaturedEvents() : array
+    {
+        $args = [
+            'post_type' => 'event',
+            'posts_per_page' => 5,
+            'meta_key' => 'start_date',
+            'orderby' => 'meta_value',
+            'order' => 'ASC',
+            'meta_query' => [
+                [
+                    'key' => 'start_date',
+                    'value' => date('Y-m-d'),
+                    'compare' => '>=',
+                    'type' => 'DATE',
+                ],
+            ],
+        ];
+
+        $query = new \WP_Query($args);
+        $events = [];
+
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                $event = [
+                    'title' => get_the_title(),
+                    'permalink' => get_the_permalink(),
+                    'start_date' => get_post_meta(get_the_ID(), 'start_date', true),
+                    'artists' => get_post_meta(get_the_ID(), 'artists', true),
+                    'city' => get_post_meta(get_the_ID(), 'city', true),
+                    'administrative_division' => get_post_meta(get_the_ID(), 'administrative_division', true),
+                    'venue' => get_post_meta(get_the_ID(), 'venue', true),
+                    'price' => get_post_meta(get_the_ID(), 'price', true),
+                    'purchase_url' => get_post_meta(get_the_ID(), 'purchase_url', true),
+                    'poster' => get_the_post_thumbnail_url(get_the_ID(), 'full'),
+                ];
+            }
+        }
+
+        return $events;
+    }
 }
 
 new Event();

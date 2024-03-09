@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Constants;
 use Roots\Acorn\Sage\SageServiceProvider;
 
 class ThemeServiceProvider extends SageServiceProvider
@@ -23,6 +24,7 @@ class ThemeServiceProvider extends SageServiceProvider
      */
     public function boot()
     {
+        setlocale(LC_TIME, Constants::LOCALE);
         parent::boot();
     }
 }

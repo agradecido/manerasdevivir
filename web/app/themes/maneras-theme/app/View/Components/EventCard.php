@@ -6,14 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class EventsModule extends Component
+class EventCard extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(array $event)
     {
-        //
+        $this->event = $event;
     }
 
     /**
@@ -21,6 +21,8 @@ class EventsModule extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.events-module');
+        return view('components.event-card', [
+            'event' => $this->event,
+        ]);
     }
 }
