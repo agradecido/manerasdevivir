@@ -4,7 +4,7 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\FeaturedPostController;
 
 class HomeComposer extends Composer
 {
@@ -27,21 +27,21 @@ class HomeComposer extends Composer
     /**
      * The PostController instance.
      *
-     * @var PostController
+     * @var FeaturedPostController
      */
     protected $postController;
 
     public function __construct()
     {
         $this->eventController = new EventController();
-        $this->postController = new PostController();
+        $this->postController  = new FeaturedPostController();
     }
 
     public function with() : array
     {
         return [
             'events'        => $this->eventController->index(),
-            'featuredPosts' => $this->postController->getFeaturedPosts(),
+            'featuredPosts' => $this->postController->index(),
         ];
     }
 }

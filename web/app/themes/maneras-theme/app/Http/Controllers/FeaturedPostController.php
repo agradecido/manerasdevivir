@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Roots\Acorn\View\Composer;
 use WP_Query;
 use App\Constants;
+use App\Traits\Formattable;
 
-class PostController extends Composer
+class FeaturedPostController extends Composer
 {
-    public function _construct()
-    {
-    }
+    use Formattable;
 
-    public function getFeaturedPosts()
+    public function index(): array
     {
+        global $post;
+
         $args = [
             'category_name' => 'destacados',
             'posts_per_page' => Constants::FEATURED_POSTS_LIMIT,
@@ -28,17 +29,10 @@ class PostController extends Composer
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
-                $featuredPosts[] = [
-                    'ID'        => get_the_ID(),
-                    'title'     => get_the_title(),
-                    'permalink' => get_permalink(),
-                    'thumbnail' => get_the_post_thumbnail_url(),
-                    'excerpt'   => get_the_excerpt(),
-                ];
+                $featuredPosts[] = $this->formatFeaturedPostCard($post);
             }
             wp_reset_postdata();
         }
-
         return $featuredPosts;
     }
 }

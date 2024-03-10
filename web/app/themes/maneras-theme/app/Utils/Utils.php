@@ -6,7 +6,7 @@ use App\Constants;
 
 class Utils
 {
-    public static function formatDateAndTime(string $dateTime) : string
+    public static function formatDateAndTime(string $dateTime, bool $onlyDate = true) : string
     {
         if (empty($dateTime) || $dateTime === '0000-00-00 00:00:00' || $dateTime === '0000-00-00') {
             return Constants::TEXT_UNKNOWN_DATA;
@@ -27,7 +27,19 @@ class Utils
 
         $dateTimeFormatted = strftime(Constants::DATE_TIME_FORMAT, $dateTimeObject->getTimestamp());
 
+        if ($onlyDate) {
+            $dateTimeFormatted = self::stripTime($dateTimeFormatted);
+        }
+
         return $dateTimeFormatted;
+    }
+
+    /**
+     * Strip time from a date and time string
+     */
+    public static function stripTime(string $dateTime) : string
+    {
+        return preg_replace('/\s\d{2}:\d{2}/', '', $dateTime);
     }
 
     /**

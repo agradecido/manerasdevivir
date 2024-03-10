@@ -1,6 +1,6 @@
-<article @php(post_class())>
+<article @php(post_class('card text-sm pt-3'))>
   <header>
-    <h2 class="entry-title">
+    <h2 class="entry-title mb-2 text-xl">
       <a href="{{ get_permalink() }}">
         {!! $title !!}
       </a>
@@ -11,7 +11,7 @@
     @php(the_excerpt())
   </div>
 
-  <footer>
+  <footer class="mt-3">
     @include('partials/post-meta')
   </footer>
 </article>

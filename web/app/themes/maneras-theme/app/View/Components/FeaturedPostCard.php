@@ -6,16 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class EventCard extends Component
+class FeaturedPostCard extends Component
 {
-    // private array $event; // Not needed in PHP 8
+    // private array $post; // Not needed in PHP 8
 
     /**
      * Create a new component instance.
      */
-    public function __construct(array $event)
+    public function __construct(array $post)
     {
-        $this->event = $event;
+        $this->post = $post;
     }
 
     /**
@@ -23,8 +23,8 @@ class EventCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cards.event-card', [
-            'event' => $this->event,
+        return view('components.cards.featured-post-card', [
+            'post' => $this->post,
         ]);
     }
 }

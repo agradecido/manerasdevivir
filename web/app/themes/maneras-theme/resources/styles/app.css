@@ -12,7 +12,12 @@
   }
 
   .card {
-    @apply w-full bg-gray-800 rounded-lg shadow-md overflow-hidden mb-4 p-4
+    @apply w-full bg-gray-800 rounded-lg shadow-md overflow-hidden mb-4 p-4;
+    box-sizing: border-box;
+    img {
+      width: 100%;
+      object-fit: fill ! important;
+    }
   }
 }
 
@@ -21,6 +26,9 @@ body {
   @apply text-text;
   @apply font-sans;
   @apply p-5;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 a {
@@ -30,6 +38,9 @@ a {
   }
 }
 
+.fa {
+  margin-right: 7px;
+}
 h1, h2, h3, h4, h5, h6,
 h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
   @apply text-hs;
@@ -43,7 +54,22 @@ h2 {
 .custom-logo-link>img {
   max-width: 480px;
 }
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.main-header .nav {
+  flex-grow: 1;
+  border: 1px solid lime;
+  width: 100%;
+}
 
-article {
-  @apply mb-8;
+.main-header ul.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 }

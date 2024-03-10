@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Constants;
 use Roots\Acorn\Sage\SageServiceProvider;
+use App\View\Composers\HomeComposer;
 
 class ThemeServiceProvider extends SageServiceProvider
 {
@@ -25,6 +26,13 @@ class ThemeServiceProvider extends SageServiceProvider
     public function boot()
     {
         setlocale(LC_TIME, Constants::LOCALE);
+
+        // Registro del HomeComposer
+        \Roots\view()->composer(
+            'home',
+            HomeComposer::class
+        );
+
         parent::boot();
     }
 }

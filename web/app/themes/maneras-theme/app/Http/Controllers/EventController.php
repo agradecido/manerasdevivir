@@ -33,7 +33,7 @@ class EventController extends Composer
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
-                $events[] = $this->formatEvent($post);
+                $events[] = $this->formatEventCard($post);
             }
             wp_reset_postdata();
         }
@@ -41,11 +41,7 @@ class EventController extends Composer
         return $events;
     }
 
-    /**
-     * @param string $province
-     * @return array
-     */
-    public function getEventsByProvince($province) : array
+    public function getEventsByProvince(string $province) : array
     {
         global $post;
 
@@ -76,10 +72,9 @@ class EventController extends Composer
 
         while ($query->have_posts()) {
             $query->the_post();
-            $events[] = $this->formatEvent($post);
+            $events[] = $this->formatEventCard($post);
         }
         wp_reset_postdata();
-
 
         return $events;
     }
