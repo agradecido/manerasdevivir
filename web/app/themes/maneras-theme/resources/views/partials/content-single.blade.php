@@ -3,8 +3,9 @@
     <h1 class="p-name">
       {!! $title !!}
     </h1>
-
-    @include('partials.entry-meta')
+    <div class="post-meta">
+      @include('partials.post-meta')
+    </div>
   </header>
 
   <div class="e-content">

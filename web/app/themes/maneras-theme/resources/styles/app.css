@@ -31,20 +31,31 @@ body {
   margin-right: auto;
 }
 
+p {
+  margin-bottom: 2rem;
+}
+
 a {
-  @apply text-links;
+  @apply text-hs;
   &:hover {
-    @apply text-hs;
+    color: #ff6600;
   }
 }
 
 .fa {
   margin-right: 7px;
 }
+
 h1, h2, h3, h4, h5, h6,
 h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
   @apply text-hs;
   font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 2.9rem;
+  margin-bottom: 1rem;
 }
 
 h2 {

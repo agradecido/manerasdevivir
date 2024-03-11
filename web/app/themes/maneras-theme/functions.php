@@ -71,3 +71,11 @@ foreach (glob(get_template_directory() . "/app/Taxonomies/*.php") as $filename) 
 foreach (glob(get_template_directory() . "/app/Types/*.php") as $filename) {
     include $filename;
 }
+
+// Deshabilitar los estilos globales in-line de WordPress.
+function disable_wp_block_styles() {
+    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+    remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
+}
+
+add_action('init', 'disable_wp_block_styles');
