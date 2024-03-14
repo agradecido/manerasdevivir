@@ -15,6 +15,7 @@ class HomeComposer extends Composer
      */
     protected static $views = [
         'home',
+        'single',
     ];
 
     /**
