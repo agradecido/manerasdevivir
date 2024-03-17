@@ -622,34 +622,34 @@
         },
         {
             "name": "gehrisandro/tailwind-merge-laravel",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gehrisandro/tailwind-merge-laravel.git",
-                "reference": "091dec8499c5b8ad2268369a26a329af78eab73f"
+                "reference": "d9f25ca7e8954ee974c833027b288fd001b6de2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gehrisandro/tailwind-merge-laravel/zipball/091dec8499c5b8ad2268369a26a329af78eab73f",
-                "reference": "091dec8499c5b8ad2268369a26a329af78eab73f",
+                "url": "https://api.github.com/repos/gehrisandro/tailwind-merge-laravel/zipball/d9f25ca7e8954ee974c833027b288fd001b6de2d",
+                "reference": "d9f25ca7e8954ee974c833027b288fd001b6de2d",
                 "shasum": ""
             },
             "require": {
                 "gehrisandro/tailwind-merge-php": "^v1.1.0",
                 "guzzlehttp/guzzle": "^7.5.1",
-                "laravel/framework": "^10.9.0",
+                "laravel/framework": "^10.9.0|^11.0",
                 "php": "^8.1.0"
             },
             "require-dev": {
                 "laravel/pint": "^1.13.8",
-                "orchestra/testbench": "^v8.0.8",
+                "orchestra/testbench": "^8.0|^9.0",
                 "pestphp/pest": "^v2.30.0",
                 "pestphp/pest-plugin-arch": "^2.6",
                 "pestphp/pest-plugin-mock": "^2.0.0",
                 "pestphp/pest-plugin-type-coverage": "^2.8",
                 "phpstan/phpstan": "^1.10.55",
                 "rector/rector": "^0.19",
-                "symfony/var-dumper": "^6.4.2"
+                "symfony/var-dumper": "^6.4.2|^7.0"
             },
             "type": "library",
             "extra": {
@@ -687,7 +687,7 @@
             ],
             "support": {
                 "issues": "https://github.com/gehrisandro/tailwind-merge-laravel/issues",
-                "source": "https://github.com/gehrisandro/tailwind-merge-laravel/tree/v1.1.0"
+                "source": "https://github.com/gehrisandro/tailwind-merge-laravel/tree/v1.2.0"
             },
             "funding": [
                 {
@@ -695,7 +695,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-10T21:02:50+00:00"
+            "time": "2024-03-12T21:03:39+00:00"
         },
         {
             "name": "gehrisandro/tailwind-merge-php",
@@ -1288,16 +1288,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.47.0",
+            "version": "v10.48.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "fce29b8de62733cdecbe12e3bae801f83fff2ea4"
+                "reference": "5791c052b41c6b593556adc687076bfbdd13c501"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/fce29b8de62733cdecbe12e3bae801f83fff2ea4",
-                "reference": "fce29b8de62733cdecbe12e3bae801f83fff2ea4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5791c052b41c6b593556adc687076bfbdd13c501",
+                "reference": "5791c052b41c6b593556adc687076bfbdd13c501",
                 "shasum": ""
             },
             "require": {
@@ -1345,6 +1345,7 @@
             "conflict": {
                 "carbonphp/carbon-doctrine-types": ">=3.0",
                 "doctrine/dbal": ">=4.0",
+                "mockery/mockery": "1.6.8",
                 "phpunit/phpunit": ">=11.0.0",
                 "tightenco/collect": "<5.5.33"
             },
@@ -1490,7 +1491,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-03-05T15:18:36+00:00"
+            "time": "2024-03-15T10:17:07+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2005,16 +2006,16 @@
         },
         {
             "name": "mkocansey/bladewind",
-            "version": "v2.4.5",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mkocansey/bladewind.git",
-                "reference": "6f9a88cf55aad31c90e28471355f07800c2daba6"
+                "reference": "47b1c5e426877c0b8fd7e941f487e892b0f80e1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkocansey/bladewind/zipball/6f9a88cf55aad31c90e28471355f07800c2daba6",
-                "reference": "6f9a88cf55aad31c90e28471355f07800c2daba6",
+                "url": "https://api.github.com/repos/mkocansey/bladewind/zipball/47b1c5e426877c0b8fd7e941f487e892b0f80e1d",
+                "reference": "47b1c5e426877c0b8fd7e941f487e892b0f80e1d",
                 "shasum": ""
             },
             "require": {
@@ -2052,9 +2053,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mkocansey/bladewind/issues",
-                "source": "https://github.com/mkocansey/bladewind/tree/v2.4.5"
+                "source": "https://github.com/mkocansey/bladewind/tree/v2.5.1"
             },
-            "time": "2024-02-11T03:19:45+00:00"
+            "time": "2024-03-13T02:51:07+00:00"
         },
         {
             "name": "monolog/monolog",

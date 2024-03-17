@@ -6,6 +6,9 @@ use App\Constants;
 
 class Utils
 {
+    /**
+     * Format a date and time string
+     */
     public static function formatDateAndTime(string $dateTime, bool $onlyDate = true) : string
     {
         if (empty($dateTime) || $dateTime === '0000-00-00 00:00:00' || $dateTime === '0000-00-00') {

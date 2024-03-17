@@ -6,7 +6,7 @@ use Roots\Acorn\View\Composer;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FeaturedPostController;
 
-class HomeComposer extends Composer
+class EventComposer extends Composer
 {
     /**
      * List of views served by this composer.
@@ -14,9 +14,7 @@ class HomeComposer extends Composer
      * @var string[]
      */
     protected static $views = [
-        'home',
-        'single',
-        'single-event',
+        'event',
     ];
 
     /**
@@ -36,14 +34,12 @@ class HomeComposer extends Composer
     public function __construct()
     {
         $this->eventController = new EventController();
-        $this->postController  = new FeaturedPostController();
     }
 
     public function with() : array
     {
         return [
             'events'        => $this->eventController->index(),
-            'featuredPosts' => $this->postController->index(),
         ];
     }
 }

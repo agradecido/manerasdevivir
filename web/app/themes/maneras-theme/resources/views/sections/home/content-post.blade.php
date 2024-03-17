@@ -12,6 +12,6 @@
     </div>
 
     <footer>
-        @include('partials.home.post-meta')
+        @include('post-meta')
     </footer>
 </article>

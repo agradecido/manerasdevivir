@@ -15,6 +15,8 @@ class Constants
     // Posts limits
     public const FEATURED_POSTS_LIMIT = 3;
     public const HOME_EVENTS_LIMIT = 5;
+    public const EXCERPT_WORDS_NUMBER = 40;
+
 
     // Messages
     public const TEXT_UNKNOWN_DATA = 'Desconocido';

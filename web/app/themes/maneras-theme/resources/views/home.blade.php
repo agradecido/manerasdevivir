@@ -1,33 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="flex flex-wrap -mx-2">
-    <div class="w-full md:w-3/4 px-2">
+  <div class="flex flex-wrap">
 
-      <h2 class="mb-2">Últimas noticias</h2>
+    <div class="w-full lg:w-3/4 xl:w-1/2 lg:pr-8">
 
-      <div class="home-posts p-2 pl-0">
-        @if ( !have_posts())
+      <h2 class="mb-2 text-2xl">Últimas noticias</h2>
+
+      <div class="home-posts">
+        @if (!have_posts())
           <x-alert type="warning">
             Algo ha ido mal...
           </x-alert>
           {!! get_search_form(false) !!}
         @endif
-
-        @while(have_posts())
-          @php the_post() @endphp
-          @includeFirst(['partials.content', 'partials.home.content-post'])
-        @endwhile
-
+        <ul>
+          @while(have_posts())
+            @php(the_post())
+            <li>
+              <x-post-card :post="get_post()"/>
+            </li>
+          @endwhile
+        </ul>
       </div>
 
       {!! get_the_posts_navigation() !!}
 
     </div>
 
-    <div class="w-full md:w-1/4 px-2 flex flex-col gap-y-8">
-      @include('sections.sidebar.featured-posts', ['featuredPosts' => $featuredPosts])
-      @include('sections.sidebar.events', ['events' => $events])
+    {{-- Sidebar --}}
+    <div class="w-full lg:w-1/4 xl:w-1/2 xl:pr-4">
+      <div class="flex flex-col xl:flex-row xl:-mx-4">
+        <div class="xl:w-1/2 xl:px-4 flex flex-col">
+          @include('sections.sidebar.featured-posts', ['featuredPosts' => $featuredPosts])
+        </div>
+        <div class="xl:w-1/2 xl:pl-4 flex flex-col">
+          @include('sections.sidebar.events', ['events' => $events])
+        </div>
+      </div>
     </div>
+
   </div>
 @endsection

@@ -10,11 +10,12 @@ const config = {
   theme: {
     extend: {
       colors: {
-        'text': '#cccccc',
         'bg': '#0D0D0D',
         'bg-secondary': '#1E2428',
-        'links': '#ff6600',
         'hs': '#cc6600',
+        'links': '#ff6600',
+        'text': '#cccccc',
+
       },
     },
   },
