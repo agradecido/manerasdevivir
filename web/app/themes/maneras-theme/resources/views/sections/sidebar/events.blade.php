@@ -3,7 +3,13 @@
 
 @if (!empty($events))
   <div class="home-events">
-    <h2 class="mb-2 text-2xl">@php _e('Próximos conciertos', Constants::TEXTDOMAIN) @endphp</h2>
+
+    @if(!empty($title))
+      <h2 class="mb-2 text-2xl">{{ $title }}</h2>
+    @else
+      <h2 class="mb-2 text-2xl">@php _e('Próximos conciertos', Constants::TEXTDOMAIN) @endphp</h2>
+    @endif
+
     <div class="flex flex-col flex-wrap">
       <ul>
         @foreach ($events as $event)

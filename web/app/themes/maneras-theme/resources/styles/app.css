@@ -4,7 +4,8 @@
 
 @layer components {
   .btn-medium {
-    @apply inline-block bg-amber-600 text-white text-xs rounded-full px-3 py-1 font-semibold hover:bg-amber-700 hover:text-white;
+    @apply  inline-block bg-amber-600 text-white text-xs rounded-full px-3 py-1 font-semibold
+            hover:bg-amber-700 hover:text-white;
   }
 
   .meta-data {
@@ -12,7 +13,7 @@
   }
 
   .card {
-    @apply w-full bg-gray-800 rounded-lg shadow-md overflow-hidden mb-6 p-4;
+    @apply w-full bg-gray-800 rounded-lg shadow-md overflow-hidden mb-6 pt-2 pb-3 px-4;
     box-sizing: border-box;
     img {
       width: 100%;
@@ -55,33 +56,43 @@ h1>a, h2>a, h3>a, h4>a, h5>a, h6>a {
 .custom-logo-link>img {
   max-width: 480px;
 }
+
 .main-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 2rem;
   width: 100%;
 }
+
 .main-header .nav {
-  flex-grow: 1;
-  border: 1px solid lime;
   width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid lime;
 }
 
 .main-header ul.nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  li {
+    margin-right: 1rem;
+  }
 
 }
+
 .navigation {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .navigation .screen-reader-text {
    display: none;
 }
+
 .navigation .nav-links {
   display: flex;
   justify-content: space-between;

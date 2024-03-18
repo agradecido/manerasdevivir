@@ -4,11 +4,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 /**
  * Application entrypoint
  */
-domReady(async () => {
+domReady(async() => {
   // ...
 });
 
 /**
  * @see {@link https://webpack.js.org/api/hot-module-replacement/}
  */
-if (import.meta.webpackHot) import.meta.webpackHot.accept(console.error);
+if (import.meta.webpackHot) {
+    import.meta.webpackHot.accept(console.error);
+}

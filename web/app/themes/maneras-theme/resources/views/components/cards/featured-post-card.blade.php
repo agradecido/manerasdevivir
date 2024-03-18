@@ -1,7 +1,7 @@
 @props(['post'])
 
 <li>
-  <div class="card mb-8 rounded-lg p-0 flex flex-col md:items-center text-text">
+  <div class="card rounded-lg p-0 flex flex-col md:items-center text-text">
     <div class="w-full">
       <a href="{{ $post['permalink'] }}">
         {!! get_the_post_thumbnail($post['ID'], 'medium', ['class' => 'card-feat-content w-100', 'alt' => $post['title']]) !!}

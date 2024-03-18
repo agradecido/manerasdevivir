@@ -1,6 +1,6 @@
 @props (['event'])
 
-<div class="event card mb-1">
+<div class="event card mb-3">
   <h3>
     <a href="{{ $event['permalink'] }}" class="hover:text-blue-400 font-light">{{ $event['title'] }}</a>
   </h3>

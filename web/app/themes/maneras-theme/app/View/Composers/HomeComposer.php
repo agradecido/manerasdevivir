@@ -17,6 +17,7 @@ class HomeComposer extends Composer
         'home',
         'single',
         'single-event',
+        'archive'
     ];
 
     /**

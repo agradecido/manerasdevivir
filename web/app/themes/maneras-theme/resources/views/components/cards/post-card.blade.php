@@ -1,16 +1,17 @@
 {{-- components/cards/post-card.blade.php --}}
-<article class="card px-0 pt-0 lg:pb-0 lg:grid lg:grid-cols-5 lg:gap-4 xl:mb-8">
+<article class="card px-0 pt-0 lg:pb-0 lg:grid lg:grid-cols-5 lg:gap-4">
 
-  <div class="post-feature-image lg:col-span-1 overflow-hidden self-center  lg:hidden">
-    <a href="{{ $post['permalink'] }}" class="min-h-[150px] max-h-[250px] lg:min-w-full lg:min-h-full border-1">
+  <div class="post-feature-image lg:col-span-1 overflow-hidden self-center lg:hidden max-h-[190px] md:max-h-[390px]">
+    <a href="{{ $post['permalink'] }}" class="">
       <img
         src="{{ $post['featured'] }}"
         alt="{{ $post['title'] }}"
+        class="object-contain"
       />
     </a>
   </div>
 
-  <div class="lg:col-span-5">
+  <div class="lg:col-span-5 px-2">
     <header class="px-2">
       <div class="flex flex-wrap justify-between">
         <div class="post-heading flex flex-1 flex-col">

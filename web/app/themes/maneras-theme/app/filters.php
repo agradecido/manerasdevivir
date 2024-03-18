@@ -34,3 +34,9 @@ add_filter('use_block_editor_for_post_type', function ($enabled, $post_type) {
     }
     return $enabled;
 }, 10, 2);
+
+add_action('init', function () {
+    global $wp_rewrite;
+    $wp_rewrite->date_structure = 'archivo/%year%/%monthnum%/%day%';
+});
+
