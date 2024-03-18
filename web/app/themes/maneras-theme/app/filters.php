@@ -11,8 +11,11 @@ namespace App;
  *
  * @return string
  */
+
+use App\Constants;
+
 add_filter('excerpt_more', function () {
-    return sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'sage'));
+    return sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', Constants::TEXTDOMAIN));
 });
 
 add_filter('post_link', function ($post_link, $post) {
@@ -25,7 +28,7 @@ add_filter('post_link', function ($post_link, $post) {
     return $post_link;
 }, 10, 2);
 
-add_filter('use_block_editor_for_post_type', function($enabled, $post_type) {
+add_filter('use_block_editor_for_post_type', function ($enabled, $post_type) {
     if ($post_type === 'post') {
         return false;
     }

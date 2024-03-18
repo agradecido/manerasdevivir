@@ -1,4 +1,4 @@
-<?php declare( strict_types = 1 );
+<?php declare(strict_types=1);
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +73,8 @@ foreach (glob(get_template_directory() . "/app/Types/*.php") as $filename) {
 }
 
 // Deshabilitar los estilos globales in-line de WordPress.
-function disable_wp_block_styles() {
+function disable_wp_block_styles()
+{
     remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
     remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
 }
