@@ -1,6 +1,8 @@
-// filepath: /home/javi/sites/sxxi.mdv.red/bedrock/web/app/themes/maneras-theme/vite.config.js
 import { defineConfig } from 'vite';
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 import { resolve } from 'path';
+import svgo from 'rollup-plugin-svgo'
 
 export default defineConfig({
   // Ruta base para el servidor de desarrollo
@@ -33,5 +35,21 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'resources')
     }
-  }
+  },
+  plugins: [
+    svgo({
+      multipass: true,
+      plugins: [
+        { removeViewBox: false },
+      ],
+    }),
+  ],
+  css: {
+    postcss: {
+      plugins: [
+        tailwindcss(),
+        autoprefixer(),
+      ],
+    },
+  },
 });

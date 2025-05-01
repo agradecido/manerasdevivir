@@ -187,3 +187,5 @@
     </p>
   </div>
 @endsection
+@section('footer')
+@endsection

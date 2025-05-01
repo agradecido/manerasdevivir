@@ -14,7 +14,7 @@
     @include('layouts.header')
     @yield('content')
     @include('layouts.footer')
-    
+  
     @php wp_footer(); @endphp
 </body>
 

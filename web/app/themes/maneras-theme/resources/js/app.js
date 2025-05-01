@@ -1,5 +1,7 @@
 import '../css/app.css';
 import logoUrl from '@/images/logo.png';
+import feather from 'feather-icons'
+
 
 const btnOpen  = document.getElementById('mobile-menu-button');
 const btnClose = document.getElementById('mobile-menu-close');
@@ -22,3 +24,8 @@ if (btnOpen && btnClose && menu) {
 } else {
   console.warn('Mobile menu elements not found:', { btnOpen, btnClose, menu });
 }
+
+// once DOM is ready, replace all <i data-feather> with inline SVG
+document.addEventListener('DOMContentLoaded', () => {
+  feather.replace({ 'stroke-width': '1' })
+})

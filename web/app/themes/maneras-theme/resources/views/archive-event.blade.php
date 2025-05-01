@@ -76,3 +76,5 @@
     @endif
   </div>
 @endsection
+@section('footer')
+@endsection

@@ -46,3 +46,5 @@
     </footer>
   </article>
 @endsection
+@section('footer')
+@endsection
