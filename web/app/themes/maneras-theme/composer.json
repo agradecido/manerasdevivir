@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "ManerasTheme\\": "src/"
+        },
+        "files": [
+            "helpers/helpers.php"
+        ]
+    },
+    "require": {
+        "jenssegers/blade": "^2.0"
+    }
+}

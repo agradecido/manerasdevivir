@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1) Base — resets y tipografía */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans p-5;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  a {
+    @apply text-links hover:text-white no-underline;
+   }
+
+  p {
+    @apply mb-8;
+    font-size: 1.2rem;
+  }
+
+  .home article p,
+  .home article .prose p,
+  .archive article p,
+  .archive article .prose p {
+    @apply mb-0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-hs font-bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  img {
+    @apply block max-w-full h-auto;
+  }
+
+  ul, ol {
+    @apply list-disc list-inside mb-6;
+  }
+
+  blockquote {
+    @apply border-l-4 border-hs pl-4 italic text-gray-500;
+  }
+
+  .post-tags {
+    margin-top: 1em;
+    font-size: 0.9em;
+    color: #666;
+  }
+  .post-tags ul.tag-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .post-tags ul.tag-list li {
+      margin-right: 10px;
+  }
+}
+
+/* 2) Components — bloques reutilizables */
+@layer components {
+  .btn-medium {
+    @apply inline-block bg-hs text-white text-xs rounded-full px-3 py-1 font-semibold
+           hover:bg-links transition-colors duration-200;
+  }
+
+  .meta-data {
+    @apply flex flex-col lg:flex-row justify-start text-gray-400 text-sm mt-1 space-x-2 lg:space-x-4;
+  }
+
+  .card {
+    @apply w-full bg-bg-secondary rounded-lg shadow-md overflow-hidden mb-6 pt-2 pb-3 px-4;
+    box-sizing: border-box;
+
+    & img {
+      @apply w-full object-cover;
+    }
+
+    & .card-title {
+      @apply text-xl text-white font-bold mb-2;
+    }
+
+    & .card-content {
+      @apply text-text text-base;
+    }
+  }
+
+  /* Logo máximo */
+  .custom-logo-link > img {
+    @apply max-w-xl;
+  }
+
+  /* Header y navegación */
+  .main-header {
+    @apply bg-bg-secondary shadow sticky top-0 z-50;
+  }
+
+  .main-header .container {
+    @apply flex items-center justify-between py-4 px-6;
+  }
+
+  .nav-desktop {
+    @apply hidden lg:flex space-x-6 text-text;
+  }
+
+  .btn-hamburger {
+      @apply lg:hidden p-2 text-text hover:text-links focus:outline-none;
+  }
+
+  .mobile-menu {
+    @apply fixed inset-y-0 right-0 w-3/4 max-w-xs bg-bg-secondary shadow-lg
+           transform translate-x-full transition-transform duration-300 lg:hidden;
+  }
+
+  .mobile-menu ul {
+    @apply mt-16 flex flex-col space-y-4 p-6 text-text;
+  }
+
+  .mobile-menu button.close {
+    @apply absolute top-4 right-4 p-2 text-text hover:text-links focus:outline-none;
+  }
+}
+
+/* 3) Utilities — helpers adicionales */
+@layer utilities {
+  /* Scrollbar custom */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thumb-rounded {
+    scrollbar-color: #cc6600 transparent;
+  }
+  .scrollbar-thumb-rounded::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+    @apply bg-hs rounded-full;
+  }
+
+  /* Espaciados responsivos */
+  .mt-section {
+    @apply mt-12 lg:mt-16;
+  }
+  .mb-section {
+    @apply mb-12 lg:mb-16;
+  }
+
+  /* Truncado de texto en 2 líneas */
+  .truncate-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}

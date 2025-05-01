@@ -1,0 +1,38 @@
+# Application
+web/app/themes/twentytwentyfive/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/cache
+web/app/debug.log
+web/app/languages
+web/app/uploads
+# WordPress
+web/wp
+web/.htaccess
+
+# Logs
+*.log
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Composer
+/vendor
+auth.json
+
+# WP-CLI
+wp-cli.local.yml
+
+*.sql
+*.gz
+*.zip
+*.tar
+
+.vscode
+.docker
+.idea
+
+/import-*

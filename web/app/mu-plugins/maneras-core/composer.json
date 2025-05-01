@@ -1,0 +1,12 @@
+{
+    "name": "maneras/core",
+    "type": "wordpress-plugin",
+    "autoload": {
+      "psr-4": {
+        "ManerasCore\\": "src/"
+      }
+    },
+    "require": {
+      "jjgrainger/posttypes": "^2.2"
+    }
+  }
