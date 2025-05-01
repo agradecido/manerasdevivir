@@ -67,63 +67,86 @@
 
 /* 2) Components — bloques reutilizables */
 @layer components {
+  /* Button medium size */
   .btn-medium {
     @apply inline-block bg-hs text-white text-xs rounded-full px-3 py-1 font-semibold
            hover:bg-links transition-colors duration-200;
   }
 
+  /* Metadata group */
   .meta-data {
     @apply flex flex-col lg:flex-row justify-start text-gray-400 text-sm mt-1 space-x-2 lg:space-x-4;
   }
 
-  .card {
-    @apply w-full bg-bg-secondary rounded-lg shadow-md overflow-hidden mb-6 pt-2 pb-3 px-4;
-    box-sizing: border-box;
-
-    & img {
-      @apply w-full object-cover;
-    }
-
-    & .card-title {
-      @apply text-xl text-white font-bold mb-2;
-    }
-
-    & .card-content {
-      @apply text-text text-base;
-    }
+  /* Generic card wrapper with optional background image or gradient */
+  .content-card {
+    @apply relative w-full rounded-lg overflow-hidden shadow-md mb-6 p-6 box-border;
+    /* default background gradient */
+    background: theme('colors.bg-secondary');
+    background-image: linear-gradient(135deg, theme('colors.bg-secondary') 0%, theme('colors.bg-primary') 100%);
   }
 
-  /* Logo máximo */
+  /* Optional pattern overlay (e.g. dots, stripes) */
+  .content-card::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background-image: url('/assets/img/pattern.svg');
+    opacity: .1;
+  }
+
+  /* For cards with image backgrounds */
+  .content-card.has-img {
+    @apply p-0;
+  }
+  .content-card.has-img img {
+    @apply absolute inset-0 w-full h-full object-cover;
+    /* dark overlay to improve text legibility */
+  }
+  .content-card.has-img::after {
+    content: '';
+    @apply absolute inset-0 bg-black opacity-40;
+  }
+
+  /* Inner container to keep text above overlays */
+  .content-card__inner {
+    @apply relative z-10;
+  }
+
+  /* Card title */
+  .content-card__title {
+    @apply text-2xl lg:text-3xl font-bold text-white mb-4;
+  }
+
+  /* Card body/content */
+  .content-card__body {
+    @apply text-text leading-relaxed;
+  }
+
+  /* Logo max width */
   .custom-logo-link > img {
     @apply max-w-xl;
   }
 
-  /* Header y navegación */
+  /* Header and navigation */
   .main-header {
     @apply bg-bg-secondary shadow sticky top-0 z-50;
   }
-
   .main-header .container {
     @apply flex items-center justify-between py-4 px-6;
   }
-
   .nav-desktop {
     @apply hidden lg:flex space-x-6 text-text;
   }
-
   .btn-hamburger {
-      @apply lg:hidden p-2 text-text hover:text-links focus:outline-none;
+    @apply lg:hidden p-2 text-text hover:text-links focus:outline-none;
   }
-
   .mobile-menu {
     @apply fixed inset-y-0 right-0 w-3/4 max-w-xs bg-bg-secondary shadow-lg
            transform translate-x-full transition-transform duration-300 lg:hidden;
   }
-
   .mobile-menu ul {
     @apply mt-16 flex flex-col space-y-4 p-6 text-text;
   }
-
   .mobile-menu button.close {
     @apply absolute top-4 right-4 p-2 text-text hover:text-links focus:outline-none;
   }

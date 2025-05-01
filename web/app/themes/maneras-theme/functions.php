@@ -14,16 +14,20 @@
 
 namespace ManerasTheme;
 
+use Jenssegers\Blade\Blade;
+
 /**
- * Autoload Composer dependencies.
+ * Load theme and project dependencies via Composer.
  */
-require_once __DIR__ . '/vendor/autoload.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
 
 /**
  * Render and display a Blade view.
  *
- * @param string $view Name of the view (without .blade.php)
- * @param array  $data Data to pass to the template
+ * @param string $view Name of the view (without .blade.php).
+ * @param array  $data Data to pass to the template.
  *
  * @return void
  */

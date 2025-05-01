@@ -4,7 +4,7 @@
             "ManerasTheme\\": "src/"
         },
         "files": [
-            "helpers/helpers.php"
+            "src/Helpers/helpers.php"
         ]
     },
     "require": {

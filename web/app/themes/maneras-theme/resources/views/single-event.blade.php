@@ -93,13 +93,13 @@
     }
   @endphp
 
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {!! json_encode($schema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) !!}
 </script>
   <div class="section-title">
     <p class="text-3xl font-bold mb-4"><a href="/conciertos">Agenda de conciertos</a></p>
     <p>Aquí tienes toda la información de la que disponemos sobre el concierto de
-      <strong>{{ get_the_title($post->ID) }}</strong> en {{ $fields['administrative_division'] ?? '' }}</p>
+      <strong>{{ get_the_title($post->ID) }}</strong> en {{ $fields['administrative_division'] ?? '' }}:</p>
   </div>
   <div class="max-w-4xl mx-auto px-4 py-2">
     <article class="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -118,7 +118,7 @@
           $field_labels = [
               'start_date' => 'Fecha',
               'end_date' => 'Fecha de fin',
-              'festival_name' => 'Festival',
+              //'festival_name' => 'Festival',
               'artists' => 'Artistas',
               'event_city' => 'Ciudad',
               'event_country' => 'País',
@@ -153,7 +153,7 @@
               {{-- Poster image --}}
               <div class="mt-4">
                 <h4 class="text-lg font-medium">{{ $label }}</h4>
-                <img src="{{ esc_url($value) }}" alt="{{ get_the_title($post->ID) }} poster"
+                <img src="{{ get_the_post_thumbnail_url($post->ID, 'large') }}" alt="{{ get_the_title($post->ID) }} poster"
                   class="w-full h-auto rounded-lg" />
               </div>
             @elseif (in_array($key, ['start_date', 'end_date']))

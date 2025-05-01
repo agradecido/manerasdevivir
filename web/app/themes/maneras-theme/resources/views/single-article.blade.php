@@ -7,8 +7,13 @@
       <h1 class="text-3xl font-bold leading-tight">
         {{ get_the_title() }}
       </h1>
-      <div class="text-gray-600 text-sm mt-2">
-        {{ get_the_date('d.m.Y') }}
+      <div class="flex items-center space-x-2">
+        <i data-feather="user" class="w-4 h-4"></i>
+        <span>{{ get_post_meta( get_the_ID(), 'firma_sender', true ) }}</span>
+      
+        <i data-feather="calendar" class="w-4 h-4"></i>
+        <span>{{ get_the_date('d.m.Y') }}</span>
+
       </div>
     </header>
 
@@ -22,8 +27,9 @@
       {!! apply_filters('the_content', get_the_content()) !!}
     </div>
 
-    @if ($tags = get_the_tags())
-      <footer class="mt-8 pt-4 border-t text-sm">
+    <footer class="mt-8 pt-4 border-t text-sm">
+
+      @if ($tags = get_the_tags())
         <div class="post-tags">
           <ul class="tag-list flex flex-wrap list-none p-0 m-0">
             @foreach ($tags as $tag)
@@ -36,7 +42,7 @@
             @endforeach
           </ul>
         </div>
-      </footer>
-    @endif
+      @endif
+    </footer>
   </article>
 @endsection
