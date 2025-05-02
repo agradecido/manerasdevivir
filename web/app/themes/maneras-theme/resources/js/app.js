@@ -1,3 +1,6 @@
+// resources/js/app.js
+import logoUrl from '../images/logo.png';
+
 import '../css/app.css';
 import feather from 'feather-icons'
 
