@@ -18,9 +18,9 @@
 @endphp
 
 @section('content')
-  <div class="container mx-auto px-4 py-12">
+  <div class="container mx-auto py-2">
     {{-- Section title --}}
-    <h1 class="text-3xl font-bold mb-6">Conciertos</h1>
+    <h1 class="text-3xl font-bold mb-6">Agenda de Conciertos</h1>
 
     {{-- Upcoming Events --}}
     @if ($upcoming->have_posts())
@@ -29,11 +29,12 @@
           @php
             $upcoming->the_post();
             $fields = function_exists('get_fields') ? get_fields(get_the_ID()) : get_post_meta(get_the_ID());
-            $start_raw = get_post_meta(get_the_ID(), 'start_date', true);            
-            $start = $formatter->format(strtotime($start_raw));
+            $startRaw = get_post_meta(get_the_ID(), 'start_date', true);            
+            $startDT  = new \DateTimeImmutable($startRaw, new \DateTimeZone('Europe/Madrid'));
+            $start = $formatter->format($startDT);   // «2 de mayo de 2025»
             $city = $fields['event_city'] ?? '';
           @endphp
-          <a href="{{ get_permalink() }}" class="block bg-white rounded-lg shadow hover:shadow-lg transition">
+          <a href="{{ get_permalink() }}" class="block bg-white rounded-lg shadow hover:shadow-lg transition no-underline">
             @if (has_post_thumbnail())
               <div class="h-48 bg-cover bg-center rounded-t-lg"
                 style="background-image:url('{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}')"></div>

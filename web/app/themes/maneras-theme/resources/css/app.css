@@ -1,5 +1,6 @@
 @import './base/_variables.css';
 @import './base/_typography.css';
+@import "./components/_breadcrumbs.css";
 
 @tailwind base;
 @tailwind components;

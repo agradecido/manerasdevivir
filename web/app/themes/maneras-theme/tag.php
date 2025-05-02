@@ -12,4 +12,4 @@ if ( ! $queried || 'post_tag' !== $queried->taxonomy ) {
 $slug    = $queried->slug;
 $context = TagController::getArchive( $slug );
 
-echo render( 'tag', $context );
+echo render( 'taxonomy/tag', $context );

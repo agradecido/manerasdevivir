@@ -147,3 +147,55 @@ if ( ! function_exists( 'vite_asset' ) ) {
 		return '';
 	}
 }
+
+/**
+ * Get the breadcrumbs for the current page.
+ */
+function mdv_breadcrumbs(): array {
+	$crumbs = array(
+		array(
+			'label' => 'Inicio',
+			'icon'  => 'home',
+			'url'   => home_url( '/' ),
+		),
+	);
+
+	// CPT «event» → archivo.
+	if ( is_post_type_archive( 'event' ) ) {
+		$crumbs[] = array(
+			'label' => 'Conciertos',
+			'url'   => null,
+		);
+		return $crumbs;
+	}
+
+	// Single de evento.
+	if ( is_singular( 'event' ) ) {
+		$crumbs[] = array(
+			'label' => 'Conciertos',
+			'url'   => get_post_type_archive_link( 'event' ),
+		);
+	}
+
+	// Otros casos (post, page…).
+	$crumbs[] = array(
+		'label' => get_the_title() ?: get_the_archive_title(),
+		'url'   => null,
+	);
+
+	return $crumbs;
+}
+
+
+/**
+ * Get the daily quote.
+ *
+ * @return string
+ */
+function mdv_cita() {
+	$cita   = 'No pienses que estoy muy triste si no me ves sonreir';
+	$quote  = '<blockquote class="mt-2 md:mt-0">';
+	$quote .= '<p class="mb-0 text-sm italic text-gray-500 dark:text-gray-400">' . $cita . '</p>';
+	$quote .= '</blockquote>';
+	return $quote;
+}

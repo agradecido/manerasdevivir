@@ -1,0 +1,21 @@
+/* resources/css/components/_breadcrumbs.css */
+@layer components {
+    /* Contenedor ------------------------------------------------------ */
+    .breadcrumbs {
+      /* full‑width en mobile, 50 % máx. en ≥ md */
+      @apply flex items-center gap-1 text-sm text-text-sub
+             w-full md:max-w-[50%] whitespace-nowrap;
+    }
+  
+    /* Enlaces --------------------------------------------------------- */
+    .breadcrumbs a {
+      @apply inline-flex items-center gap-1 
+             hover:text-primary transition-colors;
+    }
+  
+    /* Separador (/ o >) ---------------------------------------------- */
+    .breadcrumbs span {
+      @apply select-none text-border text-text-sub;
+    }
+  
+  }

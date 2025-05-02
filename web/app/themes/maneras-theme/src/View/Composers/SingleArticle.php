@@ -13,7 +13,7 @@ class SingleArticle {
 	public static function register( Factory $blade ): void {
 		// ← Factory
 		$blade->composer(
-			'single-article',
+			'pages/articles/single-article',
 			function ( $view ) {
 				/** @var WP_Post $post */
 				$post = get_post();

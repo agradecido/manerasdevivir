@@ -9,7 +9,7 @@ use ManerasTheme\Controllers\TagController;
 
 if ( function_exists( 'ManerasTheme\\render' ) ) {
 	// Render Blade view and pass tags
-	echo render( 'tag-list', array( 'tags' => TagController::getTags() ) );
+	echo render( 'taxonomy/tag-list', array( 'tags' => TagController::getTags() ) );
 } else {
 	get_header();
 

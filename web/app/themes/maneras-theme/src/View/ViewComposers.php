@@ -1,4 +1,5 @@
 <?php
+// @codingStandardsIgnoreFile
 namespace ManerasTheme\View;
 
 use Illuminate\View\Factory;
@@ -16,7 +17,7 @@ final class ViewComposers {
 	private static function composers(): array {
 		return array(
 			Composers\SingleArticle::class,
-			// ⬇️ añade aquí más compositores según los vayas creando
+			// ⬇️ resto de composers:
 			// Composers\ArchiveNews::class,
 			// Composers\SingleEvent::class,
 		);

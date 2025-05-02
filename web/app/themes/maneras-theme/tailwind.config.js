@@ -12,7 +12,6 @@ export default {
   theme: {
     container: {
       center: true,          // siempre centrado
-      padding: '1rem',       // px‑4 en mobile
       screens: {
         DEFAULT: '100%',     // full‑width en ≤ sm
         lg: '1024px',        // a partir de 1024 px
