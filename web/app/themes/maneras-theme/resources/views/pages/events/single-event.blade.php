@@ -95,10 +95,10 @@
 <script type="application/ld+json">
 {!! json_encode($schema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) !!}
 </script>
-
+<div class="container">
   {{-- Section title --}}
   <div class="section-title">
-    <p class="text-3xl font-bold mb-4"><a href="/conciertos">Agenda de conciertos</a></p>
+    <p class="text-3xl font-bold mb-6 mt-6"><a href="/conciertos" class="no-underline">Agenda de conciertos</a></p>
     <p>Aquí tienes toda la información de la que disponemos sobre el concierto de
       <strong>{{ get_the_title($post->ID) }}</strong> en {{ $fields['administrative_division'] ?? '' }}:</p>
   </div>
@@ -187,6 +187,7 @@
       <a href="/conciertos" class="text-indigo-600 hover:text-indigo-800">Volver a la agenda de conciertos</a>
     </p>
   </div>
+</div>
 @endsection
 @section('footer')
 @endsection
