@@ -5,17 +5,10 @@
 
 namespace ManerasTheme;
 
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
+
 use ManerasTheme\Controllers\TagController;
 
-if ( function_exists( 'ManerasTheme\\render' ) ) {
-	// Render Blade view and pass tags
-	echo render( 'taxonomy/tag-list', array( 'tags' => TagController::getTags() ) );
-} else {
-	get_header();
-
-	// Fallback: load controller and plain PHP view.
-	$tags = TagController::getTags();
-	include locate_template( 'resources/views/tag-list.blade.php' );
-
-	get_footer();
-}
+render( 'pages/taxonomy/tag-list', array( 'tags' => TagController::getTags() ) );

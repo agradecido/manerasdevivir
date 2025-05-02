@@ -13,19 +13,17 @@
 
 namespace ManerasTheme;
 
-require_once __DIR__ . '/vendor/autoload.php'; // Include Composer autoloader
-
-// get_header();
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
 
 $posts = get_posts(
-    [
-        'post_type'      => 'article',
-        'posts_per_page' => 10,
-        'orderby'        => 'date',
-        'order'          => 'DESC',
-    ]
+	array(
+		'post_type'      => 'article',
+		'posts_per_page' => 10,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+	)
 );
 
-render('index', compact('posts'));
-
-// get_footer();
+render( 'index', compact( 'posts' ) );

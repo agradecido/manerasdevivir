@@ -53,7 +53,6 @@
 </header>
 
 <div class="container breadcrumbs-quote px-4 lg:px-0 block md:flex align-items-center justify-between ">
-  @php wp_reset_postdata(); @endphp
   @include('partials.breadcrumbs')
   {!! mdv_cita() !!}
 </div>

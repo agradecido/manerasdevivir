@@ -38,12 +38,29 @@ class TagController {
 	 * @return WP_Term[] Array of tag term objects.
 	 */
 	public static function getTags(): array {
-		return get_terms(
+		$tags = get_terms(
 			array(
 				'taxonomy'   => 'post_tag',
 				'hide_empty' => false,
 			)
 		);
+
+		// Filter out tags with no posts.
+		$tags = array_filter(
+			$tags,
+			function ( $tag ) {
+				return ! empty( $tag->count );
+			}
+		);
+
+		// Sort tags by posts count in descending order.
+		usort(
+			$tags,
+			function ( $a, $b ) {
+				return $b->count - $a->count;
+			}
+		);
+		return $tags;
 	}
 
 	/**

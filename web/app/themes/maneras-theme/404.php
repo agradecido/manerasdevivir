@@ -5,4 +5,4 @@
  * 404 page template for the theme.
  */
 
-echo 'Error 404. Página no encobierta.';
+echo 'Error 404. Página no encontrada.';

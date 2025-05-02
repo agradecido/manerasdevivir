@@ -1,7 +1,7 @@
 /* resources/css/base/_typography.css */
 @layer base {
     h1, h2, h3, h4 {
-        @apply font-sans text-text mt-6 mb-3 leading-tight text-primary;
+        @apply font-sans mt-6 mb-3 leading-tight text-primary;
     }
 
     h1 {
@@ -21,7 +21,7 @@
     }
 
     a {
-        @apply text-primary underline decoration-2 transition-colors duration-150;
+        @apply text-primary no-underline decoration-2 transition-colors duration-150;
     }
 
     a:hover, a:focus {

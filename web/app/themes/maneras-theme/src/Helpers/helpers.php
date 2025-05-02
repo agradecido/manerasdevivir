@@ -152,10 +152,14 @@ if ( ! function_exists( 'vite_asset' ) ) {
  * Get the breadcrumbs for the current page.
  */
 function mdv_breadcrumbs(): array {
+	if ( is_front_page() || is_home() ) {
+		return array();
+	}
+
 	$crumbs = array(
 		array(
 			'label' => 'Inicio',
-			//'icon'  => 'home',
+			// 'icon'  => 'home',
 			'url'   => home_url( '/' ),
 		),
 	);
