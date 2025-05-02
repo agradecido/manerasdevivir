@@ -2,7 +2,7 @@
 <nav aria-label="Breadcrumb" class="breadcrumbs">
   @foreach ($items as $index => $item)
     @if ($item['url'])
-      <a href="{{ $item['url'] }}">
+      <a href="{{ $item['url'] }}" class="no-underline">
         @if ( key_exists( 'icon', $item ) && $item['icon'] )
           <i data-feather="{{ $item['icon'] }}" class="h-4 w-4"></i>
         @else

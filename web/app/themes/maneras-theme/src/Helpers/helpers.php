@@ -155,7 +155,7 @@ function mdv_breadcrumbs(): array {
 	$crumbs = array(
 		array(
 			'label' => 'Inicio',
-			'icon'  => 'home',
+			//'icon'  => 'home',
 			'url'   => home_url( '/' ),
 		),
 	);
