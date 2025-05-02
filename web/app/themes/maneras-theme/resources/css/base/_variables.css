@@ -8,5 +8,7 @@
         --color-text: #CCCCCC;
         --color-text-subtle: #8B8B8B;
         --color-border: #2B2B2B;
+        
+        --site-width: 1280px;
     }
 }

@@ -10,11 +10,10 @@
     
 </head>
 
-<body @php body_class() @endphp>
+<body @php body_class('bg-bg text-text antialiased') @endphp>
     @include('layouts.header')
     @yield('content')
     @include('layouts.footer')
-  
     @php wp_footer(); @endphp
 </body>
 

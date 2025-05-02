@@ -21,11 +21,11 @@ class SingleArticle {
 				$view->with(
 					array(
 						'title'   => get_the_title( $post ),
-						'author'  => get_the_author_meta( 'display_name', $post->post_author ),
+						'author'  => get_post_meta( $post->ID, 'firma_sender', true ),
 						'isoDate' => get_post_time( 'c', true, $post ),
 						'pubDate' => get_the_date( 'd.m.Y', $post ),
 						'thumb'   => has_post_thumbnail( $post )
-									? get_the_post_thumbnail( $post, 'large', array( 'class' => 'w-full h-auto' ) )
+									? get_the_post_thumbnail( $post, 'large', array( 'class' => 'w-full h-auto max-h-96 object-cover object-center' ) )
 									: '',
 						'content' => apply_filters( 'the_content', $post->post_content ),
 						'tags'    => get_the_tags( $post ),

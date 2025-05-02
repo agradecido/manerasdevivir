@@ -1,7 +1,7 @@
 /* resources/css/base/_typography.css */
 @layer base {
     h1, h2, h3, h4 {
-        @apply font-sans text-text mt-6 mb-3 leading-tight;
+        @apply font-sans text-text mt-6 mb-3 leading-tight text-primary;
     }
 
     h1 {

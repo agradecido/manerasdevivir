@@ -10,6 +10,15 @@ export default {
   ],
   darkMode: 'class',   // por si algún día añadimos modo claro
   theme: {
+    container: {
+      center: true,          // siempre centrado
+      padding: '1rem',       // px‑4 en mobile
+      screens: {
+        DEFAULT: '100%',     // full‑width en ≤ sm
+        lg: '1024px',        // a partir de 1024 px
+        xl: '1280px',        // y/o 1440‑1600 según diseño
+      },
+    },
     extend: {
       colors: {
         bg: '#0D0D0D',
@@ -19,6 +28,9 @@ export default {
         text: '#CCCCCC',
         'text-sub': '#8B8B8B',
         border: '#2B2B2B',
+        maxWidth: {
+          site: 'var(--site-width)',
+        },
       },
       fontFamily: {
         sans: ['"Barlow Condensed"', ...fontFamily.sans],  // headline look & feel
@@ -33,3 +45,4 @@ export default {
     require('@tailwindcss/typography'),
   ],
 }
+

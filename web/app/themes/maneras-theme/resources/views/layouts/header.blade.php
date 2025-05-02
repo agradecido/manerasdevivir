@@ -1,29 +1,30 @@
 <header class="shadow-md relative z-50">
-  <div class="container flex items-center justify-between py-4">
+  <div class="container flex items-center py-4">
     {{-- Logo --}}
-    <a href="{{ home_url('/') }}" class="flex items-center custom-logo-link">
+    <a href="{{ home_url('/') }}" class="custom-logo-link max-w-[500px] flex-shrink-0">
       <img
         src="{{ vite_asset('resources/images/logo.png') }}"
         alt="{{ esc_attr(get_bloginfo('name')) }}"
+        class="w-full h-auto"
       >
     </a>
 
-    {{-- Menú inline para escritorio --}}
-    <nav class="hidden lg:flex space-x-6 text-gray-700">
+    {{-- Menu desktop --}}
+    <nav class="hidden lg:flex gap-6 ml-8 text-text-sub">
       @foreach (wp_get_nav_menu_items('main') ?? [] as $item)
         <a
           href="{{ esc_url($item->url) }}"
-          class="hover:text-gray-900 transition-colors duration-200"
+          class="hover:text-primary transition-colors duration-150"
         >
           {{ esc_html($item->title) }}
         </a>
       @endforeach
     </nav>
 
-    {{-- Botón hamburguesa (solo móvil) --}}
+    {{-- Hamb Button (mobile) --}}
     <button
       id="mobile-menu-button"
-      class="lg:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+      class="ml-auto lg:hidden p-2 text-text hover:text-primary focus:outline-none"
       aria-label="Open menu"
     >
       <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,16 +34,16 @@
     </button>
   </div>
 
-  {{-- Overlay menú móvil (sólo <lg) --}}
+  {{-- Menu mobile --}}
   <nav
     id="mobile-menu"
-    class="fixed inset-y-0 right-0 w-3/4 max-w-xs bg-white shadow-lg
+    class="fixed inset-y-0 right-0 w-3/4 max-w-xs bg-surface shadow-lg
            transform translate-x-full transition-transform duration-300 lg:hidden"
   >
-    {{-- Botón cerrar --}}
+    {{-- Close button --}}
     <button
       id="mobile-menu-close"
-      class="absolute top-4 right-4 p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+      class="absolute top-4 right-4 p-2 text-text hover:text-primary focus:outline-none"
       aria-label="Close menu"
     >
       <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,12 +52,12 @@
       </svg>
     </button>
 
-    <ul class="mt-16 flex flex-col space-y-4 p-6 text-gray-700">
+    <ul class="mt-16 flex flex-col gap-4 p-6 text-text">
       @foreach (wp_get_nav_menu_items('main') ?? [] as $item)
         <li>
           <a
             href="{{ esc_url($item->url) }}"
-            class="block hover:text-gray-900 transition-colors duration-200"
+            class="block hover:text-primary transition-colors duration-150"
           >
             {{ esc_html($item->title) }}
           </a>
