@@ -90,8 +90,8 @@ if ( ! function_exists( 'get_blade' ) ) {
 
 			$factory->addExtension( 'blade.php', 'blade' );
 
-			\ManerasTheme\View\ViewComposers::registerAll($factory);
-			
+			\ManerasTheme\View\ViewComposers::registerAll( $factory );
+
 		}
 		return $factory;
 	}

@@ -1,7 +1,6 @@
+@import './base/_variables.css';
+@import './base/_typography.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* import base layers */
-@import 'base/variables.css';
-@import 'base/typography.css';
