@@ -18,6 +18,21 @@ use WP_Term;
 class TagController {
 
 	/**
+	 * Retrieve the tag object and its posts by slug.
+	 *
+	 * @param string $slug Tag slug.
+	 * @return array{tag:WP_Term, posts:WP_Query}
+	 */
+	public static function getArchive( string $slug ): array {
+		$tag   = get_term_by( 'slug', $slug, 'post_tag' );
+		$posts = self::getPostsByTag( $slug );
+		return array(
+			'tag'   => $tag,
+			'posts' => $posts,
+		);
+	}
+
+	/**
 	 * Retrieve all post tags, including those with no posts.
 	 *
 	 * @return WP_Term[] Array of tag term objects.

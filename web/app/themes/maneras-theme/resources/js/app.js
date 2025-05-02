@@ -1,5 +1,4 @@
 import '../css/app.css';
-import logoUrl from '@/images/logo.png';
 import feather from 'feather-icons'
 
 

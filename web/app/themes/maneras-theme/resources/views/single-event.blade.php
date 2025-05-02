@@ -92,10 +92,11 @@
         $schema['offers'] = $offer;
     }
   @endphp
-
 <script type="application/ld+json">
 {!! json_encode($schema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) !!}
 </script>
+
+  {{-- Section title --}}
   <div class="section-title">
     <p class="text-3xl font-bold mb-4"><a href="/conciertos">Agenda de conciertos</a></p>
     <p>Aquí tienes toda la información de la que disponemos sobre el concierto de

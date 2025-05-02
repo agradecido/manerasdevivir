@@ -9,21 +9,10 @@
 
 namespace ManerasTheme;
 
-if ( function_exists( 'ManerasTheme\\render' ) ) {
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
+
+if ( function_exists( 'render' ) ) {
 	render( 'single-article' );
-} else {
-	// Fallback.
-	get_header();
-	while ( have_posts() ) :
-		the_post();
-		?>
-		<article class="container mx-auto px-4 py-8">
-			<h1 class="text-3xl font-bold mb-4"><?php the_title(); ?></h1>
-			<div class="prose max-w-none">
-				<?php the_content(); ?>
-			</div>
-		</article>
-		<?php
-	endwhile;
-	get_footer();
 }
