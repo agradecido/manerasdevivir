@@ -1,4 +1,6 @@
 <?php
+// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionName
 /**
  * Helpers for the theme.
  *
@@ -20,6 +22,20 @@ use Illuminate\View\Engines\PhpEngine;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
+
+if ( ! function_exists( 'render' ) ) {
+	/**
+	 * Render and display a Blade view.
+	 *
+	 * @param string $view Name of the view (without .blade.php).
+	 * @param array  $data Data to pass to the template.
+	 *
+	 * @return void
+	 */
+	function render( string $view, array $data = array() ): void {
+		echo get_blade()->make( $view, $data )->render();
+	}
+}
 
 if ( ! function_exists( 'get_blade' ) ) {
 	/**
@@ -71,8 +87,11 @@ if ( ! function_exists( 'get_blade' ) ) {
 
 			// 4) Factory
 			$factory = new Factory( $resolver, $finder, $eventDispatcher );
-			// Associate the extension
+
 			$factory->addExtension( 'blade.php', 'blade' );
+
+			\ManerasTheme\View\ViewComposers::registerAll($factory);
+			
 		}
 		return $factory;
 	}
