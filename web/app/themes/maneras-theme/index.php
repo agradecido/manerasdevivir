@@ -26,4 +26,4 @@ $posts = get_posts(
 	)
 );
 
-render( 'index', compact( 'posts' ) );
+render( 'pages.home', compact( 'posts' ) );

@@ -3,6 +3,9 @@
 
 @section('content')
   @php
+    // Limpiar el título del evento
+    $clean_title = mdv_clean_event_title(get_the_title($post->ID));
+    
     // Build JSON-LD schema for the event.
     if (strtotime($fields['end_date']) < strtotime($fields['start_date'])) {
         $fields['end_date'] = null;
@@ -10,7 +13,7 @@
     $schema = [
         '@context' => 'https://schema.org',
         '@type' => 'Event',
-        'name' => get_the_title($post->ID),
+        'name' => $clean_title,
         'startDate' => isset($fields['start_date']) ? date('c', strtotime($fields['start_date'])) : null,
         'endDate' => isset($fields['end_date']) ? date('c', strtotime($fields['end_date'])) : null,
         'eventSchedule' => [
@@ -100,7 +103,7 @@
   <div class="section-title">
     <p class="text-3xl font-bold mb-6 mt-6"><a href="/conciertos" class="no-underline">Agenda de conciertos</a></p>
     <p>Aquí tienes toda la información de la que disponemos sobre el concierto de
-      <strong>{{ get_the_title($post->ID) }}</strong> en {{ $fields['administrative_division'] ?? '' }}:</p>
+      <strong>{{ $clean_title }}</strong> en {{ $fields['administrative_division'] ?? '' }}:</p>
   </div>
   <div class="max-w-4xl mx-auto px-4 py-2">
     <article class="bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -112,7 +115,7 @@
 
       <div class="p-8 space-y-6">
         {{-- Event title --}}
-        <h1 class="text-4xl font-extrabold leading-tight">{{ get_the_title($post->ID) }}</h1>
+        <h1 class="text-4xl font-extrabold leading-tight">{{ $clean_title }}</h1>
 
         @php
           // Mapping of allowed fields to Spanish labels
@@ -171,7 +174,7 @@
         {{-- Main content --}}
         @if (trim(get_the_content($post->ID)))
           <div class="prose prose-lg">
-            <h2>Más información sobre el concierto de {{ get_the_title($post->ID) }} en
+            <h2>Más información sobre el concierto de {{ $clean_title }} en
               {{ $fields['administrative_division'] ?? '' }}</h2>
             {{-- Display the content of the post --}}
             {{-- Note: The content is filtered through 'the_content' filter to apply shortcodes and formatting --}}

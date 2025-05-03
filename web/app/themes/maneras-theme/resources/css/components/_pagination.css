@@ -1,0 +1,27 @@
+/* resources/css/components/_pagionation.css */
+@layer components {
+    /* Wrapper centrado ------------------------------------------------ */
+    .pagination {
+      @apply flex justify-center gap-1 md:gap-2 my-8;
+    }
+  
+    /* Enlaces y spans (prev/next, números) --------------------------- */
+    .pagination a,
+    .pagination span {
+      @apply inline-flex items-center justify-center px-3 py-1.5
+             rounded border border-border bg-surface
+             text-text-sub hover:text-primary hover:bg-border
+             transition-colors duration-150;
+    }
+  
+    /* Página actual ---------------------------------------------------- */
+    .pagination .current {
+      @apply bg-primary text-bg border-primary cursor-default;
+    }
+  
+    /* “…” separadores -------------------------------------------------- */
+    .pagination .dots {
+      @apply px-2 py-1 text-border cursor-default;
+    }
+  }
+  

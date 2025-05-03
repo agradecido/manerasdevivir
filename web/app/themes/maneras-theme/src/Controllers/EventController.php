@@ -21,16 +21,20 @@ class EventController {
 	/**
 	 * Retrieves upcoming and past events.
 	 *
+	 * @param int $upcoming_limit Number of upcoming events to fetch. Default 12.
+	 * @param int $past_limit Number of past events to fetch. Default 10.
+	 * @param int $paged Current page number for pagination. Default 1.
 	 * @return array An associative array containing two WP_Query objects:
 	 *               'upcoming' for upcoming events and 'past' for past events.
 	 */
-	public static function getEvents() {
+	public static function getEvents( $upcoming_limit = 12, $past_limit = 10, $paged = 1 ) {
 		$today = date( 'Y-m-d' );
 
 		// Upcoming events query.
 		$upcoming_args = array(
 			'post_type'      => 'event',
-			'posts_per_page' => -1,
+			'posts_per_page' => $upcoming_limit,
+			'paged'          => $paged,
 			'meta_key'       => 'start_date',
 			'orderby'        => 'meta_value',
 			'order'          => 'ASC',
@@ -48,7 +52,7 @@ class EventController {
 		// Past events query.
 		$past_args = array(
 			'post_type'      => 'event',
-			'posts_per_page' => 10,
+			'posts_per_page' => $past_limit,
 			'meta_key'       => 'start_date',
 			'orderby'        => 'meta_value',
 			'order'          => 'DESC',

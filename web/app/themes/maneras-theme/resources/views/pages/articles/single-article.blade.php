@@ -1,4 +1,4 @@
-{{-- resources/views/single-article.blade.php --}}
+{{-- resources/views/pages/articles/single-article.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
@@ -46,7 +46,4 @@
       </footer>
     </div>
   </article>
-@endsection
-
-@section('footer')
 @endsection

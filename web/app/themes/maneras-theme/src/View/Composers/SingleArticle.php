@@ -6,17 +6,20 @@ use Illuminate\View\Factory;
 use WP_Post;
 
 /**
- * Registers view‑composer callbacks for Jenssegers Blade.
+ * Registers view‑composer callbacks for Jenssegers Blade.
  */
 class SingleArticle {
 
 	public static function register( Factory $blade ): void {
-		// ← Factory
 		$blade->composer(
-			'pages/articles/single-article',
+			'pages.articles.single-article',
 			function ( $view ) {
 				/** @var WP_Post $post */
-				$post = get_post();
+				$post = $view->article ?? get_post();
+
+				if ( ! $post ) {
+					return;
+				}
 
 				$view->with(
 					array(

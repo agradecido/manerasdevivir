@@ -16,9 +16,11 @@ final class ViewComposers {
 	 */
 	private static function composers(): array {
 		return array(
+			Composers\HomeComposer::class,
 			Composers\SingleArticle::class,
+			Composers\ArchiveArticle::class,
+			Composers\ArchiveEvent::class,
 			// ⬇️ resto de composers:
-			// Composers\ArchiveNews::class,
 			// Composers\SingleEvent::class,
 		);
 	}

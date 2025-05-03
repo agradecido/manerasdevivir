@@ -86,3 +86,59 @@ add_action(
 		wp_script_add_data( 'maneras-vite-js', 'type', 'module' );
 	}
 );
+
+/**
+ * Register template routing for Blade templates.
+ */
+add_filter(
+	'template_include',
+	function () {
+		if ( is_front_page() ) {
+			render( 'pages.home' );
+			exit;
+		}
+
+		if ( is_single() && get_post_type() === 'article' ) {
+			global $post;
+			setup_postdata( $post );
+
+			render( 'pages.articles.single-article', array( 'article' => $post ) );
+			wp_reset_postdata();
+			exit;
+		}
+
+		if ( is_archive() && is_post_type_archive( 'article' ) ) {
+			render( 'pages.articles.archive-article' );
+			exit;
+		}
+
+		if ( is_single() && get_post_type() === 'event' ) {
+			render( 'pages.events.single-event', array( 'event' => get_post() ) );
+			exit;
+		}
+		if ( is_archive() && is_post_type_archive( 'event' ) ) {
+			render(
+				'pages.events.archive-event',
+				array()
+			);
+			exit;
+		}
+
+		if ( is_tax( 'tag' ) ) {
+			render( 'pages.taxonomy.tag-list' );
+			exit;
+		}
+		if ( is_tax( 'tag', get_query_var( 'tag' ) ) ) {
+			render( 'pages.taxonomy.tag' );
+			exit;
+		}
+
+		if ( is_404() ) {
+			render( '404' );
+			exit;
+		}
+
+		// Fallback.
+		return get_theme_file_path( 'index.php' );
+	}
+);

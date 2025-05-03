@@ -23,130 +23,56 @@ use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Factory;
 use Illuminate\View\FileViewFinder;
 
-if ( ! function_exists( 'render' ) ) {
-	/**
-	 * Render and display a Blade view.
-	 *
-	 * @param string $view Name of the view (without .blade.php).
-	 * @param array  $data Data to pass to the template.
-	 *
-	 * @return void
-	 */
-	function render( string $view, array $data = array() ): void {
-		echo get_blade()->make( $view, $data )->render();
-	}
-}
 
-if ( ! function_exists( 'get_blade' ) ) {
-	/**
-	 * Bootstrap Blade templating.
-	 *
-	 * @return Factory
-	 */
-	function get_blade(): Factory {
-		static $factory = null;
-		if ( $factory === null ) {
-			$themeDir = get_stylesheet_directory();
-			$views    = array( $themeDir . '/resources/views' );
-			$cache    = $themeDir . '/cache';
-
-			// 1) File system and events
-			$filesystem      = new Filesystem();
-			$eventDispatcher = new Dispatcher( new Container() );
-			$bladeCompiler   = new BladeCompiler( $filesystem, $cache );
-
-			// 💥 In development, clear the cache on every request
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				$cachePath = $cache . '/*.php';
-				foreach ( glob( $cachePath ) as $compiledFile ) {
-					@unlink( $compiledFile );
-				}
-			}
-
-			// 2) Engine resolver
-			$resolver = new EngineResolver();
-
-			// – Blade engine
-			$resolver->register(
-				'blade',
-				function () use ( $bladeCompiler, $filesystem ) {
-					return new CompilerEngine( $bladeCompiler, $filesystem );
-				}
-			);
-
-			// – PHP engine (for .php if needed)
-			$resolver->register(
-				'php',
-				function () use ( $filesystem ) {
-					return new PhpEngine( $filesystem );
-				}
-			);
-
-			// 3) View finder
-			$finder = new FileViewFinder( $filesystem, $views );
-
-			// 4) Factory
-			$factory = new Factory( $resolver, $finder, $eventDispatcher );
-
-			$factory->addExtension( 'blade.php', 'blade' );
-
-			\ManerasTheme\View\ViewComposers::registerAll( $factory );
-
-		}
-		return $factory;
-	}
-}
-
-if ( ! function_exists( 'vite_asset' ) ) {
 	/**
 	 * Returns the versioned URL of an asset processed by Vite.
 	 *
 	 * @param string $path Path you pass (may or may not include "resources/")
 	 * @return string Public URL to the file in public/.vite/
 	 */
-	function vite_asset( string $path ): string {
-		static $manifest = null;
-		if ( is_null( $manifest ) ) {
-			$manPath = get_stylesheet_directory() . '/public/.vite/manifest.json';
-			if ( ! file_exists( $manPath ) ) {
-				return '';
-			}
-			$manifest = json_decode( file_get_contents( $manPath ), true );
+function vite_asset( string $path ): string {
+	static $manifest = null;
+	if ( is_null( $manifest ) ) {
+		$manPath = get_stylesheet_directory() . '/public/.vite/manifest.json';
+		if ( ! file_exists( $manPath ) ) {
+			return '';
 		}
-
-		// Normalize by removing the "resources/" prefix if it exists
-		$normalized = preg_replace( '#^resources/#', '', ltrim( $path, '/' ) );
-
-		// 1) Try the normalized key
-		if ( isset( $manifest[ $normalized ]['file'] ) ) {
-			return get_stylesheet_directory_uri()
-				. '/public/'
-				. $manifest[ $normalized ]['file'];
-		}
-
-		// 2) Try the key as is (in case no prefix is used)
-		if ( isset( $manifest[ $path ]['file'] ) ) {
-			return get_stylesheet_directory_uri()
-				. '/public/'
-				. $manifest[ $path ]['file'];
-		}
-
-		// 3) As a fallback, search by entry['src']
-		foreach ( $manifest as $entry ) {
-			if ( isset( $entry['src'] ) ) {
-				// compare with both versions
-				if ( $entry['src'] === $normalized || $entry['src'] === $path ) {
-					return get_stylesheet_directory_uri()
-						. '/public/'
-						. $entry['file'];
-				}
-			}
-		}
-
-		// 4) Not found
-		return '';
+		$manifest = json_decode( file_get_contents( $manPath ), true );
 	}
+
+	// Normalize by removing the "resources/" prefix if it exists
+	$normalized = preg_replace( '#^resources/#', '', ltrim( $path, '/' ) );
+
+	// 1) Try the normalized key
+	if ( isset( $manifest[ $normalized ]['file'] ) ) {
+		return get_stylesheet_directory_uri()
+			. '/public/'
+			. $manifest[ $normalized ]['file'];
+	}
+
+	// 2) Try the key as is (in case no prefix is used)
+	if ( isset( $manifest[ $path ]['file'] ) ) {
+		return get_stylesheet_directory_uri()
+			. '/public/'
+			. $manifest[ $path ]['file'];
+	}
+
+	// 3) As a fallback, search by entry['src']
+	foreach ( $manifest as $entry ) {
+		if ( isset( $entry['src'] ) ) {
+			// compare with both versions
+			if ( $entry['src'] === $normalized || $entry['src'] === $path ) {
+				return get_stylesheet_directory_uri()
+					. '/public/'
+					. $entry['file'];
+			}
+		}
+	}
+
+	// 4) Not found
+	return '';
 }
+
 
 /**
  * Get the breadcrumbs for the current page.
@@ -173,11 +99,28 @@ function mdv_breadcrumbs(): array {
 		return $crumbs;
 	}
 
+	// CPT «article» → archivo.
+	if ( is_post_type_archive( 'article' ) ) {
+		$crumbs[] = array(
+			'label' => 'Noticias',
+			'url'   => null,
+		);
+		return $crumbs;
+	}
+
 	// Single de evento.
 	if ( is_singular( 'event' ) ) {
 		$crumbs[] = array(
 			'label' => 'Conciertos',
 			'url'   => get_post_type_archive_link( 'event' ),
+		);
+	}
+
+	// Single de artículo.
+	if ( is_singular( 'article' ) ) {
+		$crumbs[] = array(
+			'label' => 'Noticias',
+			'url'   => get_post_type_archive_link( 'article' ),
 		);
 	}
 
@@ -202,4 +145,87 @@ function mdv_cita() {
 	$quote .= '<p class="mb-0 text-sm italic text-gray-500 dark:text-gray-400">' . $cita . '</p>';
 	$quote .= '</blockquote>';
 	return $quote;
+}
+
+
+/**
+ * Limpia y formatea el título de un evento para darle un aspecto homogéneo.
+ *
+ * @param string $title El título a limpiar y formatear.
+ * @return string El título limpio con formato homogéneo.
+ */
+function mdv_clean_event_title( string $title ): string {
+	// Decodificar entidades HTML.
+	$title = html_entity_decode( $title );
+
+	// Reemplazar códigos HTML específicos.
+	$title = str_replace( '&#8211;', '-', $title );
+	$title = str_replace( '&amp;#8211;', '-', $title );
+
+	// Convertir guiones y símbolos "+" a separadores.
+	$title = str_replace( array( ' - ', ' – ', ' — ', ' — ', '–', '—' ), ', ', $title );
+	$title = preg_replace( '/\s*-\s*/', ', ', $title );
+	$title = preg_replace( '/\s*\+\s*/', ', ', $title );
+
+	// Eliminar espacios múltiples y limpiar.
+	$title = preg_replace( '/\s+/', ' ', $title );
+	$title = trim( $title );
+	$title = trim( $title, ',' );
+	$title = trim( $title, '+' );
+	$title = trim( $title, '-' );
+
+	// Eliminar comas múltiples y espacios alrededor de comas.
+	$title = preg_replace( '/\s*,\s*/', ', ', $title );
+	$title = preg_replace( '/,+/', ',', $title );
+
+	// Convertir todo a minúsculas primero usando mb_strtolower para preservar acentos.
+	$title = function_exists( 'mb_strtolower' ) ? mb_strtolower( $title, 'UTF-8' ) : strtolower( $title );
+
+	// Dividir en partes para procesamiento.
+	$parts = explode( ',', $title );
+	$parts = array_map( 'trim', $parts );
+	$parts = array_filter( $parts ); // Eliminar elementos vacíos.
+
+	// Aplicar Title Case a cada parte (primera letra de cada palabra en mayúscula).
+	$formatted_parts = array();
+	foreach ( $parts as $part ) {
+		// Convertir a Title Case, pero mantener palabras como "y", "de", "el" en minúscula.
+		$words  = explode( ' ', $part );
+		$result = array();
+
+		foreach ( $words as $i => $word ) {
+			// Lista de palabras que deben mantenerse en minúsculas (excepto al inicio).
+			$lowercase_words = array( 'y', 'e', 'de', 'del', 'la', 'el', 'los', 'las', 'un', 'una', 'a', 'al', 'en', 'con', 'por', 'para' );
+
+			// Preservar acrónimos con puntos (como P.I.L.T.).
+			if ( preg_match( '/^([a-z]\.)+[a-z]?\.?$/', $word ) ) {
+				$result[] = function_exists( 'mb_strtoupper' ) ? mb_strtoupper( $word, 'UTF-8' ) : strtoupper( $word );
+			}
+			// Primera palabra o no es de las que van en minúscula.
+			elseif ( $i === 0 || ! in_array( $word, $lowercase_words ) ) {
+				// Usar mb_strtoupper para la primera letra y mantener el resto.
+				if ( function_exists( 'mb_substr' ) && function_exists( 'mb_strtoupper' ) ) {
+					$first    = mb_strtoupper( mb_substr( $word, 0, 1, 'UTF-8' ), 'UTF-8' );
+					$rest     = mb_substr( $word, 1, null, 'UTF-8' );
+					$result[] = $first . $rest;
+				} else {
+					$result[] = ucfirst( $word );
+				}
+			}
+			// Palabras que siempre van en minúscula (a menos que estén al inicio).
+			else {
+				$result[] = $word;
+			}
+		}
+
+		$formatted_parts[] = implode( ' ', $result );
+	}
+
+	// Manejar el caso especial para "Y" entre bandas.
+	if ( count( $formatted_parts ) > 1 ) {
+		$last = array_pop( $formatted_parts );
+		return implode( ', ', $formatted_parts ) . ' y ' . $last;
+	}
+
+	return implode( ', ', $formatted_parts );
 }
