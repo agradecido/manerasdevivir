@@ -16,6 +16,19 @@
     {{-- Section title --}}
     <h1 class="text-3xl font-bold mb-6">Agenda de Conciertos</h1>
 
+    <form method="get" action="{{ get_post_type_archive_link('event') }}">
+      <label for="province">Provincia:</label>
+      <select name="province" id="province">
+        <option value="">Todas</option>
+        @foreach(get_terms(['taxonomy' => 'province', 'hide_empty' => false]) as $provincia)
+         <option value="{{ $provincia->slug }}" @if(($_GET['province'] ?? '') === $provincia->slug) selected @endif>
+            {{ $provincia->name }}
+          </option>
+        @endforeach
+      </select>
+      <button type="submit">Filtrar</button>
+    </form>
+    
     {{-- Upcoming Events --}}
     @if ($upcoming && $upcoming->have_posts())
         <h2 class="text-2xl font-bold mb-4">Próximos conciertos y festivales</h2>
@@ -80,15 +93,6 @@
                   <strong>Fecha:</strong>&nbsp; {{ $start }}
                 </p>
                 
-                {{-- Mostrar fecha fin si existe --}}
-                @if ($end && $start !== $end)
-                  <p class="flex items-center text-gray-600 text-sm mb-2">
-                    <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
-                    <strong>Hasta:</strong>&nbsp; {{ $end }}
-                  </p>
-                @endif
-
-                
                 {{-- Mostrar ubicación (ciudad, provincia, país) si existe --}}
                 @if ($event_city || $administrative_division || $venue)
                   <p class="flex items-center text-gray-600 text-sm mb-2">
@@ -113,7 +117,7 @@
                 @if ($precio_anticipada || $price)
                   <p class="flex items-center text-gray-600 text-sm mb-2">
                     <i data-feather="tag" class="w-4 h-4 mr-1"></i>
-                    <strong>{{ $precio_anticipada ? 'Anticipada:' : 'Precio:' }}</strong> 
+                    <strong>{{ $precio_anticipada ? 'Anticipada:&nbsp;' : 'Precio:&nbsp;' }}</strong> 
                     {{ $precio_anticipada ?? $price }}€
                   </p>
                 @endif

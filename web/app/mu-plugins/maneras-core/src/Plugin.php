@@ -4,6 +4,7 @@ namespace ManerasCore;
 
 use ManerasCore\PostTypes\Event;
 use ManerasCore\PostTypes\Article;
+use ManerasCore\Taxonomies\Provinces;
 
 class Plugin {
 
@@ -14,7 +15,10 @@ class Plugin {
 		// 1) Registrar CPTs
 		$this->registerPostTypes();
 
-		// 2) Desactivar el editor de bloques en 'event'
+		// 2) Registrar taxonomías
+		$this->registerTaxonomies();
+
+		// 3) Desactivar el editor de bloques en 'event'
 		add_filter(
 			'use_block_editor_for_post_type',
 			array( $this, 'disableBlockEditor' ),
@@ -42,21 +46,8 @@ class Plugin {
 	 */
 	public function registerPostTypes(): void {
 		new Event();
-
 		new Article();
 		
-		/*
-		new Article(
-			array(
-				'rewrite'     => array(
-					'slug'       => 'noticias/%id_noticia%',
-					'with_front' => false,
-				),
-				'has_archive' => 'noticias',
-			)
-		);
-		*/
-
 		add_action(
 			'after_setup_theme',
 			function () {
@@ -118,6 +109,13 @@ class Plugin {
 			},
 			20
 		);
+	}
+
+	/**
+	 * Register custom taxonomies.
+	 */
+	public function registerTaxonomies(): void {
+		new Provinces();
 	}
 
 	/**

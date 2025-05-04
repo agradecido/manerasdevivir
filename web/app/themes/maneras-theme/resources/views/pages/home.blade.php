@@ -1,4 +1,4 @@
-{{-- resources/views/index.blade.php --}}
+{{-- resources/views/home.blade.php --}}
 @extends('layouts.app')
 
 @section('content')
@@ -54,20 +54,13 @@
                 </article>
             @endwhile
 
-            {{-- Paginación --}}
             @if ($articles->max_num_pages > 1)
                 <div class="pagination flex justify-center my-8">
-                    <?php
-                        $big = 999999999;
-                        echo paginate_links([
-                            'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                            'format' => '?paged=%#%',
-                            'current' => max(1, get_query_var('paged')),
-                            'total' => $articles->max_num_pages,
-                            'prev_text' => '&laquo; Anterior',
-                            'next_text' => 'Siguiente &raquo;',
-                        ]);
-                    ?>
+                    <a href="{{ get_post_type_archive_link('article') }}/page/2" rel="noopener"
+                        class="inline-flex items-center gap-1 text-primary hover:underline font-medium no-underline">
+                        Ver más
+                        <i data-feather="arrow-right" class="w-4 h-4"></i>
+                    </a>
                 </div>
             @endif
 

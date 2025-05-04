@@ -164,3 +164,8 @@ Config::apply();
 if (!defined('ABSPATH')) {
     define('ABSPATH', $webroot_dir . '/wp/');
 }
+
+/**
+ * Articles per page
+ */
+Config::define('MANERAS_ARTICLES_PER_PAGE', env('MANERAS_ARTICLES_PER_PAGE') ?? 10);

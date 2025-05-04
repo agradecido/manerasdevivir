@@ -1,5 +1,5 @@
 // resources/js/app.js
-import logoUrl from '../images/logo.png';
+import logoUrl from '../images/logo-1996.png';
 
 import '../css/app.css';
 import feather from 'feather-icons'

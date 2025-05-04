@@ -2,7 +2,7 @@
   <div class="container flex items-center justify-between">
     {{-- Logo --}}
     <a href="{{ home_url('/') }}" class="custom-logo-link flex-shrink-0">
-      <img src="{{ vite_asset('resources/images/logo.png') }}" alt="{{ esc_attr(get_bloginfo('name')) }}"
+      <img src="{{ vite_asset('resources/images/logo-1996.png') }}" alt="{{ esc_attr(get_bloginfo('name')) }}"
         class="max-w-[300px] h-auto sm:max-w-[400px] lg:max-w-[500px] xl:max-w-[600px]"
       >
     </a>
