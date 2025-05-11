@@ -24,17 +24,17 @@ class Interview {
 	 * @var array<string, callable|string>
 	 */
 	private array $fields = array(
-		'entrevistado'      => 'sanitize_text_field',
-		'entrevistador'     => 'sanitize_text_field', 
-		'fecha_entrevista'  => 'sanitize_text_field',
-		'lugar'             => 'sanitize_text_field',
-		'evento_relacionado'=> 'intval',
-		'email_contacto'    => 'sanitize_email',
-		'fuente'            => 'sanitize_textarea_field',
-		'canonical'         => 'sanitize_textarea_field',
-		'destacada'         => 'boolval',
-		'robots'            => 'sanitize_textarea_field',
-		'id_entrevista'     => 'intval',
+		'entrevistado'       => 'sanitize_text_field',
+		'entrevistador'      => 'sanitize_text_field',
+		'fecha_entrevista'   => 'sanitize_text_field',
+		'lugar'              => 'sanitize_text_field',
+		'evento_relacionado' => 'intval',
+		'email_contacto'     => 'sanitize_email',
+		'fuente'             => 'sanitize_textarea_field',
+		'canonical'          => 'sanitize_textarea_field',
+		'destacada'          => 'boolval',
+		'robots'             => 'sanitize_textarea_field',
+		'id_entrevista'      => 'intval',
 	);
 
 	/**
@@ -60,15 +60,15 @@ class Interview {
 		}
 
 		return match ( $sanitizer ) {
-			'sanitize_email'          => 'email',
-			'sanitize_textarea_field' => 'textarea',
+			'sanitize_email'              => 'email',
+			'sanitize_textarea_field'     => 'textarea',
 			'esc_url_raw', 'sanitize_url' => 'url',
-			'intval'                  => 'number',
-			'floatval'                => 'number',
-			'boolval'                 => 'checkbox',
-			'sanitize_title'          => 'text',
-			'sanitize_text_field'     => 'text',
-			default                   => 'text',
+			'intval'                      => 'number',
+			'floatval'                    => 'number',
+			'boolval'                     => 'checkbox',
+			'sanitize_title'              => 'text',
+			'sanitize_text_field'         => 'text',
+			default                       => 'text',
 		};
 	}
 

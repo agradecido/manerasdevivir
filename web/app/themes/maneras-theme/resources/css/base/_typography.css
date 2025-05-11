@@ -27,4 +27,8 @@
     a:hover, a:focus {
         @apply text-primary-h;
     }
+
+    .pregunta {
+        @apply font-bold text-primary;
+    }
 }
