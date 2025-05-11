@@ -4,6 +4,8 @@ namespace ManerasCore;
 
 use ManerasCore\PostTypes\Event;
 use ManerasCore\PostTypes\Article;
+use ManerasCore\PostTypes\Interview;
+use ManerasCore\PostTypes\Report;
 use ManerasCore\Taxonomies\Provinces;
 
 class Plugin {
@@ -47,6 +49,8 @@ class Plugin {
 	public function registerPostTypes(): void {
 		new Event();
 		new Article();
+		new Interview();
+		new Report();
 		
 		add_action(
 			'after_setup_theme',
