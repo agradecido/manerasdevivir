@@ -6,7 +6,7 @@
         @if ( key_exists( 'icon', $item ) && $item['icon'] )
           <i data-feather="{{ $item['icon'] }}" class="h-4 w-4"></i>
         @else
-          {{ $item['label'] }}
+          {!! $item['label'] !!}
         @endif
       </a>
     @else
@@ -14,7 +14,7 @@
         @if ( key_exists( 'icon', $item ) && $item['icon'] )
           <i data-feather="{{ $item['icon'] }}"></i>
         @else
-          {{ $item['label'] }}
+          {!! $item['label'] !!}
         @endif
       </span>
          

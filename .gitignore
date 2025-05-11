@@ -36,3 +36,9 @@ wp-cli.local.yml
 .idea
 
 /import-*
+
+deploy.sh
+.htexclude
+
+entrevistas.json
+reportajes.json

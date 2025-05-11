@@ -150,6 +150,20 @@ add_filter(
 			exit;
 		}
 
+		if ( is_single() && get_post_type() === 'report' ) {
+			global $post;
+			setup_postdata( $post );
+
+			render( 'pages.reports.single-report', array( 'report' => $post ) );
+			wp_reset_postdata();
+			exit;
+		}
+
+		if ( is_archive() && is_post_type_archive( 'report' ) ) {
+			render( 'pages.reports.archive-report' );
+			exit;
+		}
+
 		if ( is_tax( 'tag' ) ) {
 			render( 'pages.taxonomy.tag-list' );
 			exit;

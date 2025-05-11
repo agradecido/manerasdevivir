@@ -124,6 +124,38 @@ function mdv_breadcrumbs(): array {
 		);
 	}
 
+	// CPT «interview» → archivo.
+	if ( is_post_type_archive( 'interview' ) ) {
+		$crumbs[] = array(
+			'label' => 'Entrevistas',
+			'url'   => null,
+		);
+		return $crumbs;
+	}
+
+	// Single de entrevista.
+	if ( is_singular( 'interview' ) ) {
+		$crumbs[] = array(
+			'label' => 'Entrevistas',
+			'url'   => get_post_type_archive_link( 'interview' ),
+		);
+	}
+	// CPT «report» → archivo.
+	if ( is_post_type_archive( 'report' ) ) {
+		$crumbs[] = array(
+			'label' => 'Reportajes',
+			'url'   => null,
+		);
+		return $crumbs;
+	}
+	// Single de reportaje.
+	if ( is_singular( 'report' ) ) {
+		$crumbs[] = array(
+			'label' => 'Reportajes',
+			'url'   => get_post_type_archive_link( 'report' ),
+		);
+	}
+
 	// Otros casos (post, page…).
 	$crumbs[] = array(
 		'label' => get_the_title() ?: get_the_archive_title(),
