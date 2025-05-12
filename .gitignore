@@ -42,3 +42,6 @@ deploy.sh
 
 entrevistas.json
 reportajes.json
+
+staging_deploy.sh
+deploy.sh
