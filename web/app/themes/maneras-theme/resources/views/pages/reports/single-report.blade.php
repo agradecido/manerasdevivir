@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <article class="mx-auto px-4">
+  <article class="mx-auto">
     <div class="container">
       <header class="mb-6">
         <h1 class="text-3xl md:text-4xl font-sans font-bold leading-tight">
