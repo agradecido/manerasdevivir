@@ -1,12 +1,15 @@
 <header class="shadow-md relative z-50 px-4 py-4">
-  <div class="container flex items-center justify-between">
-    {{-- Logo --}}
-    <a href="{{ home_url('/') }}" class="custom-logo-link flex-shrink-0">
-      <img src="{{ vite_asset('resources/images/logo-1996.png') }}" alt="{{ esc_attr(get_bloginfo('name')) }}"
-        class="max-w-[300px] h-auto sm:max-w-[400px] lg:max-w-[500px] xl:max-w-[600px]"
-      >
-    </a>
-
+  <div class="container flex justify-between items-end">
+    <div class="logo-container">
+      <a href="{{ home_url('/') }}" class="custom-logo-link flex-shrink-0">
+        <img src="{{ vite_asset('resources/images/logo-1996.png') }}" alt="{{ esc_attr(get_bloginfo('name')) }}"
+          class="max-w-[300px] h-auto sm:max-w-[400px] lg:max-w-[500px] xl:max-w-[600px]"
+        >
+      </a>
+    </div>
+    <div class="quote-container pb-3px">
+        {!! mdv_cita() !!}
+    </div>
     {{-- Hamb Button (mobile) --}}
     <button id="mobile-menu-button" class="ml-auto lg:hidden p-2 text-text hover:text-primary focus:outline-none"
       aria-label="Open menu">
@@ -54,5 +57,4 @@
 
 <div class="container breadcrumbs-quote px-4 lg:px-0 block md:flex align-items-center justify-between ">
   @include('partials.breadcrumbs')
-  {!! mdv_cita() !!}
 </div>

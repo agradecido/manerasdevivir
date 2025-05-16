@@ -91,7 +91,7 @@ class Report {
 				'public'          => true,
 				'has_archive'     => true,
 				'menu_icon'       => 'dashicons-media-text',
-				'taxonomies'      => array( 'post_tag' ),
+				'taxonomies'      => array( 'post_tag', 'featured', 'province' ),
 				'supports'        => array(
 					'title',
 					'editor',

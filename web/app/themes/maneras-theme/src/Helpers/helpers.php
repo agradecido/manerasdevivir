@@ -261,3 +261,62 @@ function mdv_clean_event_title( string $title ): string {
 
 	return implode( ', ', $formatted_parts );
 }
+
+
+/**
+ * Mark a post as featured
+ *
+ * @param int $post_id The ID of the post to feature.
+ * @return bool True on success, false on failure.
+ */
+function maneras_mark_as_featured( $post_id ) {
+	return wp_set_object_terms( $post_id, 'destacado', 'featured', false );
+}
+
+/**
+ * Remove featured mark from a post
+ *
+ * @param int $post_id The ID of the post to unfeature.
+ * @return bool True on success, false on failure.
+ */
+function maneras_unmark_featured( $post_id ) {
+	return wp_set_object_terms( $post_id, array(), 'featured', false );
+}
+
+/**
+ * Check if a post is featured
+ *
+ * @param int|null $post_id The ID of the post to check, defaults to current post.
+ * @return bool True if post is featured, false otherwise.
+ */
+function maneras_is_featured( $post_id = null ) {
+	if ( null === $post_id ) {
+		$post_id = get_the_ID();
+	}
+
+	$terms = get_the_terms( $post_id, 'featured' );
+	return ! empty( $terms );
+}
+
+/**
+ * Get featured posts
+ *
+ * @param string $post_type The post type to get featured posts for.
+ * @param int    $count Number of posts to return.
+ * @return WP_Query Query result with featured posts.
+ */
+function maneras_get_featured_posts( $post_type = 'post', $count = 5 ) {
+	return new WP_Query(
+		array(
+			'post_type'      => $post_type,
+			'posts_per_page' => $count,
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'featured',
+					'field'    => 'slug',
+					'terms'    => 'destacado',
+				),
+			),
+		)
+	);
+}

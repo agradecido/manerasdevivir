@@ -2,7 +2,7 @@
 
 /**
  * Provinces Taxonomy
- * 
+ *
  * PHP Version 8.3
  *
  * Plugin Name:       Maneras Core Functionality
@@ -15,67 +15,78 @@
 
 namespace ManerasCore\Taxonomies;
 
-class Provinces
-{
-    /**
-     * @var array
-     */
-    private array $fields = [
-        'provincia_slug' => 'sanitize_title',
-    ];
+class Provinces {
 
-    /**
-     * Provinces constructor.
-     */
-    public function __construct()
-    {
-        // Register taxonomy at the proper time.
-        add_action('init', [$this, 'registerTaxonomy']);
+	/**
+	 * The fields to be sanitized.
+	 *
+	 * @var array
+	 */
+	private array $fields = array(
+		'provincia_slug' => 'sanitize_title',
+	);
 
-        // Add query filter.
-        add_action('pre_get_posts', [$this, 'filterArchiveQuery']);
-    }
+	/**
+	 * Provinces constructor.
+	 */
+	public function __construct() {
+		// Register taxonomy at the proper time.
+		add_action( 'init', array( $this, 'registerTaxonomy' ) );
 
-    /**
-     * Register the taxonomy.
-     */
-    public function registerTaxonomy(): void
-    {
-        register_taxonomy('province', 'event', [
-            'label' => 'Provincias',
-            'public' => true,
-            'hierarchical' => false,
-            'rewrite' => ['slug' => 'provincia'],
-            'show_admin_column' => true,
-            'labels' => [
-                'name' => 'Provincias',
-                'singular_name' => 'Provincia',
-                'search_items' => 'Buscar provincias',
-                'all_items' => 'Todas las provincias',
-                'edit_item' => 'Editar provincia',
-                'update_item' => 'Actualizar provincia',
-                'add_new_item' => 'Añadir nueva provincia',
-                'new_item_name' => 'Nombre de nueva provincia',
-                'menu_name' => 'Provincias',
-            ],
-        ]);
-    }
+		// Add query filter.
+		add_action( 'pre_get_posts', array( $this, 'filterArchiveQuery' ) );
+	}
 
-    /**
-     * Filter the event archive query by province.
-     */
-    public function filterArchiveQuery(\WP_Query $query): void
-    {
-        if (is_admin() || !$query->is_main_query() || !is_post_type_archive('event')) {
-            return;
-        }
+	/**
+	 * Register the taxonomy.
+	 */
+	public function registerTaxonomy(): void {
+		register_taxonomy(
+			'province',
+			'event',
+			array(
+				'label'             => 'Provincias',
+				'public'            => true,
+				'hierarchical'      => false,
+				'rewrite'           => array( 'slug' => 'provincia' ),
+				'show_admin_column' => true,
+				'labels'            => array(
+					'name'          => 'Provincias',
+					'singular_name' => 'Provincia',
+					'search_items'  => 'Buscar provincias',
+					'all_items'     => 'Todas las provincias',
+					'edit_item'     => 'Editar provincia',
+					'update_item'   => 'Actualizar provincia',
+					'add_new_item'  => 'Añadir nueva provincia',
+					'new_item_name' => 'Nombre de nueva provincia',
+					'menu_name'     => 'Provincias',
+				),
+			)
+		);
+	}
 
-        if (!empty($_GET['province'])) {
-            $query->set('tax_query', [[
-                'taxonomy' => 'province',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_GET['province']),
-            ]]);
-        }
-    }
+	/**
+	 * Filter the event archive query by province.
+	 *
+	 * @param \WP_Query $query The WP_Query instance (passed by reference).
+	 * @return void
+	 */
+	public function filterArchiveQuery( \WP_Query $query ): void {
+		if ( is_admin() || ! $query->is_main_query() || ! is_post_type_archive( 'event' ) ) {
+			return;
+		}
+
+		if ( ! empty( $_GET['province'] ) ) {
+			$query->set(
+				'tax_query',
+				array(
+					array(
+						'taxonomy' => 'province',
+						'field'    => 'slug',
+						'terms'    => sanitize_text_field( $_GET['province'] ),
+					),
+				)
+			);
+		}
+	}
 }

@@ -30,6 +30,16 @@ class ComposerStaticInit0ab880e1d2c327be028e2d13f31111e0
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'ManerasCore\\Plugin' => __DIR__ . '/../..' . '/src/Plugin.php',
+        'ManerasCore\\PostTypes\\Article' => __DIR__ . '/../..' . '/src/PostTypes/Article.php',
+        'ManerasCore\\PostTypes\\Event' => __DIR__ . '/../..' . '/src/PostTypes/Event.php',
+        'ManerasCore\\PostTypes\\Interview' => __DIR__ . '/../..' . '/src/PostTypes/Interview.php',
+        'ManerasCore\\PostTypes\\Report' => __DIR__ . '/../..' . '/src/PostTypes/Report.php',
+        'ManerasCore\\Taxonomies\\Featured' => __DIR__ . '/../..' . '/src/Taxonomies/Featured.php',
+        'ManerasCore\\Taxonomies\\Provinces' => __DIR__ . '/../..' . '/src/Taxonomies/Provinces.php',
+        'PostTypes\\Columns' => __DIR__ . '/..' . '/jjgrainger/posttypes/src/Columns.php',
+        'PostTypes\\PostType' => __DIR__ . '/..' . '/jjgrainger/posttypes/src/PostType.php',
+        'PostTypes\\Taxonomy' => __DIR__ . '/..' . '/jjgrainger/posttypes/src/Taxonomy.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

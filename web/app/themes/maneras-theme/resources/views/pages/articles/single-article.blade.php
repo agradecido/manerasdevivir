@@ -31,18 +31,7 @@
       </div>
 
       <footer class="mt-8 pt-4 border-t border-border text-sm">
-        @if ($tags)
-          <ul class="flex flex-wrap gap-2 p-0 m-0">
-            @foreach ($tags as $tag)
-              <li>
-                <a href="{{ get_tag_link($tag->term_id) }}"
-                  class="inline-block bg-surface hover:bg-border px-3 py-1 rounded">
-                  #{{ $tag->name }}
-                </a>
-              </li>
-            @endforeach
-          </ul>
-        @endif
+        @include('partials.tags', ['tags' => $tags])
       </footer>
     </div>
   </article>

@@ -10,6 +10,11 @@ use WP_Post;
  */
 class SingleArticle {
 
+	/**
+	 * Register the view composer for the article single page.
+	 *
+	 * @param Factory $blade The Blade factory instance.
+	 */
 	public static function register( Factory $blade ): void {
 		$blade->composer(
 			'pages.articles.single-article',

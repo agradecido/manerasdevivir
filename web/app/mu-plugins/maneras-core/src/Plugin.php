@@ -7,6 +7,7 @@ use ManerasCore\PostTypes\Article;
 use ManerasCore\PostTypes\Interview;
 use ManerasCore\PostTypes\Report;
 use ManerasCore\Taxonomies\Provinces;
+use ManerasCore\Taxonomies\Featured;
 
 class Plugin {
 
@@ -120,6 +121,7 @@ class Plugin {
 	 */
 	public function registerTaxonomies(): void {
 		new Provinces();
+		new Featured();
 	}
 
 	/**
