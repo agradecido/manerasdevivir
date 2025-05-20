@@ -1,14 +1,12 @@
 {
-    "autoload": {
-        "psr-4": {
-            "ManerasTheme\\": "src/"
-        },
-        "files": [
-            "src/Helpers/helpers.php",
-            "src/Helpers/blade.php"
-        ]
-    },
-    "require": {
-        "jenssegers/blade": "^2.0"
+  "name": "manerasdevivir/theme",
+  "type": "wordpress-theme",
+  "autoload": {
+    "psr-4": {
+      "ManerasTheme\\": "src/"
     }
+  },
+  "require": {
+    "timber/timber": "^2.0"
+  }
 }

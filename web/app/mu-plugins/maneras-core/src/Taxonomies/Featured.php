@@ -45,6 +45,7 @@ class Featured {
 				'public'       => false,
 				'show_ui'      => true,
 				'hierarchical' => false,
+				'show_in_rest' => true,
 			)
 		);
 	}

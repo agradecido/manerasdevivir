@@ -50,6 +50,7 @@ class Provinces {
 				'hierarchical'      => false,
 				'rewrite'           => array( 'slug' => 'provincia' ),
 				'show_admin_column' => true,
+				'show_in_rest'      => true,
 				'labels'            => array(
 					'name'          => 'Provincias',
 					'singular_name' => 'Provincia',
