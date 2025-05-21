@@ -12,7 +12,7 @@ class Theme {
 	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_filter( 'timber/context', array( $this, 'addToContext' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueScripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueueAssets' ) );
 	}
 
 	/**
@@ -34,40 +34,36 @@ class Theme {
 	/**
 	 * Enqueue scripts and styles.
 	 */
-	public function enqueueScripts() {
-		wp_enqueue_style(
-			'maneras-styles',
-			get_stylesheet_uri(),
-			array(),
-			filemtime( get_template_directory() . '/style.css' )
-		);
-
-		if ( file_exists( get_template_directory() . '/dist/main.css' ) ) {
+	public function enqueueAssets() {
+		// Enqueue Tailwind-generated CSS if it exists.
+		$css_path = get_template_directory() . '/assets/dist/main.css';
+		if ( file_exists( $css_path ) ) {
 			wp_enqueue_style(
-				'maneras-main-styles',
-				get_template_directory_uri() . '/dist/main.css',
+				'maneras-main-style',
+				get_template_directory_uri() . '/assets/dist/main.css',
 				array(),
-				filemtime( get_template_directory() . '/dist/main.css' )
+				filemtime( $css_path )
 			);
 		}
 
-		if ( file_exists( get_template_directory() . '/dist/main.js' ) ) {
+		// Enqueue JS bundle if present.
+		$js_path = get_template_directory() . '/assets/dist/main.js';
+		if ( file_exists( $js_path ) ) {
 			wp_enqueue_script(
-				'maneras-main-scripts',
-				get_template_directory_uri() . '/dist/main.js',
+				'maneras-main-script',
+				get_template_directory_uri() . '/assets/dist/main.js',
 				array(),
-				filemtime( get_template_directory() . '/dist/main.js' ),
+				filemtime( $js_path ),
 				true
 			);
 		}
 	}
 
 	/**
-	 * Add custom data to Timber context.
+	 * Add global data to Timber context.
 	 *
 	 * @param array $context The Timber context.
-	 *
-	 * @return array The modified context.
+	 * @return array
 	 */
 	public function addToContext( $context ) {
 		$context['site'] = array(
@@ -83,8 +79,6 @@ class Theme {
 		if ( is_active_sidebar( 'sidebar-primary' ) ) {
 			$context['sidebar'] = Timber::get_widgets( 'sidebar-primary' );
 		}
-
-		$context['posts'] = Timber::get_posts();
 
 		return $context;
 	}

@@ -10,5 +10,5 @@ return array(
     'Timber\\' => array($vendorDir . '/timber/timber/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
-    'ManerasTheme\\' => array($baseDir . '/src'),
+    'ManerasTheme\\' => array($baseDir . '/app'),
 );

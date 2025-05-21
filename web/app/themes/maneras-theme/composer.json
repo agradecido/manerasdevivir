@@ -3,7 +3,7 @@
   "type": "wordpress-theme",
   "autoload": {
     "psr-4": {
-      "ManerasTheme\\": "src/"
+      "ManerasTheme\\": "app/"
     }
   },
   "require": {

@@ -3,7 +3,7 @@
         'name' => 'manerasdevivir/theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '0183a84bf8fe37f8c5685625fe4a86a0d7ce4395',
+        'reference' => '07629b1343dfdb7a948a9a4caded08e877d47103',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'manerasdevivir/theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '0183a84bf8fe37f8c5685625fe4a86a0d7ce4395',
+            'reference' => '07629b1343dfdb7a948a9a4caded08e877d47103',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
