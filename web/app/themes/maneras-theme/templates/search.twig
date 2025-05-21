@@ -1,0 +1,100 @@
+{# 
+  Template Name: Search 
+#}
+
+{% extends "layouts/app.twig" %}
+
+{% block title %}Search: {{ query }} - {{ site.name }}{% endblock %}
+
+{% block content %}
+  <div class="container mx-auto py-8">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold mb-4 text-center">Search Results for "{{ query }}"</h1>
+      
+      <form action="{{ site.url }}" method="get" class="max-w-lg mx-auto">
+        <div class="flex">
+          <input 
+            type="text" 
+            name="s" 
+            value="{{ query }}" 
+            class="flex-1 px-4 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="Search..."
+          >
+          <button type="submit" class="bg-primary text-white px-6 py-2 rounded-r hover:bg-primary-dark">
+            Search
+          </button>
+        </div>
+      </form>
+    </header>
+
+    {% if count > 0 %}
+      <div class="mb-4">
+        <p class="text-gray-600 text-center">Found {{ count }} result{{ count != 1 ? 's' : '' }}</p>
+      </div>
+
+      <div class="space-y-8">
+        {% for post in results %}
+          <article class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-bold mb-2">
+              <a href="{{ post.link }}" class="hover:text-primary">{{ post.title }}</a>
+            </h2>
+            
+            <div class="text-gray-600 text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
+            
+            <div class="text-gray-700">
+              {{ post.preview.length(200) }}
+            </div>
+            
+            <a href="{{ post.link }}" class="inline-block mt-4 text-primary hover:underline">
+              Read more
+            </a>
+          </article>
+        {% endfor %}
+      </div>
+
+      {% if pagination.total > 1 %}
+        <div class="mt-12 flex justify-center">
+          <div class="flex space-x-2">
+            {% if pagination.prev_link %}
+              <a href="{{ pagination.prev_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">&laquo; Previous</a>
+            {% endif %}
+            
+            <span class="px-4 py-2">Page {{ pagination.current }} of {{ pagination.total }}</span>
+            
+            {% if pagination.next_link %}
+              <a href="{{ pagination.next_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Next &raquo;</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="text-center py-12 bg-white rounded-lg shadow-md">
+        <p class="text-gray-600 mb-4">No results found for "{{ query }}".</p>
+        <p class="text-gray-600">Try a different search term or browse our recent posts below.</p>
+      </div>
+      
+      {% if recent_posts %}
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold mb-6 text-center">Recent Posts</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for post in recent_posts %}
+              <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                {% if post.thumbnail %}
+                  <img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-48 object-cover">
+                {% endif %}
+                
+                <div class="p-4">
+                  <h3 class="font-bold text-lg mb-2">
+                    <a href="{{ post.link }}" class="hover:text-primary">{{ post.title }}</a>
+                  </h3>
+                  <p class="text-gray-700 text-sm">{{ post.preview.length(120) }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}
