@@ -7,6 +7,14 @@ use Timber\Timber;
 class FrontPage extends Controller {
 
 	/**
+	 * Constructor - initialize data that should be available
+	 */
+	public function __construct() {
+		$this->data['featured'] = $this->featured();
+		$this->data['recent']   = $this->recent();
+	}
+
+	/**
 	 * Featured posts.
 	 *
 	 * @param int $count Number of featured posts to fetch.
@@ -16,6 +24,7 @@ class FrontPage extends Controller {
 		$featured_query = new \WP_Query(
 			array(
 				'posts_per_page' => $count,
+				'post_type'      => 'article',
 				'meta_key'       => '_is_featured',
 				'meta_value'     => '1',
 			)
@@ -34,6 +43,7 @@ class FrontPage extends Controller {
 		$recent_query = new \WP_Query(
 			array(
 				'posts_per_page' => $count,
+				'post_type'      => 'article',
 			)
 		);
 

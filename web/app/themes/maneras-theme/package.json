@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "Maneras de Vivir WordPress theme with Timber and Tailwind CSS",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development postcss assets/src/css/main.css -o assets/dist/main.css --watch",
-        "build": "cross-env NODE_ENV=production postcss assets/src/css/main.css -o assets/dist/main.css"
+        "dev": "cross-env NODE_ENV=development postcss assets/src/css/app.css -o assets/dist/app.css --watch",
+        "build": "cross-env NODE_ENV=production postcss assets/src/css/app.css -o assets/dist/app.css"
     },
     "author": "Manerasdevivir.com",
     "devDependencies": {
