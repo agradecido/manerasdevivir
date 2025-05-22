@@ -1,0 +1,25 @@
+{% if featured %}
+  <section>
+    <h2 class="text-2xl font-bold mb-6 text-primary">Destacados</h2>
+    
+    <div class="grid grid-cols-1 gap-6">
+      {% for post in featured %}
+        <div class="bg-surface rounded-lg shadow-md overflow-hidden border border-border">
+          {% if post.thumbnail %}
+            <img 
+              src="{{ post.thumbnail.src('medium') }}" 
+              alt="{{ post.thumbnail.alt }}" 
+              class="w-full h-48 object-cover"
+            >
+          {% endif %}
+          
+          <div class="p-4 pb-1 mb-2">
+            <h3 class="font-bold text-lg mb-2 mt-0">
+              <a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
+            </h3>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

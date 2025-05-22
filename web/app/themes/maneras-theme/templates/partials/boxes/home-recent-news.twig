@@ -1,0 +1,32 @@
+{% if recent %}
+  <section>
+    <h2 class="text-2xl font-bold mb-6 text-primary">Últimas Noticias</h2>
+    <div class="grid grid-cols-1 gap-6">
+      {% for post in recent %}
+        <article class="bg-surface p-6 rounded-lg shadow-md flex flex-col md:flex-row border border-border">
+          {% if post.thumbnail %}
+            <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6">
+              <img 
+                src="{{ post.thumbnail.src('medium') }}" 
+                alt="{{ post.thumbnail.alt }}" 
+                class="w-full h-48 md:h-full object-cover rounded"
+              >
+            </div>
+          {% endif %}
+          
+          <div class="{{ post.thumbnail ? 'md:w-3/4' : 'w-full' }}">
+            <h3 class="font-bold text-xl mb-2">
+              <a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
+            </h3>
+            
+            <div class="text-text-subtle text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
+            
+            <p class="text-text">
+              {{ post.excerpt.length(250) }}
+            </p>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

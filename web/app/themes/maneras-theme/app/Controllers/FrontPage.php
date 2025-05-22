@@ -25,8 +25,13 @@ class FrontPage extends Controller {
 			array(
 				'posts_per_page' => $count,
 				'post_type'      => 'article',
-				'meta_key'       => '_is_featured',
-				'meta_value'     => '1',
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'featured',
+						'field'    => 'slug',
+						'terms'    => 'home',
+					),
+				),
 			)
 		);
 
