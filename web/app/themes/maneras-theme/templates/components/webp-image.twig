@@ -1,0 +1,61 @@
+{#
+/**
+ * Componente de soporte WebP con fallback
+ * 
+ * Parámetros:
+ * - image: Objeto de imagen de Timber (requerido)
+ * - class: Clases CSS adicionales (opcional)
+ * - lazy: Activar lazy loading (predeterminado: true)
+ * - sizes: Atributo sizes para srcset (predeterminado: '100vw')
+ * - alt: Texto alternativo (usa image.alt si no se proporciona)
+ */
+#}
+
+{% if image %}
+  {% set imageData = image|responsive_image(sizes, lazy) %}
+  {% set webpSrc = image|webp %}
+  
+  <picture>
+    {# Fuente WebP #}
+    <source 
+      {% if lazy %}
+        data-srcset="{{ webpSrc }}"
+      {% else %}
+        srcset="{{ webpSrc }}"
+      {% endif %}
+      type="image/webp"
+    >
+    
+    {# Fuente fallback (jpg/png) #}
+    <source 
+      {% if lazy %}
+        data-srcset="{{ imageData.srcset }}"
+      {% else %}
+        srcset="{{ imageData.srcset }}"
+      {% endif %}
+      {% if imageData.sizes %}sizes="{{ imageData.sizes }}"{% endif %}
+      type="image/{{ image.extension == 'jpg' ? 'jpeg' : image.extension }}"
+    >
+    
+    {# Imagen fallback #}
+    {% if lazy %}
+      <img 
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{ imageData.width }} {{ imageData.height }}'%3E%3C/svg%3E" 
+        data-src="{{ imageData.src }}" 
+        alt="{{ alt|default(imageData.alt) }}" 
+        class="site-image site-image-lazy__img {{ class }}" 
+        width="{{ imageData.width }}" 
+        height="{{ imageData.height }}"
+        {{ imageData.lazy_attr }}
+      >
+    {% else %}
+      <img 
+        src="{{ imageData.src }}" 
+        alt="{{ alt|default(imageData.alt) }}" 
+        class="responsive-image {{ class }}" 
+        width="{{ imageData.width }}" 
+        height="{{ imageData.height }}"
+      >
+    {% endif %}
+  </picture>
+{% endif %}

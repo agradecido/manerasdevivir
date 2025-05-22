@@ -1,0 +1,49 @@
+/* Estilos para el encabezado y logo */
+
+.site-header {
+  @apply shadow-md py-4 bg-bg;
+}
+
+.site-header__content {
+  @apply container mx-auto flex justify-between items-center px-4;
+}
+
+.site-logo {
+  @apply flex items-center;
+}
+
+.site-logo-link {
+  @apply flex items-center transition-transform duration-300;
+}
+
+.site-logo-link:hover {
+  @apply transform scale-105;
+}
+
+.site-logo img {
+  @apply h-10 mr-2;
+}
+
+/* Logo responsivo */
+@media (max-width: 640px) {
+  .site-logo img {
+    @apply h-8;
+  }
+}
+
+/* Versión light/dark del logo */
+.dark .site-logo .logo-light {
+  @apply hidden;
+}
+
+.dark .site-logo .logo-dark {
+  @apply block;
+}
+
+.site-logo .logo-light {
+  @apply block;
+}
+
+.site-logo .logo-dark {
+  @apply hidden;
+}

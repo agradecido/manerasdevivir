@@ -1,21 +1,20 @@
-/* filepath: /home/javi/sites/sxxi.mdv.red/manerasdevivir/web/app/themes/maneras-theme/assets/src/css/components/_breadcrumbs.css */
 /* resources/css/components/_breadcrumbs.css */
 @layer components {
     /* Contenedor ------------------------------------------------------ */
-    .breadcrumbs {
+    .site-breadcrumbs {
       /* full‑width en mobile, 50 % máx. en ≥ md */
       @apply flex items-center gap-1 text-sm text-text-subtle
              w-full md:max-w-[50%] whitespace-nowrap;
     }
   
     /* Enlaces --------------------------------------------------------- */
-    .breadcrumbs a {
+    .site-breadcrumbs a {
       @apply inline-flex items-center gap-1 
              hover:text-primary transition-colors;
     }
   
     /* Separador (/ o >) ---------------------------------------------- */
-    .breadcrumbs span {
+    .site-breadcrumbs span {
       @apply select-none text-text-subtle;
     }
 }

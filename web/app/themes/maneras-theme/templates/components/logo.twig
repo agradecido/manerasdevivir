@@ -1,0 +1,26 @@
+{#
+/**
+ * Componente Logo
+ * 
+ * Parámetros:
+ * - class: Clases CSS adicionales (opcional)
+ * - size: Tamaño del logo (xs, sm, md, lg, xl) - por defecto: ninguno
+ */
+#}
+
+{% set logoClass = 'site-logo ' ~ (class|default('')) %}
+{% set logoSize = size ? '-' ~ size : '-xl' %}
+
+<div class="{{ logoClass }}">
+  <img 
+    src="{{ theme.link }}/assets/dist/images/logo-1996{{ logoSize }}.webp" 
+    alt="{{ site.name }}" 
+    class="logo-light" 
+  />
+  <img 
+    src="{{ theme.link }}/assets/dist/images/logo-1996-dark{{ logoSize }}.webp" 
+    alt="{{ site.name }}" 
+    class="logo-dark" 
+  />
+  <span class="sr-only">{{ site.name }}</span>
+</div>

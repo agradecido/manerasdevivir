@@ -4,22 +4,25 @@
     
     <div class="grid grid-cols-1 gap-6">
       {% for post in featured %}
-        <div class="bg-surface rounded-lg shadow-md overflow-hidden border border-border">
-          {% if post.thumbnail %}
-            <img 
-              src="{{ post.thumbnail.src('medium') }}" 
-              alt="{{ post.thumbnail.alt }}" 
-              class="w-full h-48 object-cover"
-            >
-          {% endif %}
-          
-          <div class="p-4 pb-1 mb-2">
-            <h3 class="font-bold text-lg mb-2 mt-0">
-              <a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
-            </h3>
+        <a href="{{ post.link }}" class="block rounded-lg shadow-md overflow-hidden border border-border hover:shadow-lg transition-shadow duration-200">
+          <div class="bg-surface">
+            {% if post.thumbnail %}
+              <img 
+                src="{{ post.thumbnail.src('medium') }}" 
+                alt="{{ post.thumbnail.alt }}" 
+                class="w-full h-48 object-cover"
+              >
+            {% endif %}
+            
+            <div class="p-4 pb-1">
+              <h3 class="font-bold text-lg mb-2 mt-0 text-text hover:text-primary-h">
+                {{ post.title }}
+              </h3>
+            </div>
           </div>
-        </div>
+        </a>
       {% endfor %}
     </div>
   </section>
 {% endif %}
+

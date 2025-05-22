@@ -3,18 +3,31 @@
     "version": "1.0.0",
     "description": "Maneras de Vivir WordPress theme with Timber and Tailwind CSS",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development postcss assets/src/css/app.css -o assets/dist/main.css --watch",
-        "build": "cross-env NODE_ENV=production postcss assets/src/css/app.css -o assets/dist/main.css"
+        "dev:css": "cross-env NODE_ENV=development postcss assets/src/css/app.css -o assets/dist/main.css --watch",
+        "build:css": "cross-env NODE_ENV=production postcss assets/src/css/app.css -o assets/dist/main.css",
+        "dev:js": "esbuild assets/src/js/app.js --bundle --outfile=assets/dist/app.js --watch",
+        "build:js": "esbuild assets/src/js/app.js --bundle --minify --outfile=assets/dist/app.min.js",
+        "images": "node scripts/process-images.js",
+        "dev": "npm run dev:css & npm run dev:js",
+        "build": "npm run build:css && npm run build:js",
+        "build:all": "npm run build && npm run images"
     },
     "author": "Manerasdevivir.com",
     "devDependencies": {
         "autoprefixer": "^10.4.14",
         "cross-env": "^7.0.3",
         "cssnano": "^5.1.15",
+        "esbuild": "^0.19.12",
+        "glob": "^10.3.10",
+        "imagemin": "^8.0.1",
+        "imagemin-mozjpeg": "^10.0.0",
+        "imagemin-pngquant": "^9.0.2",
+        "imagemin-webp": "^8.0.0",
         "postcss": "^8.4.23",
         "postcss-cli": "^10.1.0",
         "postcss-import": "^15.1.0",
         "postcss-nested": "^6.0.1",
+        "sharp": "^0.33.2",
         "tailwindcss": "^3.3.2"
     }
 }

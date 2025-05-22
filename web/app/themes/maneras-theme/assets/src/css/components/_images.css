@@ -1,0 +1,91 @@
+/* Estilos para imágenes responsivas */
+@layer components {
+  .site-image {
+    @apply max-w-full h-auto;
+  }
+
+  /* Contenedor responsivo para imágenes y elementos embebidos */
+  .site-container {
+    @apply relative overflow-hidden;
+    height: 0;
+  }
+
+  .site-container iframe,
+  .site-container object,
+  .site-container embed,
+  .site-container img {
+    @apply absolute top-0 left-0 w-full h-full;
+  }
+
+  /* Ratio 16:9 */
+  .site-container--16x9 {
+    padding-bottom: 56.25%;
+  }
+
+  /* Ratio 4:3 */
+  .site-container--4x3 {
+    padding-bottom: 75%;
+  }
+
+  /* Ratio 3:2 */
+  .site-container--3x2 {
+    padding-bottom: 66.66%;
+  }
+
+  /* Ratio 1:1 (cuadrado) */
+  .site-container--1x1 {
+    padding-bottom: 100%;
+  }
+
+  /* Efecto de carga lazy con skeleton */
+  .site-image-lazy {
+    @apply bg-gray-200 animate-pulse;
+  }
+
+  .site-image-lazy__img {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+
+  .site-image-lazy__img.loaded {
+    @apply opacity-100;
+  }
+}
+
+/* Estilo para imágenes con efecto zoom al hover */
+.image-hover-zoom {
+  @apply overflow-hidden;
+}
+
+.image-hover-zoom img {
+  @apply transition-transform duration-300 transform-gpu;
+}
+
+.image-hover-zoom:hover img {
+  @apply scale-110;
+}
+
+/* Galería de imágenes responsive */
+.image-gallery {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+}
+
+.image-gallery-item {
+  @apply relative overflow-hidden rounded-lg;
+}
+
+/* Soporte para imágenes WebP con fallback */
+.webp-image {
+  @apply block;
+}
+
+.no-webp .webp-image {
+  display: none;
+}
+
+.fallback-image {
+  display: none;
+}
+
+.no-webp .fallback-image {
+  @apply block;
+}

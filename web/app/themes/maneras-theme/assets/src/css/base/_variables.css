@@ -12,6 +12,18 @@
     }
 
     :root {
+        --color-bg: #FFFFFF;
+        --color-surface: #E9ECEF;
+        --color-primary: #E56600;
+        --color-primary-h: #FF781A;
+        --color-text: #212529;
+        --color-text-subtle: #6C757D;
+        --color-border: #DEE2E6;
+
+        --site-width: 1600px;
+    }
+
+    .dark {
         --color-bg: #0D0D0D;
         --color-surface: #1E2428;
         --color-primary: #E56600;
@@ -19,21 +31,17 @@
         --color-text: #CCCCCC;
         --color-text-subtle: #8B8B8B;
         --color-border: #2B2B2B;
-
-        --site-width: 1600px;
     }
 
-    @media (prefers-color-scheme: light) {
-        :root {
-            --color-bg: #FFFFFF;
-            --color-surface: #E9ECEF;
+    @media (prefers-color-scheme: dark) {
+        :root:not(.light) {
+            --color-bg: #0D0D0D;
+            --color-surface: #1E2428;
             --color-primary: #E56600;
-            /* Assuming this orange works on light, adjust if needed */
             --color-primary-h: #FF781A;
-            /* Assuming this orange works on light, adjust if needed */
-            --color-text: #212529;
-            --color-text-subtle: #6C757D;
-            --color-border: #DEE2E6;
+            --color-text: #CCCCCC;
+            --color-text-subtle: #8B8B8B;
+            --color-border: #2B2B2B;
         }
     }
 }

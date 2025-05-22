@@ -12,10 +12,14 @@ class App extends Controller {
 	 * @return array
 	 */
 	public function site() {
+		$url  = home_url();
+		$host = wp_parse_url( $url, PHP_URL_HOST );
+
 		return array(
 			'name'        => get_bloginfo( 'name' ),
 			'description' => get_bloginfo( 'description' ),
-			'url'         => home_url(),
+			'url'         => $url,
+			'host'        => $host,
 		);
 	}
 

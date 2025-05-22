@@ -7,13 +7,13 @@
 {% block title %}{{ site.name }} - {{ site.description }}{% endblock %}
 
 {% block header %}
-  {% include "partials/header.twig" %}
+  {{ function('maneras_get_header') }}
 {% endblock %}
 
 {% block content %}
-  {% include "partials/home-layout.twig" %}
+  {% include "partials/layouts/home-layout.twig" %}
 {% endblock %}
 
 {% block footer %}
-  {% include "partials/footer.twig" %}
+  {{ function('maneras_get_footer') }}
 {% endblock %}
