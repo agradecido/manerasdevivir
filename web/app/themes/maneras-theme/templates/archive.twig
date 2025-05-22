@@ -6,6 +6,10 @@
 
 {% block title %}{{ title }} - {{ site.name }}{% endblock %}
 
+{% block header %}
+  {% include "partials/header.twig" %}
+{% endblock %}
+
 {% block content %}
   <div class="container mx-auto py-8">
     <header class="mb-8 text-center">
@@ -31,7 +35,7 @@
                 <a href="{{ post.link }}" class="hover:text-primary">{{ post.title }}</a>
               </h2>
               <div class="text-gray-600 text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
-              <p class="text-gray-700">{{ post.preview.length(120) }}</p>
+              <p class="text-gray-700">{{ post.excerpt.length(120) }}</p>
               <a href="{{ post.link }}" class="inline-block mt-4 text-primary hover:underline">Read more</a>
             </div>
           </div>
@@ -59,4 +63,8 @@
       </div>
     {% endif %}
   </div>
+{% endblock %}
+
+{% block footer %}
+  {% include "partials/footer.twig" %}
 {% endblock %}

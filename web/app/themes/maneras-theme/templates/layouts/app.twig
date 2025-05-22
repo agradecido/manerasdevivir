@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html {{ site.language_attributes }}>
 <head>
-  <meta charset="UTF-8">
-  <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  <meta charset="{{ site.charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="profile" href="https://gmpg.org/xfn/11">
+  
+  {{ function('wp_head') }}
   {% block head %}{% endblock %}
 </head>
-<body>
+<body class="bg-bg text-text {{ body_class }}">
   <header>
     {% block header %}{% endblock %}
   </header>
@@ -19,5 +22,6 @@
   </footer>
 
   {% block scripts %}{% endblock %}
+  {{ function('wp_footer') }}
 </body>
 </html>
