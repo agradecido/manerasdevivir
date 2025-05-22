@@ -18,7 +18,7 @@ class Single extends Controller {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->post = new Post();
+		$this->post = Timber::get_post();
 	}
 
 	/**
