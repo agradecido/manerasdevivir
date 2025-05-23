@@ -1,14 +1,30 @@
 <div class="site-header">
-  <div class="site-header__content">
-    <a href="{{ site.url }}" class="site-logo">
-      <img src="{{ theme.link }}/assets/dist/images/logo-1996-xl.png" alt="{{ site.name }}" class="logo-light" />
-      <img src="{{ theme.link }}/assets/dist/images/logo-1996-dark-xl.png" alt="{{ site.name }}" class="logo-dark" />
-      <span class="sr-only">{{ site.name }}</span>
-    </a>
-    
-    <nav class="hidden md:block">
-      {% if primary_menu %}
-        <ul class="flex space-x-6">
+  <div class="site-header__content flex items-center">
+    <!-- Left section for mobile menu -->
+    <div class="flex-1 flex justify-start">
+      <div class="md:hidden">
+        <button class="mobile-menu-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center section for logo -->
+    <div class="flex justify-center">
+      <a href="{{ site.url }}" class="site-logo">
+        <img src="{{ theme.link }}/assets/dist/images/logo-1996-xl.png" alt="{{ site.name }}" class="logo-light" />
+        <img src="{{ theme.link }}/assets/dist/images/logo-1996-dark-xl.png" alt="{{ site.name }}" class="logo-dark" />
+        <span class="sr-only">{{ site.name }}</span>
+      </a>
+    </div>
+
+    <!-- Right section for desktop navigation and theme toggle -->
+    <div class="flex-1 flex justify-end">
+      <nav class="hidden md:block">
+        {% if primary_menu %}
+        <ul class="flex space-x-6 items-center"> {# Added items-center here #}
           {% for item in primary_menu.items %}
             <li class="{% if item.current %}text-primary font-bold{% endif %}">
               <a href="{{ item.link }}" class="hover:text-primary transition">{{ item.title }}</a>
@@ -22,15 +38,8 @@
             </button>
           </li>
         </ul>
-      {% endif %}
-    </nav>
-    
-    <div class="md:hidden">
-      <button class="mobile-menu-toggle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+        {% endif %}
+      </nav>
     </div>
   </div>
 </div>
