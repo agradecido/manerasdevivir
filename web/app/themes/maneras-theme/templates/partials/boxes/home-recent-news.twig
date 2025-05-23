@@ -5,11 +5,17 @@
       {% for post in recent %}
         <article class="bg-surface p-6 rounded-lg shadow-md flex flex-col md:flex-row border border-border">
           {% if post.thumbnail %}
+            {% set responsive_thumb = post.thumbnail|responsive_image %}
             <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6">
               <img 
-                src="{{ post.thumbnail.src('medium') }}" 
-                alt="{{ post.thumbnail.alt }}" 
+                src="{{ responsive_thumb.src }}" 
+                srcset="{{ responsive_thumb.srcset }}"
+                sizes="(max-width: 767px) calc(100vw - 4rem), (min-width: 768px) 15vw"
+                alt="{{ responsive_thumb.alt }}" 
                 class="w-full h-48 md:h-full object-cover rounded"
+                width="{{ responsive_thumb.width }}" 
+                height="{{ responsive_thumb.height }}"
+                {{ responsive_thumb.lazy_attr | raw }}
               >
             </div>
           {% endif %}
@@ -21,7 +27,7 @@
             
             <div class="text-text-subtle text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
             
-            <p class="text-text">
+            <p class="text-text hidden md:block">
               {{ post.excerpt.length(250) }}
             </p>
           </div>
