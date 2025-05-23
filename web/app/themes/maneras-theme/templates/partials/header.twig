@@ -22,26 +22,29 @@
 
     <!-- Right section for desktop navigation and theme toggle -->
     <div class="flex-1 flex justify-end">
-      <nav class="hidden md:block">
-        {% if primary_menu %}
-        <ul class="flex space-x-6 items-center"> {# Added items-center here #}
-          {% for item in primary_menu.items %}
-            <li class="{% if item.current %}text-primary font-bold{% endif %}">
-              <a href="{{ item.link }}" class="hover:text-primary transition">{{ item.title }}</a>
-            </li>
-          {% endfor %}
-          <li>
-            <button id="theme-toggle" class="hover:text-primary transition" aria-label="Cambiar tema">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-              </svg>
-            </button>
-          </li>
-        </ul>
-        {% endif %}
-      </nav>
+      {# This div is now empty or could hold future right-aligned elements if any, but not the primary nav #}
     </div>
   </div>
+
+  <!-- Desktop navigation (MOVED HERE) -->
+  <nav class="hidden md:block mt-4"> {# Added mt-4 for spacing, can be adjusted in next step #}
+    {% if primary_menu %}
+      <ul class="flex space-x-6 items-center justify-center"> {# Added justify-center for centering the ul items #}
+        {% for item in primary_menu.items %}
+          <li class="{% if item.current %}text-primary font-bold{% endif %}">
+            <a href="{{ item.link }}" class="hover:text-primary transition">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+        <li>
+          <button id="theme-toggle" class="hover:text-primary transition" aria-label="Cambiar tema">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    {% endif %}
+  </nav>
 </div>
 
 <!-- Mobile menu -->
