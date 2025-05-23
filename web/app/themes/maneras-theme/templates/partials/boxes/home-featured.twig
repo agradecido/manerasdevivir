@@ -7,10 +7,16 @@
         <a href="{{ post.link }}" class="block rounded-lg shadow-md overflow-hidden border border-border hover:shadow-lg transition-shadow duration-200">
           <div class="bg-surface">
             {% if post.thumbnail %}
+              {% set responsive_thumb = post.thumbnail|responsive_image %}
               <img 
-                src="{{ post.thumbnail.src('medium') }}" 
-                alt="{{ post.thumbnail.alt }}" 
+                src="{{ responsive_thumb.src }}" 
+                srcset="{{ responsive_thumb.srcset }}"
+                sizes="(max-width: 767px) calc(100vw - 4rem), (min-width: 768px) 30vw"
+                alt="{{ responsive_thumb.alt }}" 
                 class="w-full h-48 object-cover"
+                width="{{ responsive_thumb.width }}" 
+                height="{{ responsive_thumb.height }}"
+                {{ responsive_thumb.lazy_attr | raw }}
               >
             {% endif %}
             
