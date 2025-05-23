@@ -21,13 +21,13 @@
 }
 
 .site-logo img {
-  @apply h-10 mr-2;
+  @apply h-24;
 }
 
 /* Logo responsivo */
 @media (max-width: 640px) {
   .site-logo img {
-    @apply h-8;
+    @apply max-h-12;
   }
 }
 

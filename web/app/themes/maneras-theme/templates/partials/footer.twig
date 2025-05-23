@@ -1,6 +1,6 @@
 <div class="footer">
   <div class="footer__content">
-    <div class="footer__grid">
+    <div class="footer__grid flex flex-col md:flex-row justify-between items-start">
       <!-- Site Info -->
       <div>
         <h3 class="footer__info">{% if site.name is defined %}{{ site.name }}{% else %}Maneras de Vivir{% endif %}</h3>
@@ -42,7 +42,7 @@
             </svg>
           </a>
         </div>
-        <p class="text-sm">Escríbenos a info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}</p>
+        <p class="text-sm">Escríbenos a <a href="mailto:info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}">info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}</a></p>
       </div>
     </div>
   </div>

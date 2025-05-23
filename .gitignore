@@ -1,4 +1,6 @@
 web/app/themes/maneras-theme-sage
+vendor
+node_modules
 # Application
 web/app/themes/twentytwentyfive/
 web/app/upgrade
