@@ -1,6 +1,11 @@
 {% if recent %}
   <section>
     <h2 class="text-2xl font-bold mb-6 text-primary">Últimas Noticias</h2>
+    {% if pagination.total > 1 %}
+      <div class="mb-4">
+        <span class="text-sm text-text-subtle">Página {{ pagination.current }} de {{ pagination.total }}</span>
+      </div>
+    {% endif %}
     <div class="grid grid-cols-1 gap-6">
       {% for post in recent %}
         <article class="bg-surface p-6 rounded-lg shadow-md flex flex-col md:flex-row border border-border">
