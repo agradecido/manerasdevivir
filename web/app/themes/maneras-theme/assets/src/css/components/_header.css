@@ -21,14 +21,7 @@
 }
 
 .site-logo img {
-  @apply h-24;
-}
-
-/* Logo responsivo */
-@media (max-width: 640px) {
-  .site-logo img {
-    @apply max-h-12;
-  }
+  @apply h-8 sm:h-10 mr-2;
 }
 
 /* Versión light/dark del logo */

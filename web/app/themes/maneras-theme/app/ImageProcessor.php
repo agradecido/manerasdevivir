@@ -103,33 +103,28 @@ class ImageProcessor {
 			return '';
 		}
 
-		if ( $src instanceof \Timber\Image ) {
-			$timber_image = $src;
-		} elseif ( is_string( $src ) ) {
-			$timber_image = new \Timber\Image( $src );
-		} else {
-			return '';
-		}
-
-		$srcset      = array();
-		$breakpoints = array( 320, 640, 1024, 1440, 1920 );
+		$timber_image = new \Timber\Image( $src );
+		$srcset       = array();
+		$breakpoints  = array( 320, 640, 1024, 1440, 1920 );
 
 		foreach ( $breakpoints as $width ) {
 			$resized  = $timber_image->src( $width );
 			$srcset[] = "{$resized} {$width}w";
 		}
 
+		$srcset_attr = implode( ', ', $srcset );
+		$lazy_attr   = $lazyload ? 'loading="lazy"' : '';
+
 		return array(
 			'src'       => $timber_image->src(),
-			'srcset'    => implode( ', ', $srcset ),
+			'srcset'    => $srcset_attr,
 			'sizes'     => $sizes,
-			'lazy_attr' => $lazyload ? 'loading="lazy"' : '',
+			'lazy_attr' => $lazy_attr,
 			'alt'       => $timber_image->alt(),
 			'width'     => $timber_image->width(),
 			'height'    => $timber_image->height(),
 		);
 	}
-
 
 	/**
 	 * Obtener versión WebP de una imagen
