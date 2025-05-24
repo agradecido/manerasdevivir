@@ -103,7 +103,7 @@ class ImageProcessor {
 			return '';
 		}
 
-		$timber_image = new \Timber\Image( $src );
+		$timber_image = \Timber\Timber::get_image( $src );
 		$srcset       = array();
 		$breakpoints  = array( 320, 640, 1024, 1440, 1920 );
 
