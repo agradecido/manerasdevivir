@@ -19,6 +19,3 @@ yarn-error.log*
 *.sw?
 
 assets/dist
-
-/vendor
-node_modules
