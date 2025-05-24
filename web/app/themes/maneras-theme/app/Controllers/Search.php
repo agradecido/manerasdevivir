@@ -3,8 +3,18 @@
 namespace ManerasTheme\Controllers;
 
 use Timber\Timber;
+use ManerasTheme\Traits\WithPagination;
 
 class Search extends Controller {
+	use WithPagination;
+
+	/**
+	 * Constructor - inicializa la consulta principal para la paginación
+	 */
+	public function __construct() {
+		global $wp_query;
+		$this->last_query = $wp_query;
+	}
 
 	/**
 	 * Search query.
@@ -42,12 +52,6 @@ class Search extends Controller {
 	 */
 	public function pagination() {
 		global $wp_query;
-
-		return array(
-			'total'     => $wp_query->max_num_pages,
-			'current'   => max( 1, get_query_var( 'paged' ) ),
-			'prev_link' => get_previous_posts_link(),
-			'next_link' => get_next_posts_link(),
-		);
+		return $this->get_pagination_data( $wp_query );
 	}
 }

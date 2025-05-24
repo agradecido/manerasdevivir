@@ -20,5 +20,5 @@ yarn-error.log*
 
 assets/dist
 
-/vendor
+vendor
 node_modules

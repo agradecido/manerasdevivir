@@ -3,8 +3,17 @@
 namespace ManerasTheme\Controllers;
 
 use Timber\Timber;
+use ManerasTheme\Traits\WithPagination;
 
 class FrontPage extends Controller {
+	use WithPagination;
+
+	/**
+	 * Posts por página para artículos recientes.
+	 *
+	 * @var int
+	 */
+	protected $posts_per_page = 5;
 
 	/**
 	 * Constructor - initialize data that should be available
@@ -12,6 +21,7 @@ class FrontPage extends Controller {
 	public function __construct() {
 		$this->data['featured'] = $this->featured();
 		$this->data['recent']   = $this->recent();
+		$this->data['pagination'] = $this->pagination();
 	}
 
 	/**
@@ -41,17 +51,28 @@ class FrontPage extends Controller {
 	/**
 	 * Recent posts.
 	 *
-	 * @param int $count Number of recent posts to fetch.
+	 * @param int $posts_per_page Number of recent posts to fetch per page (optional).
 	 * @return array
 	 */
-	public function recent( $count = 5 ) {
-		$recent_query = new \WP_Query(
+	public function recent( $posts_per_page = null ) {
+		if ( null === $posts_per_page ) {
+			$posts_per_page = $this->posts_per_page;
+		}
+		
+		return $this->get_paginated_posts(
 			array(
-				'posts_per_page' => $count,
-				'post_type'      => 'article',
-			)
+				'post_type' => 'article',
+			),
+			$posts_per_page
 		);
-
-		return Timber::get_posts( $recent_query );
+	}
+	
+	/**
+	 * Pagination data for recent posts.
+	 *
+	 * @return array
+	 */
+	public function pagination() {
+		return $this->get_pagination_data();
 	}
 }

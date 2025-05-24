@@ -19,7 +19,7 @@ function maneras_get_footer() {
 	$app_controller         = new ManerasTheme\Controllers\App();
 	$context                = Timber::context();
 	$context['site']        = $app_controller->site();
-	$context['menu']         = isset( $context['menu'] ) ? $context['menu'] : $app_controller->menu();
+	$context['menu']        = isset( $context['menu'] ) ? $context['menu'] : $app_controller->menu();
 	$context['footer_menu'] = isset( $context['menu'] ) && isset( $context['menu']['footer'] ) ? $context['menu']['footer'] : null;
 
 	Timber::render( 'partials/footer.twig', $context );
