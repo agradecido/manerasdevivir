@@ -1,7 +1,7 @@
 {% if recent %}
   <section>
-    <h2 class="text-2xl font-bold mb-6 text-primary">Últimas Noticias</h2>
-    {% if pagination.total > 1 %}
+    <h2 class="text-2xl font-bold text-primary">Últimas Noticias</h2>
+    {% if pagination.total > 1 and pagination.current > 1 %}
       <div class="mb-4">
         <span class="text-sm text-text-subtle">Página {{ pagination.current }} de {{ pagination.total }}</span>
       </div>
