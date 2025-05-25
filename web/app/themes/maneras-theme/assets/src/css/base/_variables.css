@@ -10,6 +10,10 @@
     body {
         @apply text-base leading-7 text-text font-body;
     }
+    
+    .content-container {
+        @apply max-w-content-width mx-auto px-4;        
+    }
 
     :root {
         --color-bg: #FFFFFF;
@@ -21,6 +25,7 @@
         --color-border: #DEE2E6;
 
         --site-width: 1600px;
+        --content-width: 1000px;
     }
 
     .dark {

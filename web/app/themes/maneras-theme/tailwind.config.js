@@ -19,10 +19,14 @@ module.exports = {
       fontFamily: {
         body: ['system-ui', 'sans-serif'],
       },
+      maxWidth: {
+        'content-width': 'var(--content-width)',
+        'site-width': 'var(--site-width)',
+      },
       container: {
         center: true,
         padding: '1rem',
-      },
+      },     
     },
   },
   plugins: [],
