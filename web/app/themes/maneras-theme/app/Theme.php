@@ -5,8 +5,16 @@ namespace ManerasTheme;
 use Timber\Timber;
 use ManerasTheme\Controllers\Controller;
 use ManerasTheme\ImageProcessor;
+use ManerasTheme\Breadcrumbs; // Add this
 
 class Theme {
+
+	/**
+	 * Breadcrumbs instance.
+	 *
+	 * @var Breadcrumbs
+	 */
+	public $breadcrumbs; // Add this
 
 	/**
 	 * Controller cache.
@@ -25,6 +33,12 @@ class Theme {
 
 		// Inicializar el procesador de imágenes.
 		ImageProcessor::init();
+
+		// Initialize Breadcrumbs
+		$this->breadcrumbs = new Breadcrumbs(); // Add this
+		add_action('wp_head', [$this, 'display_breadcrumbs_json_ld']); // Add this
+		add_filter('timber/context', [$this, 'add_breadcrumbs_to_context']); // Add this filter
+		add_filter('timber/twig', [$this, 'add_to_twig']); // Add this filter
 	}
 
 	/**
@@ -202,5 +216,46 @@ class Theme {
 		}
 
 		return 'App';
+	}
+
+	/**
+	 * Outputs the JSON-LD breadcrumbs script in the <head>.
+	 */
+	public function display_breadcrumbs_json_ld() {
+		echo $this->breadcrumbs->get_json_ld();
+	}
+
+	/**
+	 * Adds breadcrumb items to the Timber context.
+	 * @param array $context Timber context.
+	 * @return array
+	 */
+	public function add_breadcrumbs_to_context($context) {
+		if ($this->breadcrumbs) {
+			$context['breadcrumbs'] = $this->breadcrumbs->get_items();
+		}
+		return $context;
+	}
+
+	/**
+	 * Adds custom functions to Twig.
+	 * @param \Twig\Environment $twig The Twig environment.
+	 * @return \Twig\Environment
+	 */
+	public function add_to_twig($twig) {
+		$twig->addFunction(new \Timber\Twig_Function('render_breadcrumbs', [$this, 'render_breadcrumbs_partial']));
+		// Add other functions if needed
+		return $twig;
+	}
+
+	/**
+	 * Renders the breadcrumbs partial.
+	 * Uses the 'breadcrumbs' from the global context.
+	 * @return string
+	 */
+	public function render_breadcrumbs_partial() {
+		// The 'breadcrumbs' variable is expected to be in the global context
+		// due to the 'add_breadcrumbs_to_context' method.
+		return Timber::compile('partials/breadcrumbs.twig');
 	}
 }

@@ -1,0 +1,16 @@
+{% if breadcrumbs and breadcrumbs|length > 1 %} {# Only show if more than 'Home' #}
+    <nav aria-label="breadcrumb" class="container mx-auto px-4 py-3"> {# Added some basic Tailwind container/padding for consistency #}
+        <ol class="breadcrumb-list flex text-sm text-gray-600 dark:text-gray-400"> {# Basic flex styling, adjust as needed #}
+            {% for item in breadcrumbs %}
+                <li class="breadcrumb-item{% if loop.last %} active font-semibold text-gray-800 dark:text-gray-200{% endif %}"{% if loop.last %} aria-current="page"{% endif %}>
+                    {% if item.url and not loop.last %}
+                        <a href="{{ item.url }}" class="hover:text-primary dark:hover:text-secondary">{{ item.name }}</a>
+                    {% else %}
+                        {{ item.name }}
+                    {% endif %}
+                    {% if not loop.last %}<span class="mx-2">/</span>{% endif %} {# Separator with margin #}
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+{% endif %}
