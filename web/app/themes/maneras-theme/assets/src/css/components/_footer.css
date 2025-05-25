@@ -1,42 +1,38 @@
 /* Estilos para el footer */
 @layer components {
-  .site-footer {
+  .footer {
     @apply bg-gray-800 text-white py-10;
   }
 
-  .site-footer__content {
+  .footer__content {
     @apply container mx-auto px-4;
   }
 
-  .site-footer__grid {
+  .footer__grid {
     @apply grid grid-cols-1 md:grid-cols-3 gap-8;
   }
 
-  .site-footer__info {
+  .footer__info {
     @apply text-xl font-bold mb-4;
   }
 
-  .site-footer__links {
-    @apply space-y-2;
-  }
-
-  .site-footer__links a {
+  .footer__links a {
     @apply text-gray-300 hover:text-white transition;
   }
 
-  .site-footer__contact {
+  .footer__contact {
     @apply text-xl font-bold mb-4;
   }
 
-  .site-footer__icons {
-    @apply flex space-x-4 mb-4;
+  .footer__icons {
+    @apply flex space-x-4 mb-1;
   }
 
-  .site-footer__icons a {
+  .footer__icons a {
     @apply text-gray-300 hover:text-white;
   }
 
-  .site-footer__icons svg {
+  .footer__icons svg {
     @apply w-6 h-6;
   }
 }

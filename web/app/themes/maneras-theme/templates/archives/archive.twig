@@ -1,0 +1,77 @@
+{# 
+  Template Name: Archive 
+#}
+
+{% extends "base/layout.twig" %}
+
+{% block title %}
+	{{ title }}
+	-
+	{{ site.name }}
+{% endblock %}
+
+{% block header %}
+	{{ function('maneras_get_header') }}
+{% endblock %}
+
+{% block content %}
+	<div class="container mx-auto py-8">
+		<header class="mb-8 text-center">
+			<h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
+
+			{% if description %}
+				<div class="text-gray-600 max-w-2xl mx-auto">
+					{{ description }}
+				</div>
+			{% endif %}
+		</header>
+
+		{% if posts %}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{% for post in posts %}
+					<div class="bg-white rounded-lg shadow-md overflow-hidden">
+						{% if post.thumbnail %}
+							<img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-48 object-cover">
+						{% endif %}
+
+						<div class="p-4">
+							<h2 class="font-bold text-xl mb-2">
+								<a href="{{ post.link }}" class="hover:text-primary">{{ post.title }}</a>
+							</h2>
+							<div class="text-gray-600 text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
+							<p class="text-gray-700">{{ post.excerpt.length(120) }}</p>
+							<a href="{{ post.link }}" class="inline-block mt-4 text-primary hover:underline">Read more</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			{% if pagination.total > 1 %}
+				<div class="mt-12 flex justify-center">
+					<div class="flex space-x-2">
+						{% if pagination.prev_link %}
+							<a href="{{ pagination.prev_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">&laquo; Previous</a>
+						{% endif %}
+
+						<span class="px-4 py-2">Page
+							{{ pagination.current }}
+							of
+							{{ pagination.total }}</span>
+
+						{% if pagination.next_link %}
+							<a href="{{ pagination.next_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Next &raquo;</a>
+						{% endif %}
+					</div>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="text-center py-12">
+				<p class="text-gray-600">No posts found.</p>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block footer %}
+	{{ function('maneras_get_footer') }}
+{% endblock %}
