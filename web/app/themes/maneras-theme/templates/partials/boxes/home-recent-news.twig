@@ -12,26 +12,26 @@
           {% if post.thumbnail %}
             {% set responsive_thumb = post.thumbnail|responsive_image %}
             <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6">
-              <img 
-                src="{{ responsive_thumb.src }}" 
-                srcset="{{ responsive_thumb.srcset }}"
-                sizes="(max-width: 767px) calc(100vw - 4rem), (min-width: 768px) 15vw"
-                alt="{{ responsive_thumb.alt }}" 
-                class="w-full h-48 md:h-full object-cover rounded"
-                width="{{ responsive_thumb.width }}" 
-                height="{{ responsive_thumb.height }}"
-                {{ responsive_thumb.lazy_attr | raw }}
-              >
+              <a href="{{ post.link }}">
+                <img 
+                  src="{{ responsive_thumb.src }}" 
+                  srcset="{{ responsive_thumb.srcset }}"
+                  sizes="(max-width: 767px) calc(100vw - 4rem), (min-width: 768px) 15vw"
+                  alt="{{ responsive_thumb.alt }}" 
+                  class="w-full h-48 md:h-full object-cover rounded"
+                  width="{{ responsive_thumb.width }}" 
+                  height="{{ responsive_thumb.height }}"
+                  {{ responsive_thumb.lazy_attr | raw }}
+                >
+              </a>
             </div>
           {% endif %}
           
           <div class="{{ post.thumbnail ? 'md:w-3/4' : 'w-full' }}">
-            <h3 class="font-bold text-xl mb-2">
+            <h3 class="font-bold text-xl mb-2 mt-1">
               <a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
             </h3>
-            
             <div class="text-text-subtle text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
-            
             <p class="text-text hidden md:block">
               {{ post.excerpt.length(250) }}
             </p>

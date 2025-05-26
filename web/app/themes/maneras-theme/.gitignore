@@ -21,3 +21,4 @@ yarn-error.log*
 assets/dist
 vendor
 node_modules
+ .env

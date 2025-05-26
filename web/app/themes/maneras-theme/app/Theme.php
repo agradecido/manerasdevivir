@@ -5,7 +5,7 @@ namespace ManerasTheme;
 use Timber\Timber;
 use ManerasTheme\Controllers\Controller;
 use ManerasTheme\ImageProcessor;
-use ManerasTheme\Breadcrumbs; // Add this
+use ManerasTheme\Breadcrumbs;
 
 class Theme {
 
@@ -14,7 +14,7 @@ class Theme {
 	 *
 	 * @var Breadcrumbs
 	 */
-	public $breadcrumbs; // Add this
+	public $breadcrumbs;
 
 	/**
 	 * Controller cache.
@@ -35,10 +35,10 @@ class Theme {
 		ImageProcessor::init();
 
 		// Initialize Breadcrumbs
-		$this->breadcrumbs = new Breadcrumbs(); // Add this
-		add_action('wp_head', [$this, 'display_breadcrumbs_json_ld']); // Add this
-		add_filter('timber/context', [$this, 'add_breadcrumbs_to_context']); // Add this filter
-		add_filter('timber/twig', [$this, 'add_to_twig']); // Add this filter
+		$this->breadcrumbs = new Breadcrumbs();
+		add_action( 'wp_head', array( $this, 'display_breadcrumbs_json_ld' ) );
+		add_filter( 'timber/context', array( $this, 'add_breadcrumbs_to_context' ) );
+		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
 	}
 
 	/**
@@ -227,11 +227,12 @@ class Theme {
 
 	/**
 	 * Adds breadcrumb items to the Timber context.
+	 *
 	 * @param array $context Timber context.
 	 * @return array
 	 */
-	public function add_breadcrumbs_to_context($context) {
-		if ($this->breadcrumbs) {
+	public function add_breadcrumbs_to_context( $context ) {
+		if ( $this->breadcrumbs ) {
 			$context['breadcrumbs'] = $this->breadcrumbs->get_items();
 		}
 		return $context;
@@ -239,11 +240,12 @@ class Theme {
 
 	/**
 	 * Adds custom functions to Twig.
+	 *
 	 * @param \Twig\Environment $twig The Twig environment.
 	 * @return \Twig\Environment
 	 */
-	public function add_to_twig($twig) {
-		$twig->addFunction(new \Timber\Twig_Function('render_breadcrumbs', [$this, 'render_breadcrumbs_partial']));
+	public function add_to_twig( $twig ) {
+		$twig->addFunction( new \Twig\TwigFunction( 'render_breadcrumbs', array( $this, 'render_breadcrumbs_partial' ) ) );
 		// Add other functions if needed
 		return $twig;
 	}
@@ -251,11 +253,12 @@ class Theme {
 	/**
 	 * Renders the breadcrumbs partial.
 	 * Uses the 'breadcrumbs' from the global context.
+	 *
 	 * @return string
 	 */
 	public function render_breadcrumbs_partial() {
 		// The 'breadcrumbs' variable is expected to be in the global context
 		// due to the 'add_breadcrumbs_to_context' method.
-		return Timber::compile('partials/breadcrumbs.twig');
+		return Timber::compile( 'partials/breadcrumbs.twig' );
 	}
 }
