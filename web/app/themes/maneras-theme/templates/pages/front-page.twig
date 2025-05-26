@@ -2,7 +2,7 @@
   Template Name: Front Page 
 #}
 
-{% extends "layouts/app.twig" %}
+{% extends "base/layout.twig" %}
 
 {% block title %}{{ site.name }} - {{ site.description }}{% endblock %}
 
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-  {% include "partials/layouts/home-layout.twig" %}
+  {% include "base/home.twig" %}
 {% endblock %}
 
 {% block footer %}

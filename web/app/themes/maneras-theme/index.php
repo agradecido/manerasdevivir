@@ -9,15 +9,15 @@ use ManerasTheme\View;
 
 // Render the appropriate template based on WordPress template hierarchy.
 if ( is_front_page() ) {
-	View::render( 'front-page.twig' );
+	View::render( 'pages/front-page.twig' );
 } elseif ( is_home() || is_archive() ) {
-	View::render( 'archive.twig' );
+	View::render( 'archives/archive.twig' );
 } elseif ( is_singular() ) {
-	View::render( 'single.twig' );
+	View::render( 'pages/single.twig' );
 } elseif ( is_search() ) {
-	View::render( 'search.twig' );
+	View::render( 'pages/search.twig' );
 } elseif ( is_404() ) {
-	View::render( '404.twig' );
+	View::render( 'pages/404.twig' );
 } else {
-	View::render( 'index.twig' );
+	View::render( 'base/layout.twig' );
 }

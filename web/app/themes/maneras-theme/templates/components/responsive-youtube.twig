@@ -1,0 +1,34 @@
+{#
+  Componente para videos responsivos de YouTube
+  
+  Uso:
+  {% include 'components/responsive-youtube.twig' with {
+    'video_id': 'VZwr4VXewE0',
+    'title': 'Título del video (opcional)',
+    'class': 'clases-adicionales (opcional)'
+  } %}
+  
+  También acepta una URL completa de YouTube:
+  {% include 'components/responsive-youtube.twig' with {
+    'video_url': 'https://www.youtube.com/watch?v=VZwr4VXewE0'
+  } %}
+#}
+
+{% if video_url is defined %}
+  {% set video_id = video_url|split('v=')[1] %}
+  {% if '&' in video_id %}
+    {% set video_id = video_id|split('&')[0] %}
+  {% endif %}
+{% endif %}
+
+{% if video_id is defined %}
+  <div class="site-container site-container--16x9 {{ class|default('') }}">
+    <iframe 
+      src="https://www.youtube.com/embed/{{ video_id }}" 
+      title="{{ title|default('Video de YouTube') }}" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+    ></iframe>
+  </div>
+{% endif %}
