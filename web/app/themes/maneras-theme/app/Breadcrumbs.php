@@ -72,8 +72,16 @@ class Breadcrumbs {
 				'name' => get_the_archive_title(),
 				// No URL for the current archive page in this simple case.
 			);
+		} elseif ( is_search() ) {
+			$this->items[] = array(
+				// Using a static name for search results.
+				'name' => __( 'Search Results', 'maneras-theme' ),
+			);
+		} elseif ( is_404() ) {
+			$this->items[] = array(
+				'name' => __( 'Page Not Found', 'maneras-theme' ),
+			);
 		}
-		// Add other conditions like is_search(), is_404() if needed.
 	}
 
 	/**

@@ -10,6 +10,10 @@
   {{ function('maneras_get_header') }}
 {% endblock %}
 
+{% block breadcrumbs %}
+  {# No breadcrumbs on homepage #}
+{% endblock %}
+
 {% block content %}
   {% include "base/home.twig" %}
 {% endblock %}

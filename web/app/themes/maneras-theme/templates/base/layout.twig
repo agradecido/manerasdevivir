@@ -13,6 +13,10 @@
     {% block header %}{% endblock %}
   </header>
   
+  {% block breadcrumbs %}
+    {% include 'partials/breadcrumbs.twig' %}
+  {% endblock %}
+  
   <main>
     {% block content %}{% endblock %}
   </main>
