@@ -1,0 +1,40 @@
+{% extends "base/layout.twig" %}
+
+{% block header %}
+  {{ function('maneras_get_header') }}
+{% endblock %}
+
+{% block content %}
+    <h1>Enviar noticia</h1>
+
+    {% if submitted %}
+        <p class="success-message">¡Gracias! Tu noticia ha sido enviada.</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        <p><label>Titular<br>
+        <input type="text" name="news_title" required></label></p>
+
+        <p><label>Contenido<br>
+        <textarea name="news_content" rows="6" required></textarea></label></p>
+
+        <p><label>Firma<br>
+        <input type="text" name="news_signature"></label></p>
+
+        <p><label>Fuente<br>
+        <input type="text" name="news_source"></label></p>
+
+        <p><label>Email de contacto<br>
+        <input type="email" name="news_email" required></label></p>
+
+        <p><label>Imágenes (máximo 1MB c/u)<br>
+        <input type="file" name="news_images[]" multiple accept="image/*"></label></p>
+
+        {{ function('wp_nonce_field', 'cgcof_news_submit', 'cgcof_news_nonce') }}
+        <p><input type="submit" name="cgcof_news_submit" value="Enviar noticia"></p>
+    </form>
+{% endblock %}
+
+{% block footer %}
+  {{ function('maneras_get_footer') }}
+{% endblock %}

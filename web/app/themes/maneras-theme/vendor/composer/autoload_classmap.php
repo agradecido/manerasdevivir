@@ -13,6 +13,7 @@ return array(
     'ManerasTheme\\Controllers\\Controller' => $baseDir . '/app/Controllers/Controller.php',
     'ManerasTheme\\Controllers\\Footer' => $baseDir . '/app/Controllers/Footer.php',
     'ManerasTheme\\Controllers\\FrontPage' => $baseDir . '/app/Controllers/FrontPage.php',
+    'ManerasTheme\\Controllers\\Header' => $baseDir . '/app/Controllers/Header.php',
     'ManerasTheme\\Controllers\\NotFound' => $baseDir . '/app/Controllers/NotFound.php',
     'ManerasTheme\\Controllers\\Search' => $baseDir . '/app/Controllers/Search.php',
     'ManerasTheme\\Controllers\\Single' => $baseDir . '/app/Controllers/Single.php',

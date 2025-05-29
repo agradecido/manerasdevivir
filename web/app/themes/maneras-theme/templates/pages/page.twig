@@ -1,0 +1,17 @@
+{% extends "base/layout.twig" %}
+
+{% block header %}
+  {{ function('maneras_get_header') }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <h2>JAU</h2>
+    <div class="page-content">
+        {{ post.content }}
+    </div>
+{% endblock %}
+
+{% block footer %}
+  {{ function('maneras_get_footer') }}
+{% endblock %}

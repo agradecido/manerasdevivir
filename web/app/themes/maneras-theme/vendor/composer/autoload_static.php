@@ -64,6 +64,7 @@ class ComposerStaticInitccf2b8a2b4f80204ff9f7ee8fea38a0f
         'ManerasTheme\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Controllers/Controller.php',
         'ManerasTheme\\Controllers\\Footer' => __DIR__ . '/../..' . '/app/Controllers/Footer.php',
         'ManerasTheme\\Controllers\\FrontPage' => __DIR__ . '/../..' . '/app/Controllers/FrontPage.php',
+        'ManerasTheme\\Controllers\\Header' => __DIR__ . '/../..' . '/app/Controllers/Header.php',
         'ManerasTheme\\Controllers\\NotFound' => __DIR__ . '/../..' . '/app/Controllers/NotFound.php',
         'ManerasTheme\\Controllers\\Search' => __DIR__ . '/../..' . '/app/Controllers/Search.php',
         'ManerasTheme\\Controllers\\Single' => __DIR__ . '/../..' . '/app/Controllers/Single.php',
