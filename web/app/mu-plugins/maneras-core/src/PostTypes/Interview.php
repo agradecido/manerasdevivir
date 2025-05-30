@@ -92,6 +92,7 @@ class Interview {
 				'public'          => true,
 				'has_archive'     => true,
 				'menu_icon'       => 'dashicons-format-audio',
+				'menu_position'   => 5,
 				'taxonomies'      => array( 'post_tag', 'featured', 'province' ),
 				'supports'        => array(
 					'title',

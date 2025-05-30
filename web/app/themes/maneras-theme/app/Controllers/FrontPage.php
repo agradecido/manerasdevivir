@@ -73,7 +73,6 @@ class FrontPage extends Controller {
 
 		// Crear la consulta.
 		$args = array(
-			// 'post_type'      => array( 'post', 'article' ), // Buscar tanto post como article.
 			'post_type'      => 'article',
 			'posts_per_page' => $posts_per_page,
 			'paged'          => $paged,

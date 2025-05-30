@@ -8,6 +8,7 @@ use ManerasCore\PostTypes\Interview;
 use ManerasCore\PostTypes\Report;
 use ManerasCore\Taxonomies\Provinces;
 use ManerasCore\Taxonomies\Featured;
+use ManerasCore\Taxonomies\Tags;
 
 class Plugin {
 
@@ -122,6 +123,7 @@ class Plugin {
 	public function registerTaxonomies(): void {
 		new Provinces();
 		new Featured();
+		new Tags();
 	}
 
 	/**

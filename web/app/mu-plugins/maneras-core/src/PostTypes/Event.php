@@ -85,6 +85,7 @@ class Event {
 				'public'          => true,
 				'rewrite'         => array( 'slug' => 'conciertos' ),
 				'menu_icon'       => 'dashicons-calendar',
+				'menu_position'   => 4,
 				'taxonomies'      => array( 'post_tag', 'featured', 'province' ),
 				'show_in_menu'    => true,
 				'show_in_rest'    => true,

@@ -91,6 +91,7 @@ class Article {
 				'public'          => true,
 				'has_archive'     => true,
 				'menu_icon'       => 'dashicons-media-document',
+				'menu_position'   => 3,
 				'taxonomies'      => array( 'post_tag', 'featured', 'province' ),
 				'supports'        => array(
 					'title',

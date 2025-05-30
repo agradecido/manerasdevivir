@@ -1,0 +1,11 @@
+{% if post.terms('post_tag') %}
+    <div class="tags-container mt-4">
+        <div class="flex flex-wrap gap-2">
+            {% for tag in post.terms('post_tag') %}
+                <a href="{{ tag.link }}" class="inline-block bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 transition duration-300">
+                    #{{ tag.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

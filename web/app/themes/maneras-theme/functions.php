@@ -14,14 +14,14 @@ Timber::$dirname = array( 'templates' );
 // Load theme logic.
 new Theme();
 
-// Registrar el controlador de la página de envío de noticias
+// Registrar el controlador de la página de envío de noticias.
 SubmitNews::register();
 
-// Inicializar la funcionalidad de envío de noticias
+// Inicializar la funcionalidad de envío de noticias.
 NewsSubmission::init();
 
 /**
- * Helper function to get the footer with proper context
+ * Helper function to get the footer with proper context.
  */
 function maneras_get_footer() {
 	$app_controller         = new ManerasTheme\Controllers\App();

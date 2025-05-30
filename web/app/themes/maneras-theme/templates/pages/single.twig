@@ -10,27 +10,46 @@
   {{ function('maneras_get_header') }}
 {% endblock %}
 
-
 {% block content %}
-  <article class="content-container mx-auto py-8">
-    <header class="mb-8">
+<div class="content-container mx-auto pb-8 flex flex-col items-center md:flex-row md:justify-between md:items-start md:gap-8">
+  <article class="md:w-2/3 lg:w-3/4">
+    <header class="mb-4">
       <h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
       
-      <div class="text-gray-600 mb-4">
-        {% if post.author %}
-          By {{ post.author.name }} 
+      <div class="text-gray-600 mb-1">
+        {% if post.author_name %}
+          Enviado por <strong>{{ post.author_name }}</strong>&nbsp;
+        {% elseif post.author and post.author.name %}
+           Enviado por <strong>{{ post.author.name }}</strong>&nbsp;
         {% endif %}
-        on {{ post.date | date("F j, Y") }}
+
+        {% if post.wp_date %}
+          | {{ post.wp_date }}
+        {% elseif post.post_date %}
+          | {{ post.post_date | date("F j, Y") }}
+        {% elseif post.date %}
+          | {{ post.date | date("F j, Y") }}
+        {% else %}
+          | {{ "now"|date("F j, Y") }}
+        {% endif %}
       </div>
 
       {% if post.thumbnail %}
-        <img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" class="w-full h-auto rounded-lg">
-      {% endif %}
+      <div class="mb-6">
+        {% if post.thumbnail.src %}
+          <img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" class="w-full rounded-lg">
+        {% else %}
+          <img src="{{ post.thumbnail.src('large') }}" alt="{{ post.thumbnail.alt }}" class="w-full rounded-lg">
+        {% endif %}
+      {% endif %}      
     </header>
+
 
     <div class="prose max-w-none">
       {{ post.content }}
     </div>
+
+    {% include 'components/post-tags.twig' %}
 
     {% if comments %}
       <section class="mt-12">
@@ -71,6 +90,11 @@
       </section>
     {% endif %}
   </article>
+  <aside class="md:w-1/3 lg:w-1/4 mt-8 md:mt-0">
+    <h3>Side bar</h3>
+    <p>Here you can add any additional content or widgets you want to display alongside the post.</p>
+  </aside>
+  </div>
 {% endblock %}
 
 {% block footer %}

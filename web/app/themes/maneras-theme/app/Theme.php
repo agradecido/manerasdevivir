@@ -31,10 +31,10 @@ class Theme {
 		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 
-		// Inicializar el procesador de imágenes.
+		// Initialize the ImageProcessor.
 		ImageProcessor::init();
 
-		// Initialize Breadcrumbs
+		// Initialize Breadcrumbs.
 		$this->breadcrumbs = new Breadcrumbs();
 		add_action( 'wp_head', array( $this, 'display_breadcrumbs_json_ld' ) );
 		add_filter( 'timber/context', array( $this, 'add_breadcrumbs_to_context' ) );
@@ -246,8 +246,24 @@ class Theme {
 	 */
 	public function add_to_twig( $twig ) {
 		$twig->addFunction( new \Twig\TwigFunction( 'render_breadcrumbs', array( $this, 'render_breadcrumbs_partial' ) ) );
-		// Add other functions if needed
+		$twig->addFunction( new \Twig\TwigFunction( 'asset', array( $this, 'get_asset_url' ) ) );
+		// Add other functions if needed.
 		return $twig;
+	}
+	
+	/**
+	 * Gets the URL for an asset file.
+	 *
+	 * @param string $asset The asset path relative to the theme's assets directory.
+	 * @return string The full URL to the asset.
+	 */
+	public function get_asset_url( $asset ) {
+		// Check if the asset path starts with a slash, if not add it.
+		if ( substr( $asset, 0, 1 ) !== '/' ) {
+			$asset = '/' . $asset;
+		}
+		
+		return get_template_directory_uri() . '/assets/dist' . $asset;
 	}
 
 	/**

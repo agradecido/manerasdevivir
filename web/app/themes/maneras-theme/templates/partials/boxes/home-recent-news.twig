@@ -12,6 +12,7 @@
           {% if post.thumbnail %}
             {% set responsive_thumb = post.thumbnail|responsive_image %}
             <div class="md:w-1/4 mb-4 md:mb-0 md:mr-6">
+
               <a href="{{ post.link }}">
                 <img 
                   src="{{ responsive_thumb.src }}" 
@@ -31,12 +32,20 @@
             <h3 class="font-bold text-xl mb-2 mt-1">
               <a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
             </h3>
-            <div class="text-text-subtle text-base/3 mb-2">{{ post.date | date("F j, Y") }}</div>
+            <div>
+              <ul class="flex space-x-4 mb-2">
+                <li><span class="text-text-subtle">{{ post.author.name }}</span></li>
+                <li><span class="text-text-subtle">{{ post.post_date | date("j F Y") }}</span></li>
+              </ul>
+            </div>
             <p class="text-text hidden md:block">
               {{ post.excerpt.length(250) }}
             </p>
+            {% include 'components/post-tags.twig' %}
           </div>
+          
         </article>
+        
       {% endfor %}
     </div>
     

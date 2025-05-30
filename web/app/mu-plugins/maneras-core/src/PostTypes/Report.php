@@ -24,16 +24,16 @@ class Report {
 	 * @var array<string, callable|string>
 	 */
 	private array $fields = array(
-		'autor'             => 'sanitize_text_field',
-		'fecha_reportaje'   => 'sanitize_text_field',
-		'ubicacion'         => 'sanitize_text_field',
-		'evento_relacionado'=> 'intval',
-		'email_contacto'    => 'sanitize_email',
-		'fuente'            => 'sanitize_textarea_field',
-		'canonical'         => 'sanitize_textarea_field',
-		'destacado'         => 'boolval',
-		'robots'            => 'sanitize_textarea_field',
-		'id_reportaje'      => 'intval',
+		'autor'              => 'sanitize_text_field',
+		'fecha_reportaje'    => 'sanitize_text_field',
+		'ubicacion'          => 'sanitize_text_field',
+		'evento_relacionado' => 'intval',
+		'email_contacto'     => 'sanitize_email',
+		'fuente'             => 'sanitize_textarea_field',
+		'canonical'          => 'sanitize_textarea_field',
+		'destacado'          => 'boolval',
+		'robots'             => 'sanitize_textarea_field',
+		'id_reportaje'       => 'intval',
 	);
 
 	/**
@@ -77,7 +77,7 @@ class Report {
 	 * @return void
 	 */
 	protected function registerPostType(): void {
-		 $report = new PostType(
+		$report = new PostType(
 			array(
 				'name'     => 'report',
 				'singular' => 'Reportaje',
@@ -86,11 +86,12 @@ class Report {
 			)
 		);
 
-		 $report->options(
+		$report->options(
 			array(
 				'public'          => true,
 				'has_archive'     => true,
 				'menu_icon'       => 'dashicons-media-text',
+				'menu_position'   => 6,
 				'taxonomies'      => array( 'post_tag', 'featured', 'province' ),
 				'supports'        => array(
 					'title',
@@ -109,7 +110,7 @@ class Report {
 			)
 		);
 
-		 $report->register();
+		$report->register();
 	}
 
 
