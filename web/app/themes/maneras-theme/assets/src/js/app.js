@@ -4,6 +4,7 @@
 
 // Importar los módulos
 import './image-handler.js';
+import './components/news-form.js';
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {

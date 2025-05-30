@@ -1,0 +1,68 @@
+/**
+ * Estilos personalizados para formularios
+ * 
+ * Este archivo contiene estilos específicos para los formularios del sitio,
+ * incluido el formulario de envío de noticias. Utiliza combinaciones de
+ * clases de utilidad de Tailwind con algunas personalizaciones adicionales.
+ * 
+ * Características:
+ * - Animaciones suaves en hover y focus
+ * - Estilos para mensajes de éxito
+ * - Estilos personalizados para carga de archivos
+ * - Indicadores de campos obligatorios
+ */
+.form-container {
+  @apply bg-surface p-8 rounded-lg shadow-lg max-w-3xl mx-auto;
+}
+
+/* Custom file upload button animation */
+.file-upload-area {
+  @apply mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-border border-dashed rounded-md bg-bg transition-all duration-300;
+}
+
+.file-upload-area:hover {
+  @apply border-primary bg-opacity-50;
+}
+
+/* Custom styling for form inputs on autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-bg) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Adding animation on form field focus */
+.form-input, .form-textarea {
+  @apply transition-all duration-200;
+}
+
+.form-input:focus, .form-textarea:focus {
+  @apply transform scale-[1.01] shadow-md;
+}
+
+/* Success message animation */
+.success-message-container {
+  @apply bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-8 rounded shadow-sm;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Submit button hover effect */
+.submit-button {
+  @apply px-8 py-3 bg-primary hover:bg-primary-h text-white font-medium rounded-md shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}
+
+.submit-button:hover {
+  @apply transform -translate-y-1 shadow-md;
+}
+
+/* Style for required field indicators */
+.required-field::after {
+  content: "*";
+  @apply text-red-500 ml-1;
+}

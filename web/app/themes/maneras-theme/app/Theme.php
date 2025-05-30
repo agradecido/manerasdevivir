@@ -250,7 +250,7 @@ class Theme {
 		// Add other functions if needed.
 		return $twig;
 	}
-	
+
 	/**
 	 * Gets the URL for an asset file.
 	 *
@@ -262,7 +262,7 @@ class Theme {
 		if ( substr( $asset, 0, 1 ) !== '/' ) {
 			$asset = '/' . $asset;
 		}
-		
+
 		return get_template_directory_uri() . '/assets/dist' . $asset;
 	}
 

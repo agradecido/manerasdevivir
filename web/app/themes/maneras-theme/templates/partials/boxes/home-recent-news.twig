@@ -33,9 +33,9 @@
               <a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
             </h3>
             <div>
-              <ul class="flex space-x-4 mb-2">
-                <li><span class="text-text-subtle">{{ post.author.name }}</span></li>
-                <li><span class="text-text-subtle">{{ post.post_date | date("j F Y") }}</span></li>
+              <ul class="flex space-x-4 mb-2 items-start">
+                <li><span class="text-primary text-sm">{{ post.author.name }}</span></li>
+                <li><span class="text-primary text-sm">{{ post.post_date | date("j F Y") }}</span></li>
               </ul>
             </div>
             <p class="text-text hidden md:block">
