@@ -43,17 +43,19 @@
         <div class="mb-8">
             <label class="block text-text-subtle font-medium mb-2" for="news_images">Imágenes</label>
             <div id="drop-zone" class="file-upload-area group cursor-pointer transition-colors duration-300 hover:bg-bg-alt rounded-md border border-border p-4">
-                <div class="space-y-1 text-center">
-                    <svg class="mx-auto h-12 w-12 text-text-subtle transition-colors duration-300 group-hover:text-primary" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <div class="flex text-sm text-text-subtle justify-center">
-                        <span class="font-medium text-primary hover:text-primary-h underline">Sube archivos</span>
-                        <p class="pl-1">o arrastra y suelta</p>
+                <label for="news_images" class="block w-full h-full cursor-pointer">
+                    <input id="news_images" name="news_images[]" type="file" multiple accept="image/*" class="sr-only">
+                    <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-text-subtle transition-colors duration-300 group-hover:text-primary" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="flex text-sm text-text-subtle justify-center">
+                            <span class="font-medium text-primary hover:text-primary-h underline">Sube archivos</span>
+                            <p class="pl-1">o arrastra y suelta</p>
+                        </div>
+                        <p class="text-xs text-text-subtle">PNG, JPG, GIF hasta 1MB por imagen</p>
                     </div>
-                    <p class="text-xs text-text-subtle">PNG, JPG, GIF hasta 1MB por imagen</p>
-                </div>
-                <input id="news_images" name="news_images[]" type="file" multiple accept="image/*" class="hidden absolute">
+                </label>
             </div>
             <div id="selected-files" class="mt-2 px-2 text-sm text-text-subtle"></div>
             <script>
@@ -62,7 +64,7 @@
                     const fileInput = document.getElementById('news_images');
                     const selectedFilesDiv = document.getElementById('selected-files');
                     
-                    // Función para actualizar la lista de archivos seleccionados
+                    // Función para actualizar la lista de archivos seleccionados.
                     function updateFileList(files) {
                         if (files.length > 0) {
                             let fileNames = '';
@@ -80,32 +82,20 @@
                         }
                     }
                     
-                    // Click en el dropzone activa el input file
-                    dropZone.addEventListener('click', function(e) {
-                        fileInput.click();
-                    });
-                    
-                    // Evento change para cuando se seleccionan archivos con el navegador
+                    // Evento change para cuando se seleccionan archivos con el navegador.
                     fileInput.addEventListener('change', function(e) {
                         updateFileList(this.files);
-                        e.stopPropagation(); // Prevenir que el evento se propague al dropzone
                     });
                     
-                    // Eventos para drag and drop (evitar comportamiento por defecto del navegador)
+                    // Eventos para drag and drop
                     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
                         dropZone.addEventListener(eventName, function(e) {
                             e.preventDefault();
                             e.stopPropagation();
                         }, false);
-                        
-                        // También prevenir el comportamiento por defecto a nivel de documento
-                        document.addEventListener(eventName, function(e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                        });
                     });
                     
-                    // Clases visuales durante el arrastre
+                    // Clases visuales durante el arrastre.
                     ['dragenter', 'dragover'].forEach(eventName => {
                         dropZone.addEventListener(eventName, function() {
                             dropZone.classList.add('border-primary', 'bg-bg-alt');
@@ -118,25 +108,21 @@
                         }, false);
                     });
                     
-                    // Manejo del evento drop
+                    // Manejo del evento drop.
                     dropZone.addEventListener('drop', function(e) {
                         const dt = e.dataTransfer;
                         const files = dt.files;
                         
-                        // Crear una nueva lista de archivos para asignarla al input
-                        const dataTransfer = new DataTransfer();
-                        for (let i = 0; i < files.length; i++) {
-                            if (files[i].type.startsWith('image/')) {
-                                dataTransfer.items.add(files[i]);
-                            }
-                        }
+                        // Asignar archivos al input.
+                        fileInput.files = files;
                         
-                        // Asignar los archivos al input
-                        fileInput.files = dataTransfer.files;
+                        // Actualizar visualización.
+                        updateFileList(files);
                         
-                        // Actualizar la lista de archivos seleccionados
-                        updateFileList(fileInput.files);
-                    });
+                        // Disparar evento change para compatibilidad.
+                        const event = new Event('change', { bubbles: true });
+                        fileInput.dispatchEvent(event);
+                    }, false);
                 });
             </script>
         </div>
