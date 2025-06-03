@@ -12,10 +12,22 @@
 
 {% block content %}
 <div class="container mx-auto py-8">
-	<header class="mb-8">
+	<header class="mb-8 text-center">
 		<h1 class="text-3xl font-bold mb-2 text-primary">Archivo de noticias</h1>
-		<p class="text-text-subtle">Todas las noticias publicadas en Manerasdevivir.com</p>
+		<p class="text-text-subtle max-w-2xl mx-auto">Todas las noticias publicadas en Manerasdevivir.com</p>
 	</header>
+	
+	{# Debug information #}
+	<div class="bg-yellow-100 border border-yellow-400 text-yellow-800 p-4 mb-8 rounded">
+		<h3 class="font-bold">Información de depuración:</h3>
+		<ul>
+			<li>Número de posts: {{ debug.post_count }}</li>
+			<li>Posts encontrados total: {{ debug.found_posts }}</li>
+			<li>Número máximo de páginas: {{ debug.max_num_pages }}</li>
+			<li>Es archivo: {{ debug.is_archive ? 'Sí' : 'No' }}</li>
+			<li>Es archive de 'article': {{ debug.is_post_type_archive ? 'Sí' : 'No' }}</li>
+		</ul>
+	</div>
 
 	{% if posts %}
 		<div class="grid grid-cols-1 gap-6">
@@ -104,6 +116,17 @@
 	{% else %}
 		<div class="text-center py-12">
 			<p class="text-text-subtle text-lg">No hay noticias disponibles.</p>
+			
+			{# Debug extra si no hay posts #}
+			<div class="bg-red-100 border border-red-400 text-red-800 p-4 mt-4 rounded max-w-md mx-auto">
+				<p class="font-bold">Error: no se encontraron artículos</p>
+				<p>Por favor verifica que:</p>
+				<ul class="list-disc pl-5 mt-2">
+					<li>El post type 'article' está registrado</li>
+					<li>Existen posts publicados de este tipo</li>
+					<li>La consulta está funcionando correctamente</li>
+				</ul>
+			</div>
 		</div>
 	{% endif %}
 </div>
