@@ -1,0 +1,114 @@
+{# Archivo de noticias (CPT article) #}
+{% extends "base/layout.twig" %}
+
+{% block title %}
+	Archivo de noticias - {{ site.name }}
+{% endblock %}
+
+{% block header %}
+	{{ function('maneras_get_header') }}
+	{% include 'partials/breadcrumbs.twig' %}
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto py-8">
+	<header class="mb-8">
+		<h1 class="text-3xl font-bold mb-2 text-primary">Archivo de noticias</h1>
+		<p class="text-text-subtle">Todas las noticias publicadas en Manerasdevivir.com</p>
+	</header>
+
+	{% if posts %}
+		<div class="grid grid-cols-1 gap-6">
+			{% for post in posts %}
+				<article class="bg-surface p-6 rounded-lg shadow-md flex flex-col md:flex-row border border-border">
+					{% if post.thumbnail %}
+						{% set responsive_thumb = post.thumbnail|responsive_image %}
+						<div class="md:w-1/4 mb-4 md:mb-0 md:mr-6">
+							<a href="{{ post.link }}">
+								<img 
+									src="{{ responsive_thumb.src }}" 
+									srcset="{{ responsive_thumb.srcset }}"
+									sizes="(max-width: 767px) calc(100vw - 4rem), (min-width: 768px) 15vw"
+									alt="{{ responsive_thumb.alt }}" 
+									class="w-full h-48 md:h-full object-cover rounded"
+									width="{{ responsive_thumb.width }}" 
+									height="{{ responsive_thumb.height }}"
+									{{ responsive_thumb.lazy_attr | raw }}
+								>
+							</a>
+						</div>
+					{% endif %}
+					
+					<div class="{{ post.thumbnail ? 'md:w-3/4' : 'w-full' }}">
+						<h3 class="font-title font-bold text-xl mb-2 mt-1">
+							<a href="{{ post.link }}" class="text-text hover:text-primary-h">{{ post.title }}</a>
+						</h3>
+						<div>
+							<ul class="flex space-x-4 mb-2 items-start">
+								{% if post.author_name %}
+									<li><span class="text-primary text-sm">{{ post.author_name }}</span></li>
+								{% endif %}
+								<li><span class="text-primary text-sm">{{ post.post_date | date("j F Y") }}</span></li>
+							</ul>
+						</div>
+						<p class="text-text hidden md:block">
+							{{ post.excerpt.length(250) }}
+						</p>
+						{% include 'components/post-tags.twig' %}
+					</div>
+				</article>
+			{% endfor %}
+		</div>
+		
+		{% if pagination.total > 1 %}
+			<nav class="site-pagination mt-8" aria-label="Paginación">
+				{% if pagination.prev_link %}
+					<a href="{{ pagination.prev_link }}" aria-label="Página anterior">
+						<svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+						</svg>
+						<span class="hidden md:inline">Anterior</span>
+					</a>
+				{% else %}
+					<span class="opacity-50 cursor-not-allowed">
+						<svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/>
+						</svg>
+						<span class="hidden md:inline">Anterior</span>
+					</span>
+				{% endif %}
+				
+				<span class="current">{{ pagination.current }}</span>
+				
+				{% if pagination.total > 1 %}
+					<span>de {{ pagination.total }}</span>
+				{% endif %}
+				
+				{% if pagination.next_link %}
+					<a href="{{ pagination.next_link }}" aria-label="Página siguiente">
+						<span class="hidden md:inline">Siguiente</span>
+						<svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+						</svg>
+					</a>
+				{% else %}
+					<span class="opacity-50 cursor-not-allowed">
+						<span class="hidden md:inline">Siguiente</span>
+						<svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+						</svg>
+					</span>
+				{% endif %}
+			</nav>
+		{% endif %}
+	{% else %}
+		<div class="text-center py-12">
+			<p class="text-text-subtle text-lg">No hay noticias disponibles.</p>
+		</div>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+	{{ function('maneras_get_footer') }}
+{% endblock %}

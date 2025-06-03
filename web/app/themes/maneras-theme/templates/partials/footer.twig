@@ -1,19 +1,11 @@
 <div class="footer">
   <div class="footer__content">
-    <div class="footer__grid flex flex-col md:flex-row justify-between items-start gap-8 p-6 bg-surface border-t border-border">
-      <!-- Site Info -->
-      <div>
-        <h3 class="footer__info">{% if site.name is defined %}{{ site.name }}{% else %}Maneras de Vivir{% endif %}</h3>
-        <p class="mb-2">{% if site.description is defined %}{{ site.description }}{% endif %}</p>
-        <p class="text-sm mb-2">Manerasdevivir.com 1996 - {{ "now"|date("Y") }}.</p>
-        <p class="text-sm">Creative Commons License.</p>
-      </div>
-
+    <div class="footer__grid flex flex-col lg:flex-row-reverse justify-between items-start gap-8 p-6 bg-surface border-t border-border">
       <!-- Quick Links -->
-      <div>
+      <div class="w-full lg:w-1/3 text-center lg:text-left">
         <h3 class="footer__info">Enlaces a mano</h3>
         {% if footer_menu %}
-          <ul class="footer__links flex md:flex-row gap-4">
+          <ul class="footer__links flex-col lg:flex-row gap-4">
             {% for item in footer_menu.items %}
               <li>
                 <a href="{{ item.link }}" class="footer__links a">{{ item.title }}</a>
@@ -24,9 +16,9 @@
       </div>
 
       <!-- Contact -->
-      <div class="w-full">
+      <div class="w-full lg:w-1/3 text-center lg:text-left">
         <h3 class="footer__info">Conecta con nosotros</h3>
-        <div class="footer__icons flex flex-row justify-between mb-4">
+        <div class="footer__icons flex flex-row items-center lg:items-start justify-between lg:justify-start mb-4 mx-auto max-w-40 lg:max-w-none">
           <a href="https://x.com/manerasdevivir">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="svg">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -47,8 +39,20 @@
               <path d="M23.498 6.186c-.27-1.01-1.06-1.8-2.07-2.07C19.5 4 12 4 12 4s-7.5 0-9.43.116c-1.01.27-1.8 1.06-2.07 2.07C0 8.5 0 12 0 12s0 3.5.116 5.43c.27 1.01 1.06 1.8 2.07 2.07C4 20 12 20 12 20s7.5 0 9.43-.116c1.01-.27 1.8-1.06 2.07-2.07C24 15.5 24 12 24 12s0-3.5-.502-5.814zM9.545 15V9l6.364 3L9.545 15z"/>
             </svg>
           </a>
+          <a href="mailto:info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="svg">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm0-12l-8 5-8-5h16z"/>
+            </svg>
+          </a>
         </div>
-        <p class="text-sm">Escríbenos a <a href="info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}">info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}</a></p>
+      </div>
+
+      <!-- Site Info -->
+      <div class="w-full lg:w-1/3 text-center lg:text-left">
+        <h3 class="footer__info">{% if site.name is defined %}{{ site.name }}{% else %}Maneras de Vivir{% endif %}</h3>
+        <p class=""><a href="info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}">info@{% if site.host is defined %}{{ site.host }}{% else %}manerasdevivir.com{% endif %}</a></p>        
+        <p class="text-sm">Manerasdevivir.com 1996 - {{ "now"|date("Y") }}.</p>
+        <p class="text-sm">Creative Commons License.</p>
       </div>
     </div>
   </div>

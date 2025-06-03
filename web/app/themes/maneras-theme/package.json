@@ -4,11 +4,12 @@
     "description": "Maneras de Vivir WordPress theme with Timber and Tailwind CSS",
     "scripts": {
         "dev:css": "cross-env NODE_ENV=development postcss assets/src/css/app.css -o assets/dist/main.css --watch",
-        "build:css": "cross-env NODE_ENV=production postcss assets/src/css/app.css -o assets/dist/main.css",
+        "build:css": "mkdir -p assets/dist/fonts && cp -r assets/src/fonts/* assets/dist/fonts/ && cross-env NODE_ENV=production postcss assets/src/css/app.css -o assets/dist/main.css",
         "dev:js": "esbuild assets/src/js/app.js --bundle --outfile=assets/dist/app.js --watch",
         "build:js": "esbuild assets/src/js/app.js --bundle --minify --outfile=assets/dist/app.min.js",
+        "fonts": "mkdir -p assets/dist/fonts && cp -r assets/src/fonts/* assets/dist/fonts/",
         "images": "node scripts/process-images.js",
-        "dev": "npm run dev:css & npm run dev:js",
+        "dev": "npm run fonts && npm run dev:css & npm run dev:js",
         "build": "npm run build:css && npm run build:js",
         "build:all": "npm run build && npm run images"
     },

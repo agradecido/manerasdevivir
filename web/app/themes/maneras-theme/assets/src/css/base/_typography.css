@@ -1,7 +1,17 @@
 /* resources/css/base/_typography.css */
-@layer base {
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+    body {
+        font-family: 'Nunito', sans-serif;
+    }
+
     h1, h2, h3, h4 {
-        @apply font-sans mt-6 mb-3 leading-tight text-primary;
+        font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.25;
+        color: var(--color-primary);
     }
 
     h1 {
@@ -18,6 +28,7 @@
 
     p {
         @apply font-body text-base leading-7 text-text mb-4;
+        line-height: 1.5;
     }
 
     a {
@@ -31,4 +42,3 @@
     .pregunta {
         @apply font-bold text-primary;
     }
-}

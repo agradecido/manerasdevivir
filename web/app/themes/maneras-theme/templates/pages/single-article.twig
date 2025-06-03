@@ -1,5 +1,5 @@
 {# 
-  Template Name: Single Post 
+  Template Name: Single Article
 #}
 
 {% extends "base/layout.twig" %}
@@ -20,7 +20,7 @@
 			<header class="mb-4">
 				<h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
 
-				<div class="text-gray-600 mb-1">
+				<div class="text-text-subtle mb-1">
 					{% if post.author_name %}
 						Enviado por
 						<strong>{{ post.author_name }}</strong>&nbsp;

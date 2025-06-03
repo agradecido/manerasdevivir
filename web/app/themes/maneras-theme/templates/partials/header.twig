@@ -53,7 +53,7 @@
     {% if primary_menu %}
       <ul class="space-y-2">
         {% for item in primary_menu.items %}
-          <li class="{% if item.current %}text-primary font-bold{% endif %}">
+          <li class="{% if item.current %}font-bold{% endif %}">
             <a href="{{ item.link }}" class="block py-2 hover:text-primary transition">{{ item.title }}</a>
           </li>
         {% endfor %}

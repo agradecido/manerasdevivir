@@ -17,7 +17,9 @@ module.exports = {
         border: 'var(--color-border)',
       },
       fontFamily: {
-        body: ['system-ui', 'sans-serif'],
+        title: ['"Bebas Neue"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        alt: ['"Space Grotesk"', 'sans-serif'],
       },
       maxWidth: {
         'content-width': 'var(--content-width)',

@@ -1,6 +1,7 @@
-{% if breadcrumbs and breadcrumbs|length > 1 %} {# Only show if more than 'Home' #}
-    <nav aria-label="breadcrumb" class="container mx-auto px-4 py-3"> {# Added some basic Tailwind container/padding for consistency #}
-        <ol class="breadcrumb-list flex text-sm text-gray-600 dark:text-gray-400"> {# Basic flex styling, adjust as needed #}
+{% if breadcrumbs %} {# Mostrar siempre que haya breadcrumbs, incluso si solo hay Home #}
+    <!-- Debug: {{ breadcrumbs|length }} breadcrumbs found -->
+    <nav aria-label="breadcrumb" class="container mx-auto px-4 py-3 bg-gray-100 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"> {# Añadido fondo y borde para mayor visibilidad #}
+        <ol class="site-breadcrumbs breadcrumb-list"> {# Usando tanto la clase CSS personalizada como la clase original de Tailwind #}
             {% for item in breadcrumbs %}
                 <li class="breadcrumb-item{% if loop.last %} active font-semibold text-gray-800 dark:text-gray-200{% endif %}"{% if loop.last %} aria-current="page"{% endif %}>
                     {% if item.url and not loop.last %}

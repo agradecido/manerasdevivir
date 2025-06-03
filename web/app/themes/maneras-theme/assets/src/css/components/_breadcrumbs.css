@@ -1,20 +1,38 @@
 /* resources/css/components/_breadcrumbs.css */
 @layer components {
     /* Contenedor ------------------------------------------------------ */
-    .site-breadcrumbs {
+    .site-breadcrumbs, .breadcrumb-list {
       /* full‑width en mobile, 50 % máx. en ≥ md */
-      @apply flex items-center gap-1 text-sm text-text-subtle
-             w-full md:max-w-[50%] whitespace-nowrap;
+      display: flex !important;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+      color: var(--text-subtle, #6B7280);
+      width: 100%;
+      white-space: nowrap;
+    }
+    
+    @media (min-width: 768px) {
+      .site-breadcrumbs, .breadcrumb-list {
+        max-width: 50%;
+      }
     }
   
     /* Enlaces --------------------------------------------------------- */
-    .site-breadcrumbs a {
-      @apply inline-flex items-center gap-1 
-             hover:text-primary transition-colors;
+    .site-breadcrumbs a, .breadcrumb-item a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.2s;
+    }
+    
+    .site-breadcrumbs a:hover, .breadcrumb-item a:hover {
+      color: var(--primary, #3B82F6);
     }
   
     /* Separador (/ o >) ---------------------------------------------- */
-    .site-breadcrumbs span {
-      @apply select-none text-text-subtle;
+    .site-breadcrumbs span, .breadcrumb-item span {
+      user-select: none;
+      color: var(--text-subtle, #6B7280);
     }
 }

@@ -275,6 +275,8 @@ class Theme {
 	public function render_breadcrumbs_partial() {
 		// The 'breadcrumbs' variable is expected to be in the global context
 		// due to the 'add_breadcrumbs_to_context' method.
-		return Timber::compile( 'partials/breadcrumbs.twig' );
+		$context                = Timber::context();
+		$context['breadcrumbs'] = $this->breadcrumbs->get_items();
+		return Timber::compile( 'partials/breadcrumbs.twig', $context );
 	}
 }
