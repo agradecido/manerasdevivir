@@ -36,7 +36,7 @@ wp-cli.local.yml
 .docker
 .idea
 
-/import-*
+import-news.php
 
 deploy.sh
 .htexclude
