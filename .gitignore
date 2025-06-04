@@ -49,3 +49,16 @@ deploy_staging.sh
 deploy.sh
 
 /web/app/themes/maneras-theme/assets/dist
+
+# Specific vendor directories in new wp-content structure
+wp-content/themes/**/vendor
+wp-content/plugins/**/vendor
+wp-content/mu-plugins/**/vendor
+
+# Specific vendor directories in old web/app structure (to help with move)
+web/app/themes/**/vendor
+web/app/plugins/**/vendor
+web/app/mu-plugins/**/vendor
+
+# For temporary renaming strategy
+**/_vendor_ignored

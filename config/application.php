@@ -28,7 +28,7 @@ $root_dir = dirname(__DIR__);
  *
  * @var string
  */
-$webroot_dir = $root_dir . '/web';
+$webroot_dir = $root_dir; // Changed from $root_dir . '/web'
 
 /**
  * Use Dotenv to set required environment variables and load .env file in root
@@ -76,8 +76,8 @@ Config::define('WP_SITEURL', env('WP_SITEURL'));
 /**
  * Custom Content Directory
  */
-Config::define('CONTENT_DIR', '/app');
-Config::define('WP_CONTENT_DIR', $webroot_dir . Config::get('CONTENT_DIR'));
+Config::define('CONTENT_DIR', '/wp-content'); // Changed from '/app'
+Config::define('WP_CONTENT_DIR', $root_dir . Config::get('CONTENT_DIR')); // Changed from $webroot_dir
 Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_DIR'));
 
 /**
@@ -162,7 +162,7 @@ Config::apply();
  * Bootstrap WordPress
  */
 if (!defined('ABSPATH')) {
-    define('ABSPATH', $webroot_dir . '/wp/');
+    define('ABSPATH', $root_dir . '/wp/'); // Changed from $webroot_dir
 }
 
 /**
