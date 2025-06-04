@@ -10,8 +10,6 @@ use ManerasTheme\View;
 // Render the appropriate template based on WordPress template hierarchy.
 if ( is_front_page() ) {
 	View::render( 'pages/front-page.twig' );
-} elseif ( is_post_type_archive( 'article' ) ) {
-	View::render( 'archives/archive-articles.twig', array(), \ManerasTheme\Controllers\ArticlesArchive::class );
 } elseif ( is_home() || is_archive() ) {
 	View::render( 'archives/archive.twig' );
 } elseif ( is_page() ) {

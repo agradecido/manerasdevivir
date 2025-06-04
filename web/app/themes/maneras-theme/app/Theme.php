@@ -203,7 +203,11 @@ class Theme {
 			return 'Single';
 		}
 
-		if ( is_archive() || is_home() ) {
+		if ( is_post_type_archive( 'article' ) ) {
+			return 'Archive';
+		}
+
+		if ( is_archive() ) {
 			return 'Archive';
 		}
 
