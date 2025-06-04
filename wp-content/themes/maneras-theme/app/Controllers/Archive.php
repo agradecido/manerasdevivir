@@ -2,7 +2,6 @@
 
 namespace ManerasTheme\Controllers;
 
-use Timber\Timber;
 use ManerasTheme\Traits\WithPagination;
 
 /**
@@ -35,7 +34,7 @@ class Archive extends Controller {
 	public function __construct() {
 		global $wp_query;
 		$this->last_query = $wp_query;
-		$this->posts      = Timber::get_posts( $wp_query );
+		$this->posts      = $wp_query->posts; // Replaced Timber::get_posts
 		$this->pagination = $this->get_pagination_data( $wp_query );
 	}
 
@@ -64,7 +63,7 @@ class Archive extends Controller {
 	 */
 	public function posts() {
 		global $wp_query;
-		return Timber::get_posts( $wp_query );
+		return $wp_query->posts; // Replaced Timber::get_posts
 	}
 
 	/**

@@ -1,18 +1,36 @@
 <?php
 
-use Timber\Timber;
 use ManerasTheme\Theme;
 use ManerasTheme\Controllers\Pages\SubmitNews;
 use ManerasTheme\Features\NewsSubmission;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-Timber::init();
+// Initialize Twig
+$twig_loader = null;
+$twig_env = null;
+if (class_exists('\Twig\Loader\FilesystemLoader')) {
+    $twig_loader = new \Twig\Loader\FilesystemLoader(get_template_directory() . '/templates');
+}
+if ($twig_loader && class_exists('\Twig\Environment')) {
+    $twig_env = new \Twig\Environment($twig_loader, [
+        'cache' => false, // Or get_template_directory() . '/cache/twig',
+        'debug' => defined('WP_DEBUG') && WP_DEBUG,
+    ]);
+    // Initialize Twig in the Theme class
+    if ($twig_env && class_exists('ManerasTheme\Theme')) {
+        // ManerasTheme\Theme::init_twig($twig_env); // Will be called after $theme_instance is created
+    }
+}
 
-Timber::$dirname = array( 'templates' );
 
 // Load theme logic.
-new Theme();
+$theme_instance = new Theme();
+
+// Initialize Twig in the Theme class, now passing the instance
+if ($twig_env && isset($theme_instance) && method_exists('ManerasTheme\Theme', 'init_twig')) {
+    ManerasTheme\Theme::init_twig($twig_env, $theme_instance);
+}
 
 // Registrar el controlador de la página de envío de noticias.
 SubmitNews::register();
@@ -25,12 +43,17 @@ NewsSubmission::init();
  */
 function maneras_get_footer() {
 	$app_controller         = new ManerasTheme\Controllers\App();
-	$context                = Timber::context();
-	$context['site']        = $app_controller->site();
-	$context['menu']        = isset( $context['menu'] ) ? $context['menu'] : $app_controller->menu();
-	$context['footer_menu'] = isset( $context['menu'] ) && isset( $context['menu']['footer'] ) ? $context['menu']['footer'] : null;
+	// Simplified context for now
+	$context = []; // Start with empty context
+	$context['site'] = $app_controller->site(); // Assuming this method doesn't use Timber
+	// Menu fetching likely needs direct WP calls now or a refactored App controller method
+	$context['menu'] = $app_controller->menu();
+	$context['footer_menu'] = isset( $context['menu']['footer'] ) ? $context['menu']['footer'] : null;
+	// ... other essential global context items
 
-	Timber::render( 'partials/footer.twig', $context );
+	if (ManerasTheme\Theme::get_twig()) {
+		ManerasTheme\Theme::get_twig()->display( 'partials/footer.twig', $context );
+	}
 }
 
 /**
@@ -38,9 +61,11 @@ function maneras_get_footer() {
  */
 function maneras_get_header() {
 	$header_controller = new ManerasTheme\Controllers\Header();
-	$context           = $header_controller->get_context();
+	$context           = $header_controller->get_context(); // Assuming this doesn't use Timber
 
-	Timber::render( 'partials/header.twig', $context );
+	if (ManerasTheme\Theme::get_twig()) {
+		ManerasTheme\Theme::get_twig()->display( 'partials/header.twig', $context );
+	}
 }
 
 /**

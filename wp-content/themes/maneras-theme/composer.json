@@ -7,6 +7,6 @@
     }
   },
   "require": {
-    "timber/timber": "^2.0"
+    "twig/twig": "^3.0"
   }
 }

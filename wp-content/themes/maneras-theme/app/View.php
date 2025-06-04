@@ -2,7 +2,6 @@
 
 namespace ManerasTheme;
 
-use Timber\Timber;
 use ManerasTheme\Controllers\Controller;
 
 class View {
@@ -25,8 +24,23 @@ class View {
 			$context = array_merge( $context, $data );
 		}
 
-		// Render the view.
-		return Timber::render( $template, $context, false, $return );
+		// Render the view using Twig directly.
+		$twig = \ManerasTheme\Theme::get_twig();
+		if (!$twig) {
+			// Handle error: Twig environment not available
+			if (defined('WP_DEBUG') && WP_DEBUG) {
+				error_log('Twig environment not available in View::render for template: ' . $template);
+			}
+			return $return ? '' : null; // Or trigger_error / throw exception
+		}
+
+		if ($return) {
+			return $twig->render($template, $context);
+		} else {
+			$twig->display($template, $context);
+			// Timber::render with $return=false (default for 3rd param) didn't have a return val.
+			// display() method in Twig is void. So, no explicit return needed here for that case.
+		}
 	}
 
 	/**

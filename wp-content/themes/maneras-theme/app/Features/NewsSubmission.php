@@ -2,7 +2,7 @@
 
 namespace ManerasTheme\Features;
 
-use Timber\Timber;
+// Removed: use Timber\Timber;
 use WP_Error;
 
 class NewsSubmission {
@@ -22,7 +22,14 @@ class NewsSubmission {
 	 * @return string Rendered form HTML.
 	 */
 	public static function renderForm(): string {
-		return \Timber\Timber::compile(
+		$twig = \ManerasTheme\Theme::get_twig();
+		if (!$twig) {
+			if (defined('WP_DEBUG') && WP_DEBUG) {
+				error_log('Twig environment not available in NewsSubmission::renderForm');
+			}
+			return '<!-- News submission form could not be rendered: Twig not available -->';
+		}
+		return $twig->render(
 			'partials/form-news-submission.twig',
 			array(
 				'submitted' => isset( $_GET['news_submitted'] ),

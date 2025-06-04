@@ -1,7 +1,6 @@
 <?php
 namespace ManerasTheme\Controllers;
 
-use Timber\Timber;
 use ManerasTheme\Traits\WithPagination;
 
 class FrontPage extends Controller {
@@ -44,7 +43,7 @@ class FrontPage extends Controller {
 			)
 		);
 
-		return Timber::get_posts( $featured_query );
+		return $featured_query->posts; // Replaced Timber::get_posts
 	}
 
 	/**
@@ -85,7 +84,7 @@ class FrontPage extends Controller {
 		$this->last_query = $query;
 
 		// Devolver los posts.
-		return Timber::get_posts( $query );
+		return $query->posts; // Replaced Timber::get_posts
 	}
 
 	/**

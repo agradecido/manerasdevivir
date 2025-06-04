@@ -2,7 +2,6 @@
 
 namespace ManerasTheme\Traits;
 
-use Timber\Timber;
 use WP_Query;
 
 /**
@@ -75,7 +74,7 @@ trait WithPagination {
 		$this->last_query = $query;
 
 		// Devolvemos los posts.
-		return Timber::get_posts( $query );
+		return $query->posts; // Replaced Timber::get_posts
 	}
 
 	/**

@@ -2,8 +2,8 @@
 
 namespace ManerasTheme\Controllers;
 
-use Timber\Timber;
-use Timber\Post;
+// Removed use Timber\Timber;
+// Removed use Timber\Post;
 
 /**
  * Single post controller.
@@ -16,7 +16,7 @@ class Single extends Controller {
 	/**
 	 * The post object.
 	 *
-	 * @var \Timber\Post
+	 * @var \WP_Post|null
 	 */
 	public $post;
 
@@ -24,9 +24,12 @@ class Single extends Controller {
 	 * Constructor.
 	 */
 	public function __construct() {
-		$this->post = Timber::get_post();
-		$this->setup_post_date();
-		$this->setup_post_author();
+		global $post; // Ensure $post is available if get_the_ID() is problematic in some contexts
+		$this->post = get_post(get_the_ID()); // Replaced Timber::get_post()
+		if ($this->post) { // Check if post was successfully fetched
+			$this->setup_post_date();
+			$this->setup_post_author();
+		}
 	}
 
 	/**
@@ -145,6 +148,6 @@ class Single extends Controller {
 			)
 		);
 
-		return Timber::get_posts( $related_query );
+		return $related_query->posts; // Replaced Timber::get_posts
 	}
 }

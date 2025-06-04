@@ -2,8 +2,6 @@
 
 namespace ManerasTheme\Controllers;
 
-use Timber\Timber;
-
 class App extends Controller {
 
 	/**
@@ -29,10 +27,43 @@ class App extends Controller {
 	 * @return array
 	 */
 	public function menu() {
-		return array(
-			'primary' => Timber::get_menu( 'primary_navigation' ),
-			'footer'  => Timber::get_menu( 'footer_navigation' ),
-		);
+		$menus = [];
+
+		// Primary Navigation
+		$primary_menu_items = wp_get_nav_menu_items('primary_navigation');
+		$processed_primary = [];
+		if ($primary_menu_items) {
+			foreach ($primary_menu_items as $item) {
+				// Basic processing, can be expanded
+				$processed_primary[] = [
+					'id' => $item->ID,
+					'title' => $item->title,
+					'url' => $item->url,
+					'target' => $item->target,
+					'classes' => implode(' ', $item->classes ?: []),
+					// Note: Children need to be processed recursively if a hierarchical menu is needed directly
+				];
+			}
+		}
+		$menus['primary'] = $processed_primary;
+
+		// Footer Navigation
+		$footer_menu_items = wp_get_nav_menu_items('footer_navigation');
+		$processed_footer = [];
+		if ($footer_menu_items) {
+			foreach ($footer_menu_items as $item) {
+				$processed_footer[] = [
+					'id' => $item->ID,
+					'title' => $item->title,
+					'url' => $item->url,
+					'target' => $item->target,
+					'classes' => implode(' ', $item->classes ?: []),
+				];
+			}
+		}
+		$menus['footer'] = $processed_footer;
+
+		return $menus;
 	}
 
 	/**
@@ -41,10 +72,11 @@ class App extends Controller {
 	 * @return mixed
 	 */
 	public function sidebar() {
-		if ( is_active_sidebar( 'sidebar-primary' ) ) {
-			return Timber::get_widgets( 'sidebar-primary' );
+		if (is_active_sidebar('sidebar-primary')) {
+			ob_start();
+			dynamic_sidebar('sidebar-primary');
+			return ob_get_clean(); // Returns the HTML content as a string
 		}
-
 		return null;
 	}
 }

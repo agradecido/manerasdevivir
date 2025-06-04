@@ -2,12 +2,13 @@
 
 namespace ManerasTheme;
 
-use Timber\Timber;
 use ManerasTheme\Controllers\Controller;
 use ManerasTheme\ImageProcessor;
 use ManerasTheme\Breadcrumbs;
 
 class Theme {
+
+	private static $twig;
 
 	/**
 	 * Breadcrumbs instance.
@@ -28,7 +29,7 @@ class Theme {
 	 */
 	public function __construct() {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
-		add_filter( 'timber/context', array( $this, 'add_to_context' ) );
+		// add_filter( 'timber/context', array( $this, 'add_to_context' ) ); // Removed
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 
 		// Initialize the ImageProcessor.
@@ -37,8 +38,21 @@ class Theme {
 		// Initialize Breadcrumbs.
 		$this->breadcrumbs = new Breadcrumbs();
 		add_action( 'wp_head', array( $this, 'display_breadcrumbs_json_ld' ) );
-		add_filter( 'timber/context', array( $this, 'add_breadcrumbs_to_context' ) );
-		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
+		// add_filter( 'timber/context', array( $this, 'add_breadcrumbs_to_context' ) ); // Removed
+		// add_filter( 'timber/twig', array( $this, 'add_to_twig' ) ); // Removed
+	}
+
+	public static function init_twig(\Twig\Environment $twig_instance, Theme $theme_instance) {
+		self::$twig = $twig_instance;
+		// Add custom Twig functions now that Twig is initialized and we have the theme instance
+		if (self::$twig && $theme_instance) {
+			self::$twig->addFunction(new \Twig\TwigFunction('render_breadcrumbs', [$theme_instance, 'render_breadcrumbs_for_twig']));
+			self::$twig->addFunction(new \Twig\TwigFunction('asset', [$theme_instance, 'get_asset_url']));
+		}
+	}
+
+	public static function get_twig(): ?\Twig\Environment {
+		return self::$twig;
 	}
 
 	/**
@@ -117,17 +131,18 @@ class Theme {
 	}
 
 	/**
-	 * Add global data to Timber context.
+	 * Get global data for Twig context.
+	 * This replaces the old add_to_context and add_breadcrumbs_to_context.
 	 *
-	 * @param array $context The Timber context.
 	 * @return array
 	 */
-	public function add_to_context( $context ) {
+	public function get_global_context(): array {
+		$context = [];
 		// Load the appropriate controller.
 		$controller = $this->load_controller();
 
 		// Merge controller data with context.
-		$controller_data = $controller->toArray();
+		$controller_data = $controller->toArray(); // Assuming toArray() doesn't use Timber
 
 		if ( ! empty( $controller_data ) ) {
 			$context = array_merge( $context, $controller_data );
@@ -136,11 +151,16 @@ class Theme {
 		// Always load App controller for global data.
 		if ( ! ( $controller instanceof \ManerasTheme\Controllers\App ) ) {
 			$app      = new \ManerasTheme\Controllers\App();
-			$app_data = $app->toArray();
+			$app_data = $app->toArray(); // Assuming toArray() doesn't use Timber
 
 			if ( ! empty( $app_data ) ) {
 				$context = array_merge( $context, $app_data );
 			}
+		}
+
+		// Add breadcrumbs to context
+		if ( $this->breadcrumbs ) {
+			$context['breadcrumbs'] = $this->breadcrumbs->get_items();
 		}
 
 		return $context;
@@ -230,30 +250,16 @@ class Theme {
 	}
 
 	/**
-	 * Adds breadcrumb items to the Timber context.
-	 *
-	 * @param array $context Timber context.
-	 * @return array
-	 */
-	public function add_breadcrumbs_to_context( $context ) {
-		if ( $this->breadcrumbs ) {
-			$context['breadcrumbs'] = $this->breadcrumbs->get_items();
-		}
-		return $context;
-	}
-
-	/**
-	 * Adds custom functions to Twig.
-	 *
-	 * @param \Twig\Environment $twig The Twig environment.
-	 * @return \Twig\Environment
-	 */
+	// This method is now removed, its logic will be incorporated elsewhere,
+	// likely into init_twig or a method called by it if $this context is needed.
+	/*
 	public function add_to_twig( $twig ) {
 		$twig->addFunction( new \Twig\TwigFunction( 'render_breadcrumbs', array( $this, 'render_breadcrumbs_partial' ) ) );
 		$twig->addFunction( new \Twig\TwigFunction( 'asset', array( $this, 'get_asset_url' ) ) );
 		// Add other functions if needed.
 		return $twig;
 	}
+	*/
 
 	/**
 	 * Gets the URL for an asset file.
@@ -272,15 +278,25 @@ class Theme {
 
 	/**
 	 * Renders the breadcrumbs partial.
-	 * Uses the 'breadcrumbs' from the global context.
 	 *
 	 * @return string
 	 */
-	public function render_breadcrumbs_partial() {
-		// The 'breadcrumbs' variable is expected to be in the global context
-		// due to the 'add_breadcrumbs_to_context' method.
-		$context                = Timber::context();
-		$context['breadcrumbs'] = $this->breadcrumbs->get_items();
-		return Timber::compile( 'partials/breadcrumbs.twig', $context );
+	public function render_breadcrumbs_for_twig() {
+		// This method is intended to be called by a Twig function.
+		// It should have access to $this->breadcrumbs.
+		if (self::get_twig() && $this->breadcrumbs) {
+			return self::get_twig()->render('partials/breadcrumbs.twig', [
+				'breadcrumbs' => $this->breadcrumbs->get_items()
+			]);
+		}
+		return '';
+	}
+	// Kept original for now if called directly, but will need context
+	public function render_breadcrumbs_partial(array $context = []) {
+		if (self::get_twig() && $this->breadcrumbs) {
+			$context['breadcrumbs'] = $this->breadcrumbs->get_items();
+			return self::get_twig()->render('partials/breadcrumbs.twig', $context);
+		}
+		return '';
 	}
 }
