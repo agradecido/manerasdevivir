@@ -4,6 +4,8 @@ namespace ManerasTheme\Controllers;
 
 use Timber\Timber;
 use Timber\Post;
+use ManerasTheme\Traits\WithBreadcrumbs;
+use ManerasTheme\Breadcrumbs;
 
 /**
  * Single post controller.
@@ -12,6 +14,8 @@ use Timber\Post;
  * @package ManerasTheme\Controllers
  */
 class Single extends Controller {
+	
+	use WithBreadcrumbs;
 
 	/**
 	 * The post object.
@@ -27,6 +31,16 @@ class Single extends Controller {
 		$this->post = Timber::get_post();
 		$this->setup_post_date();
 		$this->setup_post_author();
+		$this->setup_breadcrumbs();
+	}
+
+	/**
+	 * Setup breadcrumbs for the current post.
+	 */
+	private function setup_breadcrumbs() {
+		$breadcrumbs = new Breadcrumbs();
+		$this->data['breadcrumbs'] = $breadcrumbs->get_items();
+		$this->data['breadcrumbs_json_ld'] = $breadcrumbs->get_json_ld();
 	}
 
 	/**

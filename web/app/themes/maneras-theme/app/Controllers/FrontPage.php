@@ -3,9 +3,12 @@ namespace ManerasTheme\Controllers;
 
 use Timber\Timber;
 use ManerasTheme\Traits\WithPagination;
+use ManerasTheme\Traits\WithBreadcrumbs;
+use ManerasTheme\Breadcrumbs;
 
 class FrontPage extends Controller {
 	use WithPagination;
+	use WithBreadcrumbs;
 
 	/**
 	 * Posts por página para artículos recientes.
@@ -21,6 +24,7 @@ class FrontPage extends Controller {
 		$this->data['featured']   = $this->featured();
 		$this->data['recent']     = $this->recent();
 		$this->data['pagination'] = $this->pagination();
+		$this->setup_breadcrumbs();
 	}
 
 	/**

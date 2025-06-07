@@ -4,9 +4,11 @@ namespace ManerasTheme\Controllers;
 
 use Timber\Timber;
 use ManerasTheme\Traits\WithPagination;
+use ManerasTheme\Traits\WithBreadcrumbs;
 
 class Search extends Controller {
 	use WithPagination;
+	use WithBreadcrumbs;
 
 	/**
 	 * Constructor - inicializa la consulta principal para la paginación
@@ -14,6 +16,7 @@ class Search extends Controller {
 	public function __construct() {
 		global $wp_query;
 		$this->last_query = $wp_query;
+		$this->setup_breadcrumbs();
 	}
 
 	/**

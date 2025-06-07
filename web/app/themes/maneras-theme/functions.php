@@ -4,6 +4,8 @@ use Timber\Timber;
 use ManerasTheme\Theme;
 use ManerasTheme\Controllers\Pages\SubmitNews;
 use ManerasTheme\Features\NewsSubmission;
+use ManerasTheme\Breadcrumbs;
+
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -62,3 +64,16 @@ function maneras_make_youtube_videos_responsive( $content ): string {
 }
 add_filter( 'the_content', 'maneras_make_youtube_videos_responsive' );
 add_filter( 'widget_text_content', 'maneras_make_youtube_videos_responsive' );
+
+add_filter(
+	'timber/context',
+	function ( $context ) {
+		$breadcrumbs = new Breadcrumbs();
+		$items       = $breadcrumbs->get_items();
+		$json_ld     = $breadcrumbs->get_json_ld();
+
+		$context['breadcrumbs']         = $items;
+		$context['breadcrumbs_json_ld'] = $json_ld;
+		return $context;
+	}
+);

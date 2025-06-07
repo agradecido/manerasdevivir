@@ -4,6 +4,8 @@ namespace ManerasTheme\Controllers;
 
 use Timber\Timber;
 use ManerasTheme\Traits\WithPagination;
+use ManerasTheme\Traits\WithBreadcrumbs;
+use ManerasTheme\Breadcrumbs;
 
 /**
  * Archive controller.
@@ -14,6 +16,7 @@ use ManerasTheme\Traits\WithPagination;
  */
 class Archive extends Controller {
 	use WithPagination;
+	use WithBreadcrumbs;
 
 	/**
 	 * Posts in the archive.
@@ -54,6 +57,7 @@ class Archive extends Controller {
 		$this->last_query  = $wp_query;
 		$this->posts       = Timber::get_posts( $wp_query );
 		$this->pagination  = $this->get_pagination_data( $wp_query );
+		$this->setup_breadcrumbs();
 	}
 
 	/**
