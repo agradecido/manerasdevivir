@@ -30,6 +30,16 @@ class Plugin {
 			2
 		);
 
+		add_action( 'admin_menu', function () {
+    		remove_menu_page( 'edit.php' ); // Hide the default Posts menu))
+		} );
+
+		add_action( 'admin_menu', function () {
+    		remove_menu_page( 'separator1' );
+		}, 999 );
+
+		// 4) Registrar hooks para los CPTs y taxonomías	
+
 		// 3) Permalink: noticias/{ID}/{slug}/
 		// add_filter(
 		// 	'post_type_link',

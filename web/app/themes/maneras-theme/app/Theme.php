@@ -39,6 +39,9 @@ class Theme {
 		add_action( 'wp_head', array( $this, 'display_breadcrumbs_json_ld' ) );
 		add_filter( 'timber/context', array( $this, 'add_breadcrumbs_to_context' ) );
 		add_filter( 'timber/twig', array( $this, 'add_to_twig' ) );
+
+		// Set posts per page for specific post type archives.
+		$this->posts_per_page();
 	}
 
 	/**
@@ -282,5 +285,28 @@ class Theme {
 		$context                = Timber::context();
 		$context['breadcrumbs'] = $this->breadcrumbs->get_items();
 		return Timber::compile( 'partials/breadcrumbs.twig', $context );
+	}
+
+	/**
+	 * Sets the number of posts per page for specific post type archives.
+	 * This method hooks into the 'pre_get_posts' action to modify the main query.
+	 */
+	public function posts_per_page() {
+		add_action(
+			'pre_get_posts',
+			function ( $query ) {
+				if ( is_admin() || ! $query->is_main_query() ) {
+					return;
+				}
+
+				if ( $query->is_post_type_archive( 'article' ) ) {
+					$query->set( 'posts_per_page', 12 );
+				}
+
+				if ( $query->is_post_type_archive( 'event' ) ) {
+					$query->set( 'posts_per_page', 20 );
+				}
+			}
+		);
 	}
 }

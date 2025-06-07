@@ -92,6 +92,7 @@
 				</section>
 			{% endif %}
 
+			{#
 			{% if post.thumbnail %}
 				{% if post.thumbnail.src %}
 					<img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}" class="w-full rounded-lg">
@@ -99,6 +100,7 @@
 					<img src="{{ post.thumbnail.src('large') }}" alt="{{ post.thumbnail.alt }}" class="w-full rounded-lg">
 				{% endif %}
 			{% endif %}
+			#}
 		</article>
 		<aside class="md:w-1/3 lg:w-1/4 mt-8 md:mt-0">
 			<h3>Side bar</h3>

@@ -30,13 +30,30 @@ class Archive extends Controller {
 	public $pagination;
 
 	/**
+	 * Archive title.
+	 *
+	 * @var string
+	 */
+	public $title;
+
+	/**
+	 * Archive description.
+	 *
+	 * @var string
+	 */
+	public $description;
+
+
+	/**
 	 * Constructor - inicializa la consulta principal para la paginación
 	 */
 	public function __construct() {
 		global $wp_query;
-		$this->last_query = $wp_query;
-		$this->posts      = Timber::get_posts( $wp_query );
-		$this->pagination = $this->get_pagination_data( $wp_query );
+		$this->title       = $this->title();
+		$this->description = $this->description();
+		$this->last_query  = $wp_query;
+		$this->posts       = Timber::get_posts( $wp_query );
+		$this->pagination  = $this->get_pagination_data( $wp_query );
 	}
 
 	/**
@@ -45,6 +62,12 @@ class Archive extends Controller {
 	 * @return string
 	 */
 	public function title() {
+		if ( 'article' === get_post_type() && is_archive() && ! is_tax() ) {
+			return __( 'Archivo de Noticias', 'maneras-theme' );
+		}
+		if ( 'event' === get_post_type() && is_archive() && ! is_tax() ) {
+			return __( 'Agenda de conciertos', 'maneras-theme' );
+		}		
 		return get_the_archive_title();
 	}
 

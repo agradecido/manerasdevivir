@@ -16,7 +16,7 @@
 
 {% block content %}
 	<div class="container mx-auto py-8">
-		<header class="mb-8 text-center">
+		<header class="mb-8">
 			<h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
 
 			{% if description %}
@@ -29,20 +29,30 @@
 		{% if posts %}
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{% for post in posts %}
-					<div class="bg-white rounded-lg shadow-md overflow-hidden">
-						{% if post.thumbnail %}
-							<img src="{{ post.thumbnail.src('medium') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-48 object-cover">
-						{% endif %}
+					<a href="{{ post.link }}" class="hover:text-primary">
+						<div class="bg-white rounded-lg shadow-md overflow-hidden">
+							{% if post.thumbnail %}
+								<img src="{{ post.thumbnail.src('high') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-48 object-cover">
+							{% endif %}
 
-						<div class="p-4">
-							<h2 class="font-bold text-xl mb-2">
-								<a href="{{ post.link }}" class="hover:text-primary">{{ post.title }}</a>
-							</h2>
-							<div class="text-gray-600 text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
-							<p class="text-gray-700">{{ post.excerpt.length(120) }}</p>
-							<a href="{{ post.link }}" class="inline-block mt-4 text-primary hover:underline">Read more</a>
+							<div class="p-4">
+								<h2 class="font-bold text-xl mb-2">{{ post.title }}</h2>
+								<div class="text-gray-600 text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
+								<ul>
+									{% if post.firma_sender %}
+										<li>
+											<span class="text-gray-600">Por
+												{{ post.firma_sender }}</span>
+										</li>
+									{% endif %}
+									<li>
+										<span class="text-gray-600">{{ post.date | date("F j, Y") }}</span>
+									</li>
+								</ul>
+
+							</div>
 						</div>
-					</div>
+					</a>
 				{% endfor %}
 			</div>
 
