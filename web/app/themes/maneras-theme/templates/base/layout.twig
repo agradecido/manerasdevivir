@@ -8,7 +8,6 @@
   {{ function('wp_head') }}
   {% block head %}{% endblock %}
 
-  {# Añadir JSON-LD para breadcrumbs #}
   {% if breadcrumbs_json_ld %}
     {{ breadcrumbs_json_ld|raw }}
   {% endif %}  

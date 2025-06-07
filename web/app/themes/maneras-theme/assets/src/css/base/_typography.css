@@ -42,3 +42,7 @@
     .pregunta {
         @apply font-bold text-primary;
     }
+
+    .read-more {
+        @apply text-primary hover:underline;
+    }
