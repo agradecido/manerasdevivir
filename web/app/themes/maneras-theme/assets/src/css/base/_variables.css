@@ -5,14 +5,6 @@ html {
     font-size: 18px;
 }
 
-.content-container {
-    max-width: var(--content-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
 :root {
     --color-bg: #FFFFFF;
     --color-surface: #E9ECEF;
@@ -21,9 +13,11 @@ html {
     --color-text: #212529;
     --color-border: #DEE2E6;
     --color-text-subtle: #cc6600;
-
-    --site-width: 1600px;
-    --content-width: 1000px;
+    --site-width: 100%;
+    --main-container-width: 95em; /* 1520px */
+    --heading-width: 50em; /* 800px */
+    --featured-image-container-width: 75em; /* 1200px */
+    --reading-content-width: 38em; /* 608px */
 }
 
 .dark {

@@ -1,5 +1,5 @@
 {% if breadcrumbs %} {# Mostrar siempre que haya breadcrumbs, incluso si solo hay Home #}
-    <nav aria-label="breadcrumb" class="container mx-auto px-4 py-3">
+    <nav aria-label="breadcrumb" class="mb-3 mb-2">
         <ol class="site-breadcrumbs breadcrumb-list"> {# Usando tanto la clase CSS personalizada como la clase original de Tailwind #}
             {% for item in breadcrumbs %}
                 <li class="breadcrumb-item{% if loop.last %} active font-semibold text-gray-800 dark:text-gray-200{% endif %}"{% if loop.last %} aria-current="page"{% endif %}>

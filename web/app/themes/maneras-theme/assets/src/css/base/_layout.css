@@ -1,0 +1,33 @@
+/* Layout components */
+@layer base {
+    .site-header {
+        padding: 1rem;
+    }
+
+    .main-container {
+        max-width: var(--main-container-width);
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .reading-container {
+        max-width: var(--reading-content-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .featured-image-container {
+        max-width: var(--featured-image-container-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .heading-container {
+        border: 1px solid lime;
+        max-width: var(--heading-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

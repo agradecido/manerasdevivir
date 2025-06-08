@@ -14,23 +14,31 @@
 </head>
 
 <body class="bg-bg text-text {{ body_class }}">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  
-  {% block breadcrumbs %}
-    {% include 'partials/breadcrumbs.twig' %}
-  {% endblock %}
-  
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-  
-  <footer>
-    {% block footer %}{% endblock %}
-  </footer>
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+      
+    <div class="main-contaier">
 
-  {% block scripts %}{% endblock %}
-  {{ function('wp_footer') }}
+      {% block breadcrumbs %}
+	  	<div class="breadcrumbs-container max-w-100 max-w-screen-lg">
+       		{% include 'partials/breadcrumbs.twig' %}
+		</div>
+	  {% endblock %}
+	  
+     <main>
+        {% block content %}{% endblock %}
+      </main>
+      
+      <footer>
+        {% block footer %}{% endblock %}
+      </footer>
+
+  </div>
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {% endblock %}
+    {% block scripts %}{% endblock %}
+    {{ function('wp_footer') }}
 </body>
 </html>

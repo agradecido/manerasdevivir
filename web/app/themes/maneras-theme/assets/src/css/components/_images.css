@@ -8,8 +8,10 @@
   .site-container {
     @apply relative overflow-hidden;
     height: 0;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
   }
-
+  
   .site-container iframe,
   .site-container object,
   .site-container embed,

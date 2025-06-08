@@ -14,7 +14,8 @@
     
     @media (min-width: 768px) {
       .site-breadcrumbs, .breadcrumb-list {
-        max-width: 50%;
+        max-width: var(--heading-width);
+        width: var(--heading-width);
       }
     }
   
