@@ -15,8 +15,8 @@
 {% endblock %}
 
 {% block content %}
-	<div class="mx-auto pb-8 flex flex-col items-center">
-		<article>
+	<div class="container mx-auto pb-8 flex flex-col lg:flex-row lg:gap-8">
+		<article class="lg:w-7/10">
 			<header class="heading-container mb-4">
 				<h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
 
@@ -57,50 +57,49 @@
 				{{ post.content }}
 
 
-			{% include 'components/post-tags.twig' %}
+				{% include 'components/post-tags.twig' %}
 
-			{% if comments %}
-				<section class="mt-12">
-					<h2 class="text-2xl font-bold mb-6">Comments ({{ comments.count }})</h2>
+				{% if comments %}
+					<section class="mt-12">
+						<h2 class="text-2xl font-bold mb-6">Comments ({{ comments.count }})</h2>
 
-					<div class="space-y-6">
-						{% for comment in comments.list %}
-							<div class="bg-gray-50 p-4 rounded">
-								<div class="font-medium">{{ comment.author.name }}</div>
-								<div class="text-sm text-gray-600 mb-2">{{ comment.date | date("F j, Y") }}</div>
-								<div>{{ comment.content }}</div>
-							</div>
-						{% endfor %}
-					</div>
-				</section>
-			{% endif %}
-
-			{% if related %}
-				<section class="mt-12">
-					<h2 class="text-2xl font-bold mb-6">Related Posts</h2>
-
-					<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{% for related_post in related %}
-							<div class="bg-white rounded-lg shadow-md overflow-hidden">
-								{% if related_post.thumbnail %}
-									<img src="{{ related_post.thumbnail.src('medium') }}" alt="{{ related_post.thumbnail.alt }}" class="w-full h-48 object-cover">
-								{% endif %}
-
-								<div class="p-4">
-									<h3 class="font-bold text-lg mb-2">
-										<a href="{{ related_post.link }}" class="hover:text-primary">{{ related_post.title }}</a>
-									</h3>
-									<p class="text-gray-700 text-sm">{{ related_post.excerpt.length(120) }}</p>
+						<div class="space-y-6">
+							{% for comment in comments.list %}
+								<div class="bg-gray-50 p-4 rounded">
+									<div class="font-medium">{{ comment.author.name }}</div>
+									<div class="text-sm text-gray-600 mb-2">{{ comment.date | date("F j, Y") }}</div>
+									<div>{{ comment.content }}</div>
 								</div>
-							</div>
-						{% endfor %}
-					</div>
-				</section>
-			{% endif %}
-			
+							{% endfor %}
+						</div>
+					</section>
+				{% endif %}
+
+				{% if related %}
+					<section class="mt-12">
+						<h2 class="text-2xl font-bold mb-6">Related Posts</h2>
+
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+							{% for related_post in related %}
+								<div class="bg-white rounded-lg shadow-md overflow-hidden">
+									{% if related_post.thumbnail %}
+										<img src="{{ related_post.thumbnail.src('medium') }}" alt="{{ related_post.thumbnail.alt }}" class="w-full h-48 object-cover">
+									{% endif %}
+
+									<div class="p-4">
+										<h3 class="font-bold text-lg mb-2">
+											<a href="{{ related_post.link }}" class="hover:text-primary">{{ related_post.title }}</a>
+										</h3>
+										<p class="text-gray-700 text-sm">{{ related_post.excerpt.length(120) }}</p>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</section>
+				{% endif %}
 			</div>
 		</article>
-		<aside class="mt-8">
+		<aside class="lg:w-3/10 mt-8 lg:mt-0">
 			<h3>Side bar</h3>
 			<p>Here you can add any additional content or widgets you want to display alongside the post.</p>
 		</aside>
