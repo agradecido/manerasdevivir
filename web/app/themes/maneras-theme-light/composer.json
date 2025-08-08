@@ -1,7 +1,0 @@
-{
-  "name": "manerasdevivir/theme-light",
-  "type": "wordpress-theme",
-  "require": {
-    "timber/timber": "^2.0"
-  }
-}
