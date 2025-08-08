@@ -16,7 +16,8 @@
 
 {% block content %}
 	<div class="container mx-auto pb-8 flex flex-col lg:flex-row lg:gap-8">
-		<article class="lg:w-7/10">
+		<article class="lg:w-3/4">
+
 			<header class="heading-container mb-4">
 				<h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
 
@@ -99,10 +100,12 @@
 				{% endif %}
 			</div>
 		</article>
-		<aside class="lg:w-3/10 mt-8 lg:mt-0">
+
+		<aside class="lg:w-1/4 mt-8 lg:mt-0">
 			<h3>Side bar</h3>
 			<p>Here you can add any additional content or widgets you want to display alongside the post.</p>
 		</aside>
+
 	</div>
 {% endblock %}
 

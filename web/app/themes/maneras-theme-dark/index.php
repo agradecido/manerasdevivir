@@ -1,5 +1,5 @@
 <?php
-use Timber\\Timber;
+use Timber\Timber;
 
 $context = Timber::context();
 $context['posts'] = Timber::get_posts();
