@@ -1,0 +1,7 @@
+{
+  "name": "manerasdevivir/theme-dark",
+  "type": "wordpress-theme",
+  "require": {
+    "timber/timber": "^2.0"
+  }
+}
