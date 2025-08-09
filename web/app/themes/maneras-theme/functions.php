@@ -32,17 +32,19 @@ function maneras_get_footer() {
 	$context['menu']        = isset( $context['menu'] ) ? $context['menu'] : $app_controller->menu();
 	$context['footer_menu'] = isset( $context['menu'] ) && isset( $context['menu']['footer'] ) ? $context['menu']['footer'] : null;
 
-	Timber::render( 'partials/footer.twig', $context );
+	Timber::render( 'base/footer.twig', $context );
 }
 
 /**
  * Helper function to get the header with proper context
+ * 
+ * @return void
  */
-function maneras_get_header() {
+function maneras_get_header(): void {
 	$header_controller = new ManerasTheme\Controllers\Header();
 	$context           = $header_controller->get_context();
 
-	Timber::render( 'partials/header.twig', $context );
+	Timber::render( 'base/header.twig', $context );
 }
 
 /**
@@ -54,26 +56,36 @@ function maneras_get_header() {
  */
 function maneras_make_youtube_videos_responsive( $content ): string {
 
-	$pattern = '/<iframe.*?src=["\'](https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/.+?)["\'].*?><\/iframe>/i';
+	$pattern = '/<iframe[^>]*?src=["\'](https?:\/\/(?:www\.)?(?:youtube\.com|youtu\.be)\/[^"\']+)["\'][^>]*>\s*<\/iframe>/is';
 
-	$replacement = '<div class="site-container site-container--16x9">$0</div>';
+    $replacement = '<div class="site-container site-container--16x9">$0</div>';
 
-	$content = preg_replace( $pattern, $replacement, $content );
+    $content = preg_replace( $pattern, $replacement, $content );
 
-	return $content;
-}
-add_filter( 'the_content', 'maneras_make_youtube_videos_responsive' );
-add_filter( 'widget_text_content', 'maneras_make_youtube_videos_responsive' );
+    return $content;
+    }
 
-add_filter(
-	'timber/context',
-	function ( $context ) {
-		$breadcrumbs = new Breadcrumbs();
-		$items       = $breadcrumbs->get_items();
-		$json_ld     = $breadcrumbs->get_json_ld();
+    add_filter( 'the_content', 'maneras_make_youtube_videos_responsive' );
+    add_filter( 'widget_text_content', 'maneras_make_youtube_videos_responsive' );
 
-		$context['breadcrumbs']         = $items;
-		$context['breadcrumbs_json_ld'] = $json_ld;
-		return $context;
-	}
-);
+    add_filter(
+    'timber/context',
+    function ( $context ) {
+    $breadcrumbs = new Breadcrumbs();
+    $items = $breadcrumbs->get_items();
+    $json_ld = $breadcrumbs->get_json_ld();
+
+    $context['breadcrumbs'] = $items;
+    $context['breadcrumbs_json_ld'] = $json_ld;
+    return $context;
+    });
+
+    // Add custom locations for Timber (Timber 2.x).
+    add_filter('timber/locations', function(array $locations){
+        $base = get_stylesheet_directory() . '/templates';
+        // Ensure widgets namespace points to templates/widgets
+        $locations['widgets'] = isset($locations['widgets']) && is_array($locations['widgets'])
+            ? array_values(array_unique(array_merge($locations['widgets'], [ $base . '/widgets' ])))
+            : [ $base . '/widgets' ];
+        return $locations;
+    });

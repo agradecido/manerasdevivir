@@ -1,0 +1,159 @@
+{% extends 'base/base.twig' %}
+
+{% block header %}
+  {{ function('maneras_get_header') }}
+{% endblock %}
+
+{% block content %}
+  <div class="reading-container max-w-content-width mx-auto pb-8 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-primary mb-4 text-center">Enviar noticia</h1>
+    <p class="text-center text-text-subtle mb-8 max-w-2xl mx-auto">¿Tienes una noticia relevante para/sobre el rock? ¿Has asistido a un concierto, tienes fotos interesantes? Compártelo con la comunidad de Manerasdevivir.com.</p>
+
+    {% if submitted %}
+      <div class="success-message-container">
+        <p class="font-medium">¡Gracias! Tu noticia ha sido enviada.</p>
+      </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="form-container">
+      <div class="mb-6">
+        <label class="block text-text-subtle font-medium mb-2 required-field" for="news_title">Titular</label>
+        <input type="text" id="news_title" name="news_title" required class="form-input w-full px-4 py-3 rounded-md border border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all bg-bg" />
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-text-subtle font-medium mb-2 required-field" for="news_content">Contenido</label>
+        <textarea id="news_content" name="news_content" rows="6" required class="form-textarea w-full px-4 py-3 rounded-md border border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all bg-bg"></textarea>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-text-subtle font-medium mb-2 required-field" for="news_signature">Firma</label>
+        <input type="text" id="news_signature" name="news_signature" required class="form-input w-full px-4 py-3 rounded-md border border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all bg-bg" />
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-text-subtle font-medium mb-2 required-field" for="news_email">Email de contacto</label>
+        <input type="email" id="news_email" name="news_email" required class="form-input w-full px-4 py-3 rounded-md border border-border focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all bg-bg" />
+      </div>
+
+      <div class="mb-8">
+        <label class="block text-text-subtle font-medium mb-2" for="news_images">Imágenes</label>
+        <div id="drop-zone" class="file-upload-area group cursor-pointer transition-colors duration-300 hover:bg-bg-alt rounded-md border border-border p-4">
+          <label for="news_images" class="block w-full h-full cursor-pointer">
+            <input id="news_images" name="news_images[]" type="file" multiple accept="image/*" class="sr-only" />
+            <div class="space-y-1 text-center">
+              <svg class="mx-auto h-12 w-12 text-text-subtle transition-colors duration-300 group-hover:text-primary" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <div class="flex text-sm text-text-subtle justify-center">
+                <span class="font-medium text-primary hover:text-primary-h underline">Sube archivos</span>
+                <p class="pl-1">o arrastra y suelta</p>
+              </div>
+              <p class="text-xs text-text-subtle">PNG, JPG, GIF hasta 1MB por imagen</p>
+            </div>
+          </label>
+        </div>
+        <div id="selected-files" class="mt-2 px-2 text-sm text-text-subtle"></div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const dropZone = document.getElementById('drop-zone')
+            const fileInput = document.getElementById('news_images')
+            const selectedFilesDiv = document.getElementById('selected-files')
+          
+            // Función para actualizar la lista de archivos seleccionados.
+            function updateFileList(files) {
+              if (files.length > 0) {
+                let fileNames = ''
+                for (let i = 0; i < files.length; i++) {
+                  fileNames += `<div class="file-item py-1 flex items-center">
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14" />
+                                              </svg>
+                                              ${files[i].name}
+                                          </div>`
+                }
+                selectedFilesDiv.innerHTML = fileNames
+              } else {
+                selectedFilesDiv.innerHTML = ''
+              }
+            }
+          
+            // Evento change para cuando se seleccionan archivos con el navegador.
+            fileInput.addEventListener('change', function (e) {
+              updateFileList(this.files)
+            })
+          
+            // Eventos para drag and drop
+            ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
+              dropZone.addEventListener(
+                eventName,
+                function (e) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                },
+                false
+              )
+            })
+          
+            // Clases visuales durante el arrastre.
+            ;['dragenter', 'dragover'].forEach((eventName) => {
+              dropZone.addEventListener(
+                eventName,
+                function () {
+                  dropZone.classList.add('border-primary', 'bg-bg-alt')
+                },
+                false
+              )
+            })
+          
+            ;['dragleave', 'drop'].forEach((eventName) => {
+              dropZone.addEventListener(
+                eventName,
+                function () {
+                  dropZone.classList.remove('border-primary', 'bg-bg-alt')
+                },
+                false
+              )
+            })
+          
+            // Manejo del evento drop.
+            dropZone.addEventListener(
+              'drop',
+              function (e) {
+                const dt = e.dataTransfer
+                const files = dt.files
+          
+                // Asignar archivos al input.
+                fileInput.files = files
+          
+                // Actualizar visualización.
+                updateFileList(files)
+          
+                // Disparar evento change para compatibilidad.
+                const event = new Event('change', { bubbles: true })
+                fileInput.dispatchEvent(event)
+              },
+              false
+            )
+          })
+        </script>
+      </div>
+
+      {{ function('wp_nonce_field', 'cgcof_news_submit', 'cgcof_news_nonce') }}
+
+      <div class="mt-8 mb-6 text-center">
+        <p class="text-xs text-text-subtle mb-4">Al enviar el formulario aceptas nuestra política de privacidad y el tratamiento de tus datos.</p>
+        <button type="submit" name="cgcof_news_submit" class="submit-button flex items-center mx-auto">
+          <span>Enviar noticia</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {{ function('maneras_get_footer') }}
+{% endblock %}

@@ -1,30 +1,17 @@
 /* Estilos para el encabezado y logo */
 @layer components {
   .site-header {
-    @apply shadow-md pt-4 bg-bg;
+    @apply shadow-md bg-bg;    
   }
 
   .site-header__content {
-    @apply container mx-auto flex justify-between items-center px-4;
-  }
-
-  .site-logo {
-    @apply flex items-center;
-  }
-
-  .site-logo-link {
-    @apply flex items-center transition-transform duration-300;
-  }
-
-  .site-logo-link:hover {
-    @apply transform scale-105;
+    @apply container mx-auto flex justify-between items-center gap-3 sm:gap-4;
   }
 
   .site-logo img {
-    @apply h-8 sm:h-20 mr-2;
+    @apply h-auto w-auto max-h-8 sm:max-h-20 mr-2;
   }
 
-  /* Versión light/dark del logo */
   .dark .site-logo .logo-light {
     @apply hidden;
   }

@@ -1,0 +1,32 @@
+{# Desktop navigation #}
+<nav class="hidden lg:block mt-2">
+  {% if primary_menu %}
+    <ul class="flex space-x-6 items-center justify-center">
+      {% for item in primary_menu.items %}
+        <li class="{% if item.current %}{% endif %}">
+          <a href="{{ item.link }}" class="hover:text-primary transition">{{ item.title }}</a>
+        </li>
+      {% endfor %}
+      <li>
+        <button id="theme-toggle" class="hover:text-primary transition pt-2" aria-label="Cambiar tema">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+          </svg>
+        </button>
+      </li>
+    </ul>
+  {% endif %}
+</nav>
+
+{# Mobile navigation #}
+<div class="mobile-menu hidden lg:hidden">
+  {% if primary_menu %}
+    <ul class="space-y-2">
+      {% for item in primary_menu.items %}
+        <li class="{% if item.current %}{% endif %}">
+          <a href="{{ item.link }}" class="block py-2 hover:text-primary transition">{{ item.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

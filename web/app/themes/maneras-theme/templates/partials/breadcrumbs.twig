@@ -1,16 +1,19 @@
-{% if breadcrumbs %} {# Mostrar siempre que haya breadcrumbs, incluso si solo hay Home #}
-    <nav aria-label="breadcrumb" class="mb-3 mb-2">
-        <ol class="site-breadcrumbs breadcrumb-list"> {# Usando tanto la clase CSS personalizada como la clase original de Tailwind #}
-            {% for item in breadcrumbs %}
-                <li class="breadcrumb-item{% if loop.last %} active font-semibold text-gray-800 dark:text-gray-200{% endif %}"{% if loop.last %} aria-current="page"{% endif %}>
-                    {% if item.url and not loop.last %}
-                        <a href="{{ item.url }}" class="hover:text-primary dark:hover:text-secondary">{{ item.name }}</a>
-                    {% else %}
-                        {{ item.name }}
-                    {% endif %}
-                    {% if not loop.last %}<span class="mx-2">/</span>{% endif %} {# Separator with margin #}
-                </li>
-            {% endfor %}
-        </ol>
-    </nav>
+{% if breadcrumbs %}
+	{# Mostrar siempre que haya breadcrumbs, incluso si solo hay Home #}
+	<nav aria-label="breadcrumb" class="breadcrumbs">
+		<ol>
+			{% for item in breadcrumbs %}
+				<li class="breadcrumb-item{% if loop.last %} active font-semibold text-gray-800 dark:text-gray-200{% endif %}" {% if loop.last %} aria-current="page" {% endif %}>
+					{% if item.url and not loop.last %}
+						<a href="{{ item.url }}" class="hover:text-primary dark:hover:text-secondary">{{ item.name }}</a>
+					{% else %}
+						{{ item.name }}
+					{% endif %}
+					{% if not loop.last %}
+						<span class="mx-2">/</span>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ol>
+	</nav>
 {% endif %}

@@ -2,7 +2,7 @@
 
 /* base font-size */
 html {
-    font-size: 18px;
+    font-size: 22px;
 }
 
 :root {
@@ -14,10 +14,10 @@ html {
     --color-border: #DEE2E6;
     --color-text-subtle: #cc6600;
     --site-width: 100%;
-    --main-container-width: 95em; /* 1520px */
-    --heading-width: 50em; /* 800px */
-    --featured-image-container-width: 75em; /* 1200px */
-    --reading-content-width: 38em; /* 608px */
+    --main-container-width: 1200px;
+    --heading-width: 980px;
+    --featured-image-container-width: 1200px;
+    --reading-content-width: 608px;
 }
 
 .dark {

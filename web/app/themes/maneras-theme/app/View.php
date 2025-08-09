@@ -25,8 +25,13 @@ class View {
 			$context = array_merge( $context, $data );
 		}
 
-		// Render the view.
-		return Timber::render( $template, $context, false, $return );
+		// Render or return the view accordingly.
+		if ( $return ) {
+			return Timber::compile( $template, $context );
+		}
+
+		Timber::render( $template, $context );
+		return null;
 	}
 
 	/**

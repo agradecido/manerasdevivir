@@ -21,11 +21,20 @@ if ( is_front_page() ) {
 		View::render( 'pages/page.twig' );
 	}
 } elseif ( is_singular() ) {
-	View::render( 'pages/single-article.twig' );
+	$post_type = get_post_type();
+	// Prefer specific single template by post type
+	$type_template = 'singles/single-' . $post_type . '.twig';
+	if ( $post_type === 'post' && file_exists( get_template_directory() . '/templates/singles/single-article.twig' ) ) {
+		View::render( 'singles/single-article.twig' );
+	} elseif ( file_exists( get_template_directory() . '/templates/' . $type_template ) ) {
+		View::render( $type_template );
+	} else {
+		View::render( 'singles/single.twig' );
+	}
 } elseif ( is_search() ) {
-	View::render( 'pages/search.twig' );
+	View::render( 'search.twig' );
 } elseif ( is_404() ) {
-	View::render( 'pages/404.twig' );
+	View::render( '404.twig' );
 } else {
-	View::render( 'base/layout.twig' );
+	View::render( 'base/base.twig' );
 }

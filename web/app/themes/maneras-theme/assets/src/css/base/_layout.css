@@ -1,9 +1,5 @@
 /* Layout components */
 @layer base {
-    .site-header {
-        padding: 1rem;
-    }
-
     .main-container {
         max-width: var(--main-container-width);
         margin-left: auto;
@@ -25,9 +21,20 @@
     }
 
     .heading-container {
-        border: 1px solid lime;
         max-width: var(--heading-width);
         margin-left: auto;
         margin-right: auto;
+    }
+    .article-width {
+        max-width: var(--heading-width);
+        
+    }
+
+    @media screen and (min-width: 1024px) {
+        .main-container, .reading-container, .featured-image-container, .heading-container, .article-width {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
     }
 }

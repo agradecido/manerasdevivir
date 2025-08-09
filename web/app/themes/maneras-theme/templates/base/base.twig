@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+  <head>
+    <meta charset="{{ site.charset }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="profile" href="https://gmpg.org/xfn/11" />
+
+    {{ function('wp_head') }}
+    {% block head %}
+
+    {% endblock %}
+
+    {% if breadcrumbs_json_ld %}
+      {{ breadcrumbs_json_ld|raw }}
+    {% endif %}
+  </head>
+
+  <body class="bg-bg text-text pt-4 {{ body_class }}">
+    <header>
+      {% block header %}
+
+      {% endblock %}
+    </header>
+
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+    <footer>
+      {% block footer %}
+
+      {% endblock %}
+    </footer>
+
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    {% endblock %}
+
+    {% block scripts %}
+
+    {% endblock %}
+
+    {{ function('wp_footer') }}
+  </body>
+</html>

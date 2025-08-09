@@ -1,11 +1,13 @@
 {# 
-  Template Name: Front Page 
+  Template Name: Single Article
 #}
 
 {% extends 'base/base.twig' %}
 
 {% block title %}
-  {{ site.name }} - {{ site.description }}
+  {{ post.title }}
+  -
+  {{ site.name }}
 {% endblock %}
 
 {% block header %}
@@ -13,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-  {% include 'base/home.twig' %}
+  {# Contenedor principal #}
 {% endblock %}
 
 {% block footer %}

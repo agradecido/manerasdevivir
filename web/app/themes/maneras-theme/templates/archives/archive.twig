@@ -2,90 +2,87 @@
   Template Name: Archive 
 #}
 
-{% extends "base/layout.twig" %}
+{% extends 'base/base.twig' %}
 
 {% block title %}
-	{{ title }}
-	-
-	{{ site.name }}
+  {{ title }}
+  -
+  {{ site.name }}
 {% endblock %}
 
 {% block header %}
-	{{ function('maneras_get_header') }}
-{% endblock %}
-
-{% block breadcrumbs %}
-	{% include 'partials/breadcrumbs.twig' %}
+  {{ function('maneras_get_header') }}
 {% endblock %}
 
 {% block content %}
-	<div class="container mx-auto py-8">
-		<header class="mb-8">
-			<h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
+  <div class="container mx-auto py-8">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold mb-2">{{ title }}</h1>
 
-			{% if description %}
-				<div class="text-gray-600 max-w-2xl mx-auto">
-					{{ description }}
-				</div>
-			{% endif %}
-		</header>
+      {% if description %}
+        <div class="text-gray-600 max-w-2xl mx-auto">{{ description }}</div>
+      {% endif %}
+    </header>
 
-		{% if posts %}
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				{% for post in posts %}
-					<a href="{{ post.link }}" class="hover:text-primary">
-						<div class="bg-white rounded-lg shadow-md overflow-hidden">
-							{% if post.thumbnail %}
-								<img src="{{ post.thumbnail.src('high') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-48 object-cover">
-							{% endif %}
+    {% if posts %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for post in posts %}
+          <a href="{{ post.link }}" class="hover:text-primary">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              {% if post.thumbnail %}
+                <img src="{{ post.thumbnail.src('high') }}" alt="{{ post.thumbnail.alt }}" class="w-full h-48 object-cover" />
+              {% endif %}
 
-							<div class="p-4">
-								<h2 class="font-bold text-xl mb-2">{{ post.title }}</h2>
-								<div class="text-gray-600 text-sm mb-2">{{ post.date | date("F j, Y") }}</div>
-								<ul>
-									{% if post.firma_sender %}
-										<li>
-											<span class="text-gray-600">Por
-												{{ post.firma_sender }}</span>
-										</li>
-									{% endif %}
-									<li>
-										<span class="text-gray-600">{{ post.date | date("F j, Y") }}</span>
-									</li>
-								</ul>
+              <div class="p-4">
+                <h2 class="font-bold text-xl mb-2">{{ post.title }}</h2>
+                <div class="text-gray-600 text-sm mb-2">{{ post.date|date('F j, Y') }}</div>
+                <ul>
+                  {% if post.firma_sender %}
+                    <li>
+                      <span class="text-gray-600">
+                        Por
+                        {{ post.firma_sender }}
+                      </span>
+                    </li>
+                  {% endif %}
+                  <li>
+                    <span class="text-gray-600">{{ post.date|date('F j, Y') }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
 
-							</div>
-						</div>
-					</a>
-				{% endfor %}
-			</div>
+      {% if pagination.total > 1 %}
+        <div class="mt-12 flex justify-center">
+          <div class="flex space-x-2">
+            {% if pagination.prev_link %}
+              <a href="{{ pagination.prev_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">&laquo; Previous</a>
+            {% endif %}
 
-			{% if pagination.total > 1 %}
-				<div class="mt-12 flex justify-center">
-					<div class="flex space-x-2">
-						{% if pagination.prev_link %}
-							<a href="{{ pagination.prev_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">&laquo; Previous</a>
-						{% endif %}
+            <span class="px-4 py-2">
+              Page
+              {{ pagination.current }}
+              of
+              {{ pagination.total }}
+            </span>
 
-						<span class="px-4 py-2">Page
-							{{ pagination.current }}
-							of
-							{{ pagination.total }}</span>
-
-						{% if pagination.next_link %}
-							<a href="{{ pagination.next_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Next &raquo;</a>
-						{% endif %}
-					</div>
-				</div>
-			{% endif %}
-		{% else %}
-			<div class="text-center py-12">
-				<p class="text-gray-600">No posts found!</p>
-			</div>
-		{% endif %}
-	</div>
+            {% if pagination.next_link %}
+              <a href="{{ pagination.next_link }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Next &raquo;</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="text-center py-12">
+        <p class="text-gray-600">No posts found!</p>
+      </div>
+    {% endif %}
+  </div>
 {% endblock %}
 
 {% block footer %}
-	{{ function('maneras_get_footer') }}
+  {{ function('maneras_get_footer') }}
 {% endblock %}
