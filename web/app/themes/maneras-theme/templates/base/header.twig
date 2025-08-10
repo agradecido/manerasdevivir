@@ -1,13 +1,17 @@
 <div class="site-header">
-  <div class="site-header__content flex items-center">
-    {% include 'partials/hamb-button.twig' %}
-    {% include 'partials/logo.twig' %}
-    <div class="flex-1 flex justify-end">
-      {# Placeholder future right-aligned elements #}
+  <div class="main-container">
+    <div class="site-header__brand">
+      <div class="site-header__left">
+        {% include 'partials/hamb-button.twig' %}
+      </div>
+      <div class="site-header__center">
+        {% include 'partials/logo.twig' with { size: 'md' } %}
+      </div>
+      <div class="site-header__right" aria-hidden="true"></div>
     </div>
+
+    {% include 'partials/navigation.twig' %}
+
+    {% include 'partials/breadcrumbs.twig' %}
   </div>
-
-  {% include 'partials/navigation.twig' %}
-
-  {% include 'partials/breadcrumbs.twig' %}
 </div>

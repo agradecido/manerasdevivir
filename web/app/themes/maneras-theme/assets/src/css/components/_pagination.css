@@ -7,13 +7,17 @@
   
     /* Enlaces y spans (prev/next, números) --------------------------- */
     .site-pagination a,
-    .site-pagination span {
-      @apply inline-flex items-center justify-center px-3 py-1.5
+    .site-pagination span,
+    .site-pagination .current {
+      @apply inline-flex items-center justify-center px-3 py-0.5
              rounded border border-border bg-surface
              text-text-subtle hover:text-primary hover:bg-border
              transition-colors duration-150;
     }
-  
+    
+  .site-pagination span {
+    @apply hidden md:inline-flex;
+  }
     /* Página actual ---------------------------------------------------- */
     .site-pagination .current {
       @apply bg-primary text-bg border-primary cursor-default;

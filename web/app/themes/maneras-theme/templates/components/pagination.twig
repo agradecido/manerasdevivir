@@ -1,0 +1,41 @@
+{% if pagination.total > 1 %}
+  <nav class="site-pagination" aria-label="Paginación">
+    {% if pagination.prev_link %}
+      <a href="{{ pagination.prev_link }}" aria-label="Página anterior">
+        <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span class="hidden md:inline">Anterior</span>
+      </a>
+    {% else %}
+      <div class="opacity-50 cursor-not-allowed">
+        <svg class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span class="hidden md:inline">Anterior</span>
+      </div>
+    {% endif %}
+
+    <div class="current">{{ pagination.current }}</div>
+
+    {% if pagination.total > 1 %}
+      <span>de {{ pagination.total }}</span>
+    {% endif %}
+
+    {% if pagination.next_link %}
+      <a href="{{ pagination.next_link }}" aria-label="Página siguiente">
+        <span class="hidden md:inline">Siguiente</span>
+        <svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    {% else %}
+      <div class="opacity-50 cursor-not-allowed">
+        <span class="hidden md:inline">Siguiente</span>
+        <svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    {% endif %}
+  </nav>
+{% endif %}

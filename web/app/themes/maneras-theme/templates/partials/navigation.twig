@@ -1,32 +1,18 @@
-{# Desktop navigation #}
-<nav class="hidden lg:block mt-2">
-  {% if primary_menu %}
-    <ul class="flex space-x-6 items-center justify-center">
-      {% for item in primary_menu.items %}
-        <li class="{% if item.current %}{% endif %}">
-          <a href="{{ item.link }}" class="hover:text-primary transition">{{ item.title }}</a>
-        </li>
-      {% endfor %}
-      <li>
-        <button id="theme-toggle" class="hover:text-primary transition pt-2" aria-label="Cambiar tema">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-          </svg>
-        </button>
-      </li>
-    </ul>
-  {% endif %}
-</nav>
-
-{# Mobile navigation #}
-<div class="mobile-menu hidden lg:hidden">
-  {% if primary_menu %}
-    <ul class="space-y-2">
-      {% for item in primary_menu.items %}
-        <li class="{% if item.current %}{% endif %}">
-          <a href="{{ item.link }}" class="block py-2 hover:text-primary transition">{{ item.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+{# Menú lateral izquierdo (siempre móvil) #}
+<div id="primary-mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú principal">
+  <div class="mobile-menu__overlay" aria-hidden="true"></div>
+  <div class="mobile-menu__panel">
+    <button class="mobile-menu__close" aria-label="Cerrar menú">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    {% if primary_menu %}
+      <ul class="mobile-menu__list">
+        {% for item in primary_menu.items %}
+          <li class="{% if item.current %}{% endif %}">
+            <a href="{{ item.link }}" class="mobile-menu__link">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
 </div>

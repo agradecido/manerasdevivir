@@ -7,13 +7,13 @@ import './image-handler.js';
 import './components/news-form.js';
 
 // Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Código de inicialización global
   console.log('Tema Maneras de Vivir cargado');
-  
+
   // Inicializar detección de tema oscuro/claro
   initDarkModeDetection();
-  
+
   // Inicializar menú móvil
   initMobileMenu();
 });
@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function initDarkModeDetection() {
   // Detectar preferencia del sistema
   const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-  
+
   // Comprobar si ya hay una preferencia guardada
   const currentTheme = localStorage.getItem('theme');
-  
+
   // Aplicar tema oscuro si está guardado o si el sistema lo prefiere
   if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
     document.documentElement.classList.remove('light');
@@ -38,7 +38,7 @@ function initDarkModeDetection() {
     document.documentElement.classList.remove('dark');
     document.body.classList.remove('dark');
   }
-  
+
   // Escuchar cambios en la preferencia del sistema
   prefersDarkScheme.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
@@ -53,13 +53,13 @@ function initDarkModeDetection() {
       }
     }
   });
-  
+
   // Añadir toggle de tema oscuro/claro si existe el botón
   const themeToggleBtn = document.getElementById('theme-toggle');
   if (themeToggleBtn) {
     // Actualizar el ícono según el tema actual
     updateThemeToggleIcon(document.body.classList.contains('dark'));
-    
+
     themeToggleBtn.addEventListener('click', () => {
       const isDark = document.body.classList.contains('dark');
       if (isDark) {
@@ -73,7 +73,7 @@ function initDarkModeDetection() {
         document.body.classList.add('dark');
         localStorage.setItem('theme', 'dark');
       }
-      
+
       // Actualizar el ícono
       updateThemeToggleIcon(!isDark);
     });
@@ -87,7 +87,7 @@ function initDarkModeDetection() {
 function updateThemeToggleIcon(isDark) {
   const themeToggleBtn = document.getElementById('theme-toggle');
   if (!themeToggleBtn) return;
-  
+
   // Cambiar el icono según el tema actual
   if (isDark) {
     themeToggleBtn.innerHTML = `
@@ -109,11 +109,48 @@ function updateThemeToggleIcon(isDark) {
  */
 function initMobileMenu() {
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  
+  const mobileMenu = document.getElementById('primary-mobile-menu');
+
   if (mobileMenuToggle && mobileMenu) {
+    const panel = mobileMenu.querySelector('.mobile-menu__panel');
+    const overlay = mobileMenu.querySelector('.mobile-menu__overlay');
+    const closeBtn = mobileMenu.querySelector('.mobile-menu__close');
+
+    const updateA11y = (expanded) => {
+      mobileMenuToggle.setAttribute('aria-expanded', String(expanded));
+      mobileMenuToggle.setAttribute('aria-label', expanded ? 'Cerrar menú' : 'Abrir menú');
+      document.documentElement.style.overflow = expanded ? 'hidden' : '';
+      document.body.style.overflow = expanded ? 'hidden' : '';
+    };
+
+    const openMenu = () => {
+      mobileMenu.classList.add('is-open');
+      updateA11y(true);
+    };
+    const closeMenu = () => {
+      mobileMenu.classList.remove('is-open');
+      updateA11y(false);
+    };
+
     mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      if (!mobileMenu.classList.contains('is-open')) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    panel.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) closeMenu();
     });
   }
 }

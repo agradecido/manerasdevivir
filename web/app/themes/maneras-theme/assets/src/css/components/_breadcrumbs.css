@@ -1,13 +1,10 @@
 /* resources/css/components/_breadcrumbs.css */
 @layer components {
     .breadcrumbs {
-      font-size: 0.65rem;
+      font-size: 0.85rem;
       line-height: 1.5;
       margin-bottom: 0.5rem;
-      max-width: var(--heading-width);
-      margin-left: auto;
-      margin-right: auto;
-      padding-bottom: 0.2rem;
+      max-width: var(--main-container-width);
       ol {
         display: flex !important;
         
